@@ -1,4 +1,4 @@
-package com.ebsoft.imagegrabber.ui.base;
+package com.ebsoft.watchlist.ui.base;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;

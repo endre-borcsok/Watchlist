@@ -1,4 +1,4 @@
-package com.ebsoft.imagegrabber;
+package com.ebsoft.watchlist;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

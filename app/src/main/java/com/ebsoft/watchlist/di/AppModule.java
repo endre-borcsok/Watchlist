@@ -1,10 +1,10 @@
-package com.ebsoft.imagegrabber.di;
+package com.ebsoft.watchlist.di;
 
 import android.content.Context;
 
-import com.ebsoft.imagegrabber.ImageGrabberApplication;
-import com.ebsoft.imagegrabber.data.DataManager;
-import com.ebsoft.imagegrabber.data.DataManagerImpl;
+import com.ebsoft.watchlist.ImageGrabberApplication;
+import com.ebsoft.watchlist.data.DataManager;
+import com.ebsoft.watchlist.data.DataManagerImpl;
 
 import javax.inject.Singleton;
 

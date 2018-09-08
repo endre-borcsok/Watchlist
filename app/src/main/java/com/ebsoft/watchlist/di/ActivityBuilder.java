@@ -1,7 +1,7 @@
-package com.ebsoft.imagegrabber.di;
+package com.ebsoft.watchlist.di;
 
-import com.ebsoft.imagegrabber.ui.main.MainActivity;
-import com.ebsoft.imagegrabber.ui.main.MainActivityModule;
+import com.ebsoft.watchlist.ui.main.MainActivity;
+import com.ebsoft.watchlist.ui.main.MainActivityModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;

@@ -2,12 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.ebsoft.imagegrabber.ui.main.MainActivity">
+    tools:context="com.ebsoft.watchlist.ui.main.MainActivity">
 
     <data>
         <variable
             name="viewModel"
-            type="com.ebsoft.imagegrabber.ui.main.MainViewModel" />
+            type="com.ebsoft.watchlist.ui.main.MainViewModel" />
     </data>
 
     <TextView

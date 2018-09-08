@@ -1,12 +1,12 @@
-package com.ebsoft.imagegrabber.ui.main;
+package com.ebsoft.watchlist.ui.main;
 
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 
-import com.ebsoft.imagegrabber.BR;
-import com.ebsoft.imagegrabber.R;
-import com.ebsoft.imagegrabber.databinding.ActivityMainBinding;
-import com.ebsoft.imagegrabber.ui.base.BaseActivity;
+import com.ebsoft.watchlist.BR;
+import com.ebsoft.watchlist.R;
+import com.ebsoft.watchlist.databinding.ActivityMainBinding;
+import com.ebsoft.watchlist.ui.base.BaseActivity;
 
 import javax.inject.Inject;
 

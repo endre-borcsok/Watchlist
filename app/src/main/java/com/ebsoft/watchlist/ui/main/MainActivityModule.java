@@ -1,9 +1,9 @@
-package com.ebsoft.imagegrabber.ui.main;
+package com.ebsoft.watchlist.ui.main;
 
 import android.arch.lifecycle.ViewModelProvider;
 
-import com.ebsoft.imagegrabber.ViewModelProviderFactory;
-import com.ebsoft.imagegrabber.data.DataManager;
+import com.ebsoft.watchlist.ViewModelProviderFactory;
+import com.ebsoft.watchlist.data.DataManager;
 
 import dagger.Module;
 import dagger.Provides;

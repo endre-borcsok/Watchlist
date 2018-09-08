@@ -1,9 +1,9 @@
-package com.ebsoft.imagegrabber.ui.main;
+package com.ebsoft.watchlist.ui.main;
 
 import android.databinding.ObservableField;
 
-import com.ebsoft.imagegrabber.data.DataManager;
-import com.ebsoft.imagegrabber.ui.base.BaseViewModel;
+import com.ebsoft.watchlist.data.DataManager;
+import com.ebsoft.watchlist.ui.base.BaseViewModel;
 
 /**
  * Created by endre on 07/09/18.

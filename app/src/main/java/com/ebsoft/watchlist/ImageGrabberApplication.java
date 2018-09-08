@@ -1,9 +1,9 @@
-package com.ebsoft.imagegrabber;
+package com.ebsoft.watchlist;
 
 import android.app.Activity;
 import android.app.Application;
 
-import com.ebsoft.imagegrabber.di.DaggerAppComponent;
+import com.ebsoft.watchlist.di.DaggerAppComponent;
 
 import javax.inject.Inject;
 

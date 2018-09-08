@@ -1,8 +1,8 @@
-package com.ebsoft.imagegrabber.ui.base;
+package com.ebsoft.watchlist.ui.base;
 
 import android.arch.lifecycle.ViewModel;
 
-import com.ebsoft.imagegrabber.data.DataManager;
+import com.ebsoft.watchlist.data.DataManager;
 
 /**
  * Created by endre on 07/09/18.

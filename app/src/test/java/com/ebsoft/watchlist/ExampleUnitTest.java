@@ -1,4 +1,4 @@
-package com.ebsoft.imagegrabber;
+package com.ebsoft.watchlist;
 
 import org.junit.Test;
 

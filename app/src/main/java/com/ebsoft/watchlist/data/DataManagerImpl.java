@@ -1,4 +1,4 @@
-package com.ebsoft.imagegrabber.data;
+package com.ebsoft.watchlist.data;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
