@@ -31,17 +31,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     public MainViewModel getViewModel() {
         mMainViewModel = ViewModelProviders.of(this, mViewModelFactory)
                 .get(MainViewModel.class);
-        new Thread() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                mMainViewModel.setHelloWorldText("dkljfa;skldjfas;dfj");
-            }
-        }.start();
         return mMainViewModel;
     }
 }
