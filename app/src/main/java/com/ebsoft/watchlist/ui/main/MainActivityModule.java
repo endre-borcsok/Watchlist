@@ -1,6 +1,7 @@
 package com.ebsoft.watchlist.ui.main;
 
 import android.arch.lifecycle.ViewModelProvider;
+import android.support.v7.widget.LinearLayoutManager;
 
 import com.ebsoft.watchlist.ViewModelProviderFactory;
 import com.ebsoft.watchlist.data.DataManager;
@@ -24,5 +25,15 @@ public class MainActivityModule {
     @Provides
     MainViewModel provideMainViewModel(DataManager dataManager) {
         return new MainViewModel(dataManager);
+    }
+
+    @Provides
+    LinearLayoutManager providesLayoutManager(MainActivity activity) {
+        return new LinearLayoutManager(activity);
+    }
+
+    @Provides
+    RecyclerViewAdapter providesAdapter() {
+        return new RecyclerViewAdapter();
     }
 }

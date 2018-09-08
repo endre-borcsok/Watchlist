@@ -2,8 +2,8 @@ package com.ebsoft.watchlist.ui.base;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import dagger.android.AndroidInjection;
 
@@ -22,6 +22,10 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
     public abstract int getLayoutId();
 
     public abstract V getViewModel();
+
+    public T getViewDatabinding() {
+        return mViewDataBinding;
+    }
 
     public abstract int getBindingVariable();
 
