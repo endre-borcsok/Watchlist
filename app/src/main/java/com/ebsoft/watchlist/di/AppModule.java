@@ -2,7 +2,7 @@ package com.ebsoft.watchlist.di;
 
 import android.content.Context;
 
-import com.ebsoft.watchlist.ImageGrabberApplication;
+import com.ebsoft.watchlist.WatchlistApplication;
 import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.data.DataManagerImpl;
 
@@ -20,7 +20,7 @@ public class AppModule {
 
     @Provides
     @Singleton
-    Context provideContext(ImageGrabberApplication application) {
+    Context provideContext(WatchlistApplication application) {
         return application;
     }
 

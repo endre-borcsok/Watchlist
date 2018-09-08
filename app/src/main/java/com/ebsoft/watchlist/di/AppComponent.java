@@ -2,7 +2,7 @@ package com.ebsoft.watchlist.di;
 
 import android.app.Application;
 
-import com.ebsoft.watchlist.ImageGrabberApplication;
+import com.ebsoft.watchlist.WatchlistApplication;
 
 import javax.inject.Singleton;
 
@@ -28,5 +28,5 @@ public interface AppComponent {
         AppComponent build();
     }
 
-    void inject(ImageGrabberApplication app);
+    void inject(WatchlistApplication app);
 }

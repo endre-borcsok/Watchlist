@@ -14,7 +14,7 @@ import dagger.android.HasActivityInjector;
  * Created by endre on 07/09/18.
  */
 
-public class ImageGrabberApplication extends Application implements HasActivityInjector{
+public class WatchlistApplication extends Application implements HasActivityInjector{
 
     @Inject
     DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;
