@@ -14,8 +14,8 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        injectDependencies();
         super.onCreate(savedInstanceState);
+        injectDependencies();
         bindData();
     }
 
@@ -30,8 +30,8 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
     }
 
     private void bindData() {
-        mViewDataBinding = DataBindingUtil.setContentView(this, getLayoutId());
         this.mViewModel = mViewModel == null ? getViewModel() : mViewModel;
+        mViewDataBinding = DataBindingUtil.setContentView(this, getLayoutId());
         mViewDataBinding.setVariable(getBindingVariable(), mViewModel);
         mViewDataBinding.executePendingBindings();
     }
