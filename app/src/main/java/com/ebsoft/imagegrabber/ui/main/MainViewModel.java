@@ -2,6 +2,7 @@ package com.ebsoft.imagegrabber.ui.main;
 
 import android.databinding.ObservableField;
 
+import com.ebsoft.imagegrabber.data.DataManager;
 import com.ebsoft.imagegrabber.ui.base.BaseViewModel;
 
 /**
@@ -11,6 +12,10 @@ import com.ebsoft.imagegrabber.ui.base.BaseViewModel;
 public class MainViewModel extends BaseViewModel {
 
     private final ObservableField<String> helloWorldText = new ObservableField<>();
+
+    public MainViewModel(DataManager dataManager) {
+        super(dataManager);
+    }
 
     public ObservableField<String> getHelloWorldText() {
         return helloWorldText;

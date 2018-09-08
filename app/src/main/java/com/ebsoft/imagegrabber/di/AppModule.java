@@ -3,6 +3,8 @@ package com.ebsoft.imagegrabber.di;
 import android.content.Context;
 
 import com.ebsoft.imagegrabber.ImageGrabberApplication;
+import com.ebsoft.imagegrabber.data.DataManager;
+import com.ebsoft.imagegrabber.data.DataManagerImpl;
 
 import javax.inject.Singleton;
 
@@ -20,5 +22,11 @@ public class AppModule {
     @Singleton
     Context provideContext(ImageGrabberApplication application) {
         return application;
+    }
+
+    @Provides
+    @Singleton
+    DataManager provideDataManager(DataManagerImpl dataManager) {
+        return dataManager;
     }
 }

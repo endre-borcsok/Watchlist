@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.ebsoft.imagegrabber.ImageGrabberApplication;
 
+import javax.inject.Singleton;
+
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
@@ -12,6 +14,7 @@ import dagger.android.AndroidInjectionModule;
  * Created by endre on 07/09/18.
  */
 
+@Singleton
 @Component(modules = {
         AndroidInjectionModule.class,
         AppModule.class,

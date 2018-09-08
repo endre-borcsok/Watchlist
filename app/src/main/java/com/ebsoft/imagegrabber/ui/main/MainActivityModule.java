@@ -3,6 +3,7 @@ package com.ebsoft.imagegrabber.ui.main;
 import android.arch.lifecycle.ViewModelProvider;
 
 import com.ebsoft.imagegrabber.ViewModelProviderFactory;
+import com.ebsoft.imagegrabber.data.DataManager;
 
 import dagger.Module;
 import dagger.Provides;
@@ -21,7 +22,7 @@ public class MainActivityModule {
     }
 
     @Provides
-    MainViewModel provideMainViewModel() {
-        return new MainViewModel();
+    MainViewModel provideMainViewModel(DataManager dataManager) {
+        return new MainViewModel(dataManager);
     }
 }
