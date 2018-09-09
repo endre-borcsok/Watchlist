@@ -2,13 +2,10 @@ package com.ebsoft.watchlist.ui.main;
 
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
-import android.util.Log;
 
 import com.ebsoft.watchlist.data.DataManager;
-import com.ebsoft.watchlist.data.model.Yahoo.Item;
+import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.ui.base.BaseViewModel;
-
-import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -25,23 +22,16 @@ public class MainViewModel extends BaseViewModel {
         super(DataManager);
     }
 
-    public void performSymbolSearch() {
+    public void loadWatchlists() {
         getCompositeDisposable().add(
-                mDataManager.getApiManager().searchSymbol("AAPL")
+                mDataManager.getDbManager().loadWatchlists()
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(SymbolSearch -> {
-                            Log.d("res:", SymbolSearch.body().toString());
-                            List<Item> items =
-                                    SymbolSearch
-                                            .body()
-                                            .getSymbolSearchResponse()
-                                            .getItems();
-                            for (Item item : items) {
-                                list.add(item.getSymbol());
+                        .subscribe(watchlists -> {
+                            for (Watchlist item : watchlists) {
+                                list.add(item.name);
                             }
-                        })
-        );
+                        }));
     }
 
     public ObservableList<String> getList() {

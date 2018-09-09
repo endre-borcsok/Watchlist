@@ -12,6 +12,7 @@ import com.ebsoft.watchlist.data.local.db.DBManager;
 import com.ebsoft.watchlist.data.local.db.DBManagerImpl;
 import com.ebsoft.watchlist.network.APIManager;
 import com.ebsoft.watchlist.network.APIManagerImpl;
+import com.ebsoft.watchlist.utils.Constants;
 
 import javax.inject.Singleton;
 
@@ -52,7 +53,7 @@ public class AppModule {
     @Provides
     @Singleton
     AbstractDataBase provideAbstractDatabase(Context context) {
-        return Room.databaseBuilder(context, AbstractDataBase.class, "DB")
+        return Room.databaseBuilder(context, AbstractDataBase.class, Constants.DB_NAME)
                 .fallbackToDestructiveMigration()
                 .build();
     }

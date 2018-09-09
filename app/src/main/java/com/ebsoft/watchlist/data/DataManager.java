@@ -9,7 +9,7 @@ import com.ebsoft.watchlist.network.APIManager;
 
 public interface DataManager {
 
-    com.ebsoft.watchlist.data.local.db.DBManager getDbManager();
+    DBManager getDbManager();
 
     APIManager getApiManager();
 }

@@ -1,5 +1,6 @@
 package com.ebsoft.watchlist.data;
 
+import com.ebsoft.watchlist.data.local.db.DBManager;
 import com.ebsoft.watchlist.network.APIManager;
 
 import javax.inject.Inject;
@@ -28,7 +29,7 @@ public class DataManagerImpl implements DataManager {
     }
 
     @Override
-    public com.ebsoft.watchlist.data.local.db.DBManager getDbManager() {
+    public DBManager getDbManager() {
         return mDbManager;
     }
 }

@@ -55,6 +55,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         viewDataBinding.mainActivityRecyclerView.setLayoutManager(mLayoutManager);
         viewDataBinding.mainActivityRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.mainActivityRecyclerView.setAdapter(mAdapter);
-        getViewModel().performSymbolSearch();
+        getViewModel().loadWatchlists();
     }
 }
