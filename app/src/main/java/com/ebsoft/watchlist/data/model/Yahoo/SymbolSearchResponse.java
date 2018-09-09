@@ -1,4 +1,4 @@
-package com.ebsoft.watchlist.data.model;
+package com.ebsoft.watchlist.data.model.Yahoo;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -11,19 +11,19 @@ import java.util.List;
  * Created by endre on 09/09/18.
  */
 
-public class ResultSet {
+public class SymbolSearchResponse {
 
     @SerializedName("Query")
     @Expose
     private String query;
-    @SerializedName("Result")
+    @SerializedName("Item")
     @Expose
-    private List<Result> result = null;
+    private List<Item> items = null;
 
-    public ResultSet(String query, List<Result> result) {
+    public SymbolSearchResponse(String query, List<Item> items) {
         super();
         this.query = query;
-        this.result = result;
+        this.items = items;
     }
 
     public String getQuery() {
@@ -34,17 +34,20 @@ public class ResultSet {
         this.query = query;
     }
 
-    public List<Result> getResult() {
-        return result;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setResult(List<Result> result) {
-        this.result = result;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("query", query).append("result", result).toString();
+        return new ToStringBuilder(this)
+                .append("query", query)
+                .append("items", items)
+                .toString();
     }
 
 }

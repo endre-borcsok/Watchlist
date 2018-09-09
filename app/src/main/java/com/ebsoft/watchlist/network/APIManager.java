@@ -1,6 +1,6 @@
 package com.ebsoft.watchlist.network;
 
-import com.ebsoft.watchlist.data.model.YahooSymbolLookup;
+import com.ebsoft.watchlist.data.model.Yahoo.SymbolSearch;
 
 import io.reactivex.Observable;
 import retrofit2.Response;
@@ -11,5 +11,5 @@ import retrofit2.Response;
 
 public interface APIManager {
 
-    Observable<Response<YahooSymbolLookup>> searchSymbol(String symbol);
+    Observable<Response<SymbolSearch>> searchSymbol(String symbol);
 }

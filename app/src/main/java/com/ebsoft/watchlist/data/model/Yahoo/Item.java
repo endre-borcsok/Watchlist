@@ -1,4 +1,4 @@
-package com.ebsoft.watchlist.data.model;
+package com.ebsoft.watchlist.data.model.Yahoo;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -9,7 +9,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * Created by endre on 09/09/18.
  */
 
-public class Result {
+public class Item {
 
     @SerializedName("symbol")
     @Expose
@@ -30,7 +30,7 @@ public class Result {
     @Expose
     private String typeDisp;
 
-    public Result(String symbol, String name, String exch, String type, String exchDisp, String typeDisp) {
+    public Item(String symbol, String name, String exch, String type, String exchDisp, String typeDisp) {
         super();
         this.symbol = symbol;
         this.name = name;
@@ -90,7 +90,14 @@ public class Result {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("symbol", symbol).append("name", name).append("exch", exch).append("type", type).append("exchDisp", exchDisp).append("typeDisp", typeDisp).toString();
+        return new ToStringBuilder(this)
+                .append("symbol", symbol)
+                .append("name", name)
+                .append("exch", exch)
+                .append("type", type)
+                .append("exchDisp", exchDisp)
+                .append("typeDisp", typeDisp)
+                .toString();
     }
 
 }

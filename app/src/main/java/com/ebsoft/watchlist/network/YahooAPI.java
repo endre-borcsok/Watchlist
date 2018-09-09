@@ -1,6 +1,6 @@
 package com.ebsoft.watchlist.network;
 
-import com.ebsoft.watchlist.data.model.YahooSymbolLookup;
+import com.ebsoft.watchlist.data.model.Yahoo.SymbolSearch;
 
 import io.reactivex.Observable;
 import retrofit2.Response;
@@ -14,5 +14,5 @@ import retrofit2.http.Query;
 public interface YahooAPI {
 
     @GET("autoc?format=json&region=1&lang=en")
-    Observable<Response<YahooSymbolLookup>> searchSymbol(@Query("query") String symbol);
+    Observable<Response<SymbolSearch>> searchSymbol(@Query("query") String symbol);
 }

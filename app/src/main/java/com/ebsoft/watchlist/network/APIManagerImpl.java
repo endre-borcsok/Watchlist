@@ -1,6 +1,6 @@
 package com.ebsoft.watchlist.network;
 
-import com.ebsoft.watchlist.data.model.YahooSymbolLookup;
+import com.ebsoft.watchlist.data.model.Yahoo.SymbolSearch;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -19,7 +19,7 @@ public class APIManagerImpl implements APIManager {
     APIManagerImpl() {}
 
     @Override
-    public Observable<Response<YahooSymbolLookup>> searchSymbol(String symbol) {
+    public Observable<Response<SymbolSearch>> searchSymbol(String symbol) {
         return YahooApiFactory.createYahooAPI().searchSymbol(symbol);
     }
 }
