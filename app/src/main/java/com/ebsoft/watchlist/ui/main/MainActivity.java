@@ -11,9 +11,6 @@ import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.databinding.ActivityMainBinding;
 import com.ebsoft.watchlist.ui.base.BaseActivity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> {
