@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ebsoft.watchlist.R;
+import com.ebsoft.watchlist.data.model.db.Watchlist;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +16,9 @@ import java.util.List;
  * Created by endre on 08/09/18.
  */
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class WatchlistAdapter extends RecyclerView.Adapter<WatchlistAdapter.ViewHolder> {
 
-    private List<String> mDataSet;
+    private List<Watchlist> mDataSet;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
@@ -27,11 +28,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 
-    public RecyclerViewAdapter() {
+    public WatchlistAdapter() {
         mDataSet = new ArrayList<>();
     }
 
-    public void addItems(List<String> items) {
+    public void addItems(List<Watchlist> items) {
         mDataSet.addAll(items);
         notifyDataSetChanged();
     }
@@ -50,7 +51,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTextView.setText(mDataSet.get(position));
+        holder.mTextView.setText(mDataSet.get(position).name);
     }
 
     @Override

@@ -18,7 +18,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     private MainViewModel mMainViewModel;
 
     @Inject
-    RecyclerViewAdapter mAdapter;
+    WatchlistAdapter mAdapter;
 
     @Inject
     LinearLayoutManager mLayoutManager;

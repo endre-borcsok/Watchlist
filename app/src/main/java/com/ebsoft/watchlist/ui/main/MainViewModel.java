@@ -16,7 +16,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MainViewModel extends BaseViewModel {
 
-    private final ObservableList<String> list = new ObservableArrayList<>();
+    private final ObservableList<Watchlist> list = new ObservableArrayList<>();
 
     public MainViewModel(DataManager DataManager) {
         super(DataManager);
@@ -28,13 +28,11 @@ public class MainViewModel extends BaseViewModel {
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(watchlists -> {
-                            for (Watchlist item : watchlists) {
-                                list.add(item.name);
-                            }
+                            list.addAll(watchlists);
                         }));
     }
 
-    public ObservableList<String> getList() {
+    public ObservableList<Watchlist> getList() {
         return list;
     }
 }

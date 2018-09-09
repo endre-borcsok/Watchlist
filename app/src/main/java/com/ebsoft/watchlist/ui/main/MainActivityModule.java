@@ -33,7 +33,7 @@ public class MainActivityModule {
     }
 
     @Provides
-    RecyclerViewAdapter providesAdapter() {
-        return new RecyclerViewAdapter();
+    WatchlistAdapter providesAdapter() {
+        return new WatchlistAdapter();
     }
 }
