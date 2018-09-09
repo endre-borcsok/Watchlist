@@ -4,9 +4,8 @@ import android.app.Application;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 
-import com.ebsoft.watchlist.WatchlistApplication;
-import com.ebsoft.watchlist.data.DataManagerImpl;
 import com.ebsoft.watchlist.data.DataManager;
+import com.ebsoft.watchlist.data.DataManagerImpl;
 import com.ebsoft.watchlist.data.local.db.AbstractDataBase;
 import com.ebsoft.watchlist.data.local.db.DBManager;
 import com.ebsoft.watchlist.data.local.db.DBManagerImpl;

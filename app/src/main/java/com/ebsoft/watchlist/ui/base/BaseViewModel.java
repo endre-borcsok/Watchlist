@@ -23,6 +23,10 @@ public abstract class BaseViewModel<N> extends ViewModel {
         this.mCompositeDisposable = new CompositeDisposable();
     }
 
+    public DataManager getDataManager() {
+        return mDataManager;
+    }
+
     public CompositeDisposable getCompositeDisposable() {
         return mCompositeDisposable;
     }

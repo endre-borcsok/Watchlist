@@ -16,7 +16,7 @@ public class SymbolSearchResponse {
     @SerializedName("Query")
     @Expose
     private String query;
-    @SerializedName("Item")
+    @SerializedName("Result")
     @Expose
     private List<Item> items = null;
 

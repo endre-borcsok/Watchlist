@@ -38,7 +38,6 @@ public class MainActivityModule {
     }
 
     @Provides
-    @Named("MainActivity")
     WatchlistAdapter providesAdapter() {
         return new WatchlistAdapter();
     }

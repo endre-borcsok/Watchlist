@@ -5,10 +5,6 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.ebsoft.watchlist.ViewModelProviderFactory;
 import com.ebsoft.watchlist.data.DataManager;
-import com.ebsoft.watchlist.ui.main.MainActivity;
-import com.ebsoft.watchlist.ui.main.MainViewModel;
-import com.ebsoft.watchlist.ui.main.WatchlistAdapter;
-import com.ebsoft.watchlist.utils.Constants;
 
 import javax.inject.Named;
 
@@ -41,8 +37,7 @@ public class SearchActivityModule {
     }
 
     @Provides
-    @Named("SearchActivity")
-    WatchlistAdapter providesAdapter() {
-        return new WatchlistAdapter();
+    SearchAdapter providesAdapter() {
+        return new SearchAdapter();
     }
 }

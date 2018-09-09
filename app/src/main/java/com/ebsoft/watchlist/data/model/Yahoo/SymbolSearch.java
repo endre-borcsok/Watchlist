@@ -11,7 +11,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class SymbolSearch {
 
-    @SerializedName("SymbolSearchResponse")
+    @SerializedName("ResultSet")
     @Expose
     private SymbolSearchResponse symbolSearchResponse;
 

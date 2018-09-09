@@ -1,6 +1,5 @@
 package com.ebsoft.watchlist.ui.search;
 
-import android.app.Activity;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -9,22 +8,19 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
-import com.ebsoft.watchlist.databinding.ActivityMainBinding;
 import com.ebsoft.watchlist.databinding.ActivitySearchBinding;
 import com.ebsoft.watchlist.ui.base.BaseActivity;
-import com.ebsoft.watchlist.ui.base.BaseViewModel;
-import com.ebsoft.watchlist.ui.main.WatchlistAdapter;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
-public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchViewModel> {
+public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchViewModel> implements
+        android.support.v7.widget.SearchView.OnQueryTextListener {
 
     private SearchViewModel mSearchViewModel;
 
     @Inject
-    @Named("SearchActivity")
-    WatchlistAdapter mAdapter;
+    SearchAdapter mAdapter;
 
     @Inject
     @Named("SearchActivity")
@@ -62,5 +58,17 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
         viewDataBinding.searchRecyclerView.setLayoutManager(mLayoutManager);
         viewDataBinding.searchRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.searchRecyclerView.setAdapter(mAdapter);
+        viewDataBinding.searchView.setOnQueryTextListener(this);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        getViewModel().performSearch(s);
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        return false;
     }
 }

@@ -21,7 +21,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     private MainViewModel mMainViewModel;
 
     @Inject
-    @Named("MainActivity")
     WatchlistAdapter mAdapter;
 
     @Inject
