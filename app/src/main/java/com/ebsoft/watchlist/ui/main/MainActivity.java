@@ -58,23 +58,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         viewDataBinding.mainActivityRecyclerView.setLayoutManager(mLayoutManager);
         viewDataBinding.mainActivityRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.mainActivityRecyclerView.setAdapter(mAdapter);
-        subscribeToLiveData();
-    }
-
-    private void subscribeToLiveData() {
-        List<String> data = new ArrayList<>();
-        data.add("This");
-        data.add("That");
-        data.add("This");
-        data.add("That");
-        data.add("This");
-        data.add("That");
-        data.add("This");
-        data.add("That");
-        data.add("This");
-        data.add("That");
-        data.add("This");
-        data.add("That");
-        getViewModel().addItemsToList(data);
+        getViewModel().performSymbolSearch();
     }
 }

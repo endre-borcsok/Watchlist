@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.ebsoft.watchlist.ViewModelProviderFactory;
 import com.ebsoft.watchlist.data.DataManager;
+import com.ebsoft.watchlist.network.APIManager;
 
 import dagger.Module;
 import dagger.Provides;
@@ -23,8 +24,8 @@ public class MainActivityModule {
     }
 
     @Provides
-    MainViewModel provideMainViewModel(DataManager dataManager) {
-        return new MainViewModel(dataManager);
+    MainViewModel provideMainViewModel(DataManager dataManager, APIManager apiManager) {
+        return new MainViewModel(dataManager, apiManager);
     }
 
     @Provides

@@ -5,6 +5,8 @@ import android.content.Context;
 import com.ebsoft.watchlist.WatchlistApplication;
 import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.data.DataManagerImpl;
+import com.ebsoft.watchlist.network.APIManager;
+import com.ebsoft.watchlist.network.APIManagerImpl;
 
 import javax.inject.Singleton;
 
@@ -28,5 +30,11 @@ public class AppModule {
     @Singleton
     DataManager provideDataManager(DataManagerImpl dataManager) {
         return dataManager;
+    }
+
+    @Provides
+    @Singleton
+    APIManager provideAPIManager(APIManagerImpl apiManager) {
+        return apiManager;
     }
 }
