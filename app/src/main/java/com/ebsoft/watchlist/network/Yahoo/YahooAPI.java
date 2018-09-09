@@ -1,4 +1,4 @@
-package com.ebsoft.watchlist.network;
+package com.ebsoft.watchlist.network.Yahoo;
 
 import com.ebsoft.watchlist.data.model.Yahoo.SymbolSearch;
 

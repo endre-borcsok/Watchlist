@@ -1,6 +1,7 @@
 package com.ebsoft.watchlist.network;
 
 import com.ebsoft.watchlist.data.model.Yahoo.SymbolSearch;
+import com.ebsoft.watchlist.network.Yahoo.YahooApiFactory;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

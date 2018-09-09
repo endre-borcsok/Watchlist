@@ -1,4 +1,4 @@
-package com.ebsoft.watchlist.network;
+package com.ebsoft.watchlist.network.Yahoo;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
