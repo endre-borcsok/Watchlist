@@ -6,6 +6,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.ebsoft.watchlist.ViewModelProviderFactory;
 import com.ebsoft.watchlist.data.DataManager;
 
+import javax.inject.Named;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -28,11 +30,15 @@ public class MainActivityModule {
     }
 
     @Provides
+    @Named("MainActivity")
     LinearLayoutManager providesLayoutManager(MainActivity activity) {
-        return new LinearLayoutManager(activity);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        return layoutManager;
     }
 
     @Provides
+    @Named("MainActivity")
     WatchlistAdapter providesAdapter() {
         return new WatchlistAdapter();
     }

@@ -14,7 +14,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by endre on 07/09/18.
  */
 
-public class MainViewModel extends BaseViewModel {
+public class MainViewModel extends BaseViewModel<MainNavigator> {
 
     private final ObservableList<Watchlist> list = new ObservableArrayList<>();
 
@@ -30,6 +30,10 @@ public class MainViewModel extends BaseViewModel {
                         .subscribe(watchlists -> {
                             list.addAll(watchlists);
                         }));
+    }
+
+    public void onActionButtonClick() {
+        getNavigator().onActionButtonClick();
     }
 
     public ObservableList<Watchlist> getList() {
