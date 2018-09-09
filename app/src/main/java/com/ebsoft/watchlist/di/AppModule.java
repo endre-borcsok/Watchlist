@@ -1,10 +1,15 @@
 package com.ebsoft.watchlist.di;
 
+import android.app.Application;
+import android.arch.persistence.room.Room;
 import android.content.Context;
 
 import com.ebsoft.watchlist.WatchlistApplication;
-import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.data.DataManagerImpl;
+import com.ebsoft.watchlist.data.DataManager;
+import com.ebsoft.watchlist.data.local.db.AbstractDataBase;
+import com.ebsoft.watchlist.data.local.db.DBManager;
+import com.ebsoft.watchlist.data.local.db.DBManagerImpl;
 import com.ebsoft.watchlist.network.APIManager;
 import com.ebsoft.watchlist.network.APIManagerImpl;
 
@@ -22,7 +27,7 @@ public class AppModule {
 
     @Provides
     @Singleton
-    Context provideContext(WatchlistApplication application) {
+    Context provideContext(Application application) {
         return application;
     }
 
@@ -36,5 +41,19 @@ public class AppModule {
     @Singleton
     APIManager provideAPIManager(APIManagerImpl apiManager) {
         return apiManager;
+    }
+
+    @Provides
+    @Singleton
+    DBManager provideDataBase(DBManagerImpl dbManager) {
+        return dbManager;
+    }
+
+    @Provides
+    @Singleton
+    AbstractDataBase provideAbstractDatabase(Context context) {
+        return Room.databaseBuilder(context, AbstractDataBase.class, "DB")
+                .fallbackToDestructiveMigration()
+                .build();
     }
 }

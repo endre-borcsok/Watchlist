@@ -3,7 +3,6 @@ package com.ebsoft.watchlist.ui.base;
 import android.arch.lifecycle.ViewModel;
 
 import com.ebsoft.watchlist.data.DataManager;
-import com.ebsoft.watchlist.network.APIManager;
 
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -14,12 +13,10 @@ import io.reactivex.disposables.CompositeDisposable;
 public abstract class BaseViewModel extends ViewModel {
 
     protected final DataManager mDataManager;
-    protected final APIManager mApiManager;
     protected final CompositeDisposable mCompositeDisposable;
 
-    public BaseViewModel(DataManager dataManager, APIManager apiManager) {
-        this.mDataManager = dataManager;
-        this.mApiManager = apiManager;
+    public BaseViewModel(DataManager DataManager) {
+        this.mDataManager = DataManager;
         this.mCompositeDisposable = new CompositeDisposable();
     }
 

@@ -6,7 +6,6 @@ import android.util.Log;
 
 import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.data.model.Yahoo.Item;
-import com.ebsoft.watchlist.network.APIManager;
 import com.ebsoft.watchlist.ui.base.BaseViewModel;
 
 import java.util.List;
@@ -22,13 +21,13 @@ public class MainViewModel extends BaseViewModel {
 
     private final ObservableList<String> list = new ObservableArrayList<>();
 
-    public MainViewModel(DataManager dataManager, APIManager apiManager) {
-        super(dataManager, apiManager);
+    public MainViewModel(DataManager DataManager) {
+        super(DataManager);
     }
 
     public void performSymbolSearch() {
         getCompositeDisposable().add(
-                mApiManager.searchSymbol("AAPL")
+                mDataManager.getApiManager().searchSymbol("AAPL")
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(SymbolSearch -> {

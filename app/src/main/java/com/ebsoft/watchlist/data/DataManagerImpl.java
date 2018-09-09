@@ -1,5 +1,7 @@
 package com.ebsoft.watchlist.data;
 
+import com.ebsoft.watchlist.network.APIManager;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -10,6 +12,23 @@ import javax.inject.Singleton;
 @Singleton
 public class DataManagerImpl implements DataManager {
 
+    private APIManager mApiManager;
+
+    private com.ebsoft.watchlist.data.local.db.DBManager mDbManager;
+
     @Inject
-    public DataManagerImpl(){}
+    public DataManagerImpl(APIManager ApiManager, com.ebsoft.watchlist.data.local.db.DBManager DbManager){
+        this.mApiManager = ApiManager;
+        this.mDbManager = DbManager;
+    }
+
+    @Override
+    public APIManager getApiManager() {
+        return mApiManager;
+    }
+
+    @Override
+    public com.ebsoft.watchlist.data.local.db.DBManager getDbManager() {
+        return mDbManager;
+    }
 }
