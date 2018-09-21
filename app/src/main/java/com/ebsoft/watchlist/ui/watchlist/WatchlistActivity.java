@@ -50,9 +50,9 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
 
     private void setUp() {
         ActivityWatchlistBinding viewDataBinding = getViewDatabinding();
-        viewDataBinding.watchlistActivityRecyclerView.setLayoutManager(mLayoutManager);
-        viewDataBinding.watchlistActivityRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        viewDataBinding.watchlistActivityRecyclerView.setAdapter(mAdapter);
+        viewDataBinding.watchlistRecyclerView.setLayoutManager(mLayoutManager);
+        viewDataBinding.watchlistRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        viewDataBinding.watchlistRecyclerView.setAdapter(mAdapter);
         getViewModel().setNavigator(this);
     }
 

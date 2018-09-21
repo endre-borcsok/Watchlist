@@ -19,7 +19,7 @@ import java.util.List;
 
 public class BindingUtils {
 
-    @BindingAdapter({"adapter"})
+    @BindingAdapter({"data"})
     public static void addWatchListItems(RecyclerView recyclerView, List<Watchlist> items) {
         WatchlistAdapter adapter = (WatchlistAdapter) recyclerView.getAdapter();
         if (adapter != null) {
@@ -28,21 +28,20 @@ public class BindingUtils {
         }
     }
 
-    @BindingAdapter({"adapter"})
-    public static void addSearchListItems(RecyclerView recyclerView, List<String> items) {
-        SearchAdapter adapter = (SearchAdapter) recyclerView.getAdapter();
-        if (adapter != null) {
-            adapter.clearItems();
-            adapter.addItems(items);
-        }
-    }
-
-    @BindingAdapter({"adapter"})
-    public static void addSymbolListItems(RecyclerView recyclerView, List<String> items) {
-        SymbolAdapter adapter = (SymbolAdapter) recyclerView.getAdapter();
-        if (adapter != null) {
-            adapter.clearItems();
-            adapter.addItems(items);
+    @BindingAdapter({"data"})
+    public static void addStringListItems(RecyclerView recyclerView, List<String> items) {
+        if (recyclerView.getAdapter() instanceof SearchAdapter) {
+            SearchAdapter adapter = (SearchAdapter) recyclerView.getAdapter();
+            if (adapter != null) {
+                adapter.clearItems();
+                adapter.addItems(items);
+            }
+        } else if (recyclerView.getAdapter() instanceof SymbolAdapter) {
+            SymbolAdapter adapter = (SymbolAdapter) recyclerView.getAdapter();
+            if (adapter != null) {
+                adapter.clearItems();
+                adapter.addItems(items);
+            }
         }
     }
 }
