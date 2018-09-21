@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.databinding.ActivityMainBinding;
+import com.ebsoft.watchlist.di.MainActivityQualifier;
 import com.ebsoft.watchlist.ui.base.BaseActivity;
 import com.ebsoft.watchlist.ui.search.SearchActivity;
 
@@ -24,7 +25,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     WatchlistAdapter mAdapter;
 
     @Inject
-    @Named("MainActivity")
+    @MainActivityQualifier
     LinearLayoutManager mLayoutManager;
 
     @Inject

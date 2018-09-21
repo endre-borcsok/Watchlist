@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.databinding.ActivitySearchBinding;
+import com.ebsoft.watchlist.di.SearchActivityQualifier;
 import com.ebsoft.watchlist.ui.base.BaseActivity;
 
 import javax.inject.Inject;
@@ -23,7 +24,7 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
     SearchAdapter mAdapter;
 
     @Inject
-    @Named("SearchActivity")
+    @SearchActivityQualifier
     LinearLayoutManager mLayoutManager;
 
     @Inject

@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.ebsoft.watchlist.ViewModelProviderFactory;
 import com.ebsoft.watchlist.data.DataManager;
+import com.ebsoft.watchlist.di.MainActivityQualifier;
 
 import javax.inject.Named;
 
@@ -30,7 +31,7 @@ public class MainActivityModule {
     }
 
     @Provides
-    @Named("MainActivity")
+    @MainActivityQualifier
     LinearLayoutManager providesLayoutManager(MainActivity activity) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);

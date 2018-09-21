@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.ebsoft.watchlist.ViewModelProviderFactory;
 import com.ebsoft.watchlist.data.DataManager;
+import com.ebsoft.watchlist.di.SearchActivityQualifier;
 
 import javax.inject.Named;
 
@@ -29,7 +30,7 @@ public class SearchActivityModule {
     }
 
     @Provides
-    @Named("SearchActivity")
+    @SearchActivityQualifier
     LinearLayoutManager providesLayoutManager(SearchActivity activity) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
