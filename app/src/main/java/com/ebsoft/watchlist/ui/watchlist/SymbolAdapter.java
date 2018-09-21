@@ -18,7 +18,7 @@ import java.util.List;
 
 public class SymbolAdapter extends RecyclerView.Adapter<SymbolAdapter.ViewHolder> {
 
-    private List<Watchlist> mDataSet;
+    private List<String> mDataSet;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
@@ -32,7 +32,7 @@ public class SymbolAdapter extends RecyclerView.Adapter<SymbolAdapter.ViewHolder
         mDataSet = new ArrayList<>();
     }
 
-    public void addItems(List<Watchlist> items) {
+    public void addItems(List<String> items) {
         mDataSet.addAll(items);
         notifyDataSetChanged();
     }
@@ -51,7 +51,7 @@ public class SymbolAdapter extends RecyclerView.Adapter<SymbolAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTextView.setText(mDataSet.get(position).name);
+        holder.mTextView.setText(mDataSet.get(position));
     }
 
     @Override

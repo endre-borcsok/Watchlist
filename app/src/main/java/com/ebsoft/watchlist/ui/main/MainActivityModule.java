@@ -30,7 +30,7 @@ public class MainActivityModule {
     }
 
     @Provides
-    WatchlistAdapter providesAdapter() {
-        return new WatchlistAdapter();
+    WatchlistAdapter providesAdapter(MainActivity activity) {
+        return new WatchlistAdapter(activity);
     }
 }

@@ -1,11 +1,15 @@
 package com.ebsoft.watchlist.utils;
 
+import android.content.Context;
+import android.content.Intent;
 import android.databinding.BindingAdapter;
 import android.support.v7.widget.RecyclerView;
 
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.ui.main.WatchlistAdapter;
 import com.ebsoft.watchlist.ui.search.SearchAdapter;
+import com.ebsoft.watchlist.ui.watchlist.SymbolAdapter;
+import com.ebsoft.watchlist.ui.watchlist.WatchlistActivity;
 
 import java.util.List;
 
@@ -27,6 +31,15 @@ public class BindingUtils {
     @BindingAdapter({"adapter"})
     public static void addSearchListItems(RecyclerView recyclerView, List<String> items) {
         SearchAdapter adapter = (SearchAdapter) recyclerView.getAdapter();
+        if (adapter != null) {
+            adapter.clearItems();
+            adapter.addItems(items);
+        }
+    }
+
+    @BindingAdapter({"adapter"})
+    public static void addSymbolListItems(RecyclerView recyclerView, List<String> items) {
+        SymbolAdapter adapter = (SymbolAdapter) recyclerView.getAdapter();
         if (adapter != null) {
             adapter.clearItems();
             adapter.addItems(items);
