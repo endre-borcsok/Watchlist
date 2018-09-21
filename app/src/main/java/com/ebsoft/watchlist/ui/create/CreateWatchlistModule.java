@@ -4,7 +4,6 @@ import android.arch.lifecycle.ViewModelProvider;
 
 import com.ebsoft.watchlist.ViewModelProviderFactory;
 import com.ebsoft.watchlist.data.DataManager;
-import com.ebsoft.watchlist.ui.search.SearchViewModel;
 
 import dagger.Module;
 import dagger.Provides;

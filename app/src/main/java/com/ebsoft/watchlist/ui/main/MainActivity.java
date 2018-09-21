@@ -13,11 +13,11 @@ import com.ebsoft.watchlist.databinding.ActivityMainBinding;
 import com.ebsoft.watchlist.di.MainActivityQualifier;
 import com.ebsoft.watchlist.ui.base.BaseActivity;
 import com.ebsoft.watchlist.ui.create.CreateWatchlistActivity;
-import com.ebsoft.watchlist.ui.search.SearchActivity;
 
 import javax.inject.Inject;
 
-public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> implements MainNavigator {
+public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel>
+        implements MainNavigator {
 
     private MainViewModel mMainViewModel;
 

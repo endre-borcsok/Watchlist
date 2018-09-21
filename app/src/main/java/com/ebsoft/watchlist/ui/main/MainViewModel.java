@@ -2,7 +2,6 @@ package com.ebsoft.watchlist.ui.main;
 
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
-import android.util.Log;
 
 import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
