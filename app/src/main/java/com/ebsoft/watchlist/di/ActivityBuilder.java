@@ -1,5 +1,7 @@
 package com.ebsoft.watchlist.di;
 
+import com.ebsoft.watchlist.ui.create.CreateWatchlistActivity;
+import com.ebsoft.watchlist.ui.create.CreateWatchlistModule;
 import com.ebsoft.watchlist.ui.main.MainActivity;
 import com.ebsoft.watchlist.ui.main.MainActivityModule;
 import com.ebsoft.watchlist.ui.search.SearchActivity;
@@ -22,4 +24,8 @@ public abstract class ActivityBuilder {
     @ContributesAndroidInjector(modules = {
             SearchActivityModule.class})
     abstract SearchActivity bindSearchActivity();
+
+    @ContributesAndroidInjector(modules = {
+            CreateWatchlistModule.class})
+    abstract CreateWatchlistActivity bindCreateWatchlistActivity();
 }

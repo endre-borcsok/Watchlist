@@ -3,6 +3,7 @@ package com.ebsoft.watchlist.data.local.db;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 
 import java.util.List;
+import java.util.concurrent.Callable;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -31,9 +32,12 @@ public class DBManagerImpl implements DBManager {
 
     @Override
     public Observable<Boolean> insertWatchlist(final Watchlist watchlist) {
-        return Observable.fromCallable(() -> {
-            mDataBase.watchlistDao().insert(watchlist);
-            return true;
+        return Observable.fromCallable(new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                mDataBase.watchlistDao().insert(watchlist);
+                return true;
+            }
         });
     }
 }

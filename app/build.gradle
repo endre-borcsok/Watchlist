@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.ebsoft.imagegrabber"
+        applicationId "com.ebsoft.watchlist"
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1

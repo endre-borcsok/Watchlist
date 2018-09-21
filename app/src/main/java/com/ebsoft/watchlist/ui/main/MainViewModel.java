@@ -2,6 +2,7 @@ package com.ebsoft.watchlist.ui.main;
 
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
+import android.util.Log;
 
 import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
@@ -28,6 +29,7 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(watchlists -> {
+                            list.clear();
                             list.addAll(watchlists);
                         }));
     }

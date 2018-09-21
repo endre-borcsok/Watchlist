@@ -10,7 +10,6 @@ import com.ebsoft.watchlist.data.model.db.Watchlist;
  * Created by endre on 09/09/18.
  */
 
-
 @Database(entities = {Watchlist.class}, version = 2)
 public abstract class AbstractDataBase extends RoomDatabase {
 

@@ -7,8 +7,6 @@ import com.ebsoft.watchlist.ViewModelProviderFactory;
 import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.di.MainActivityQualifier;
 
-import javax.inject.Named;
-
 import dagger.Module;
 import dagger.Provides;
 

@@ -12,10 +12,10 @@ import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.databinding.ActivityMainBinding;
 import com.ebsoft.watchlist.di.MainActivityQualifier;
 import com.ebsoft.watchlist.ui.base.BaseActivity;
+import com.ebsoft.watchlist.ui.create.CreateWatchlistActivity;
 import com.ebsoft.watchlist.ui.search.SearchActivity;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> implements MainNavigator {
 
@@ -54,17 +54,22 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         setUp();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getViewModel().loadWatchlists();
+    }
+
     private void setUp() {
         ActivityMainBinding viewDataBinding = getViewDatabinding();
         viewDataBinding.mainActivityRecyclerView.setLayoutManager(mLayoutManager);
         viewDataBinding.mainActivityRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.mainActivityRecyclerView.setAdapter(mAdapter);
         getViewModel().setNavigator(this);
-        getViewModel().loadWatchlists();
     }
 
     @Override
     public void onActionButtonClick() {
-        startActivity(new Intent(this, SearchActivity.class));
+        startActivity(new Intent(this, CreateWatchlistActivity.class));
     }
 }

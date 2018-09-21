@@ -11,5 +11,4 @@ import javax.inject.Qualifier;
 
 @Qualifier
 @Retention(RetentionPolicy.RUNTIME)
-public @interface SearchActivityQualifier {
-}
+public @interface SearchActivityQualifier {}

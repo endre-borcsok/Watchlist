@@ -13,7 +13,6 @@ import com.ebsoft.watchlist.di.SearchActivityQualifier;
 import com.ebsoft.watchlist.ui.base.BaseActivity;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchViewModel> implements
         android.support.v7.widget.SearchView.OnQueryTextListener {
