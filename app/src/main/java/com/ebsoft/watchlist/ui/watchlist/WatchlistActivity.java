@@ -1,5 +1,6 @@
 package com.ebsoft.watchlist.ui.watchlist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,10 +10,12 @@ import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.databinding.ActivityWatchlistBinding;
 import com.ebsoft.watchlist.di.WatchlistActivityQualifier;
 import com.ebsoft.watchlist.ui.base.BaseActivity;
+import com.ebsoft.watchlist.ui.search.SearchActivity;
 
 import javax.inject.Inject;
 
-public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, WatchlistViewModel> {
+public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, WatchlistViewModel>
+        implements WatchlistNavigator{
 
     @Inject
     WatchlistViewModel mWatchlistViewModel;
@@ -50,5 +53,11 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
         viewDataBinding.watchlistActivityRecyclerView.setLayoutManager(mLayoutManager);
         viewDataBinding.watchlistActivityRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.watchlistActivityRecyclerView.setAdapter(mAdapter);
+        getViewModel().setNavigator(this);
+    }
+
+    @Override
+    public void onActionButtonClick() {
+        startActivity(new Intent(this, SearchActivity.class));
     }
 }

@@ -11,7 +11,7 @@ import com.ebsoft.watchlist.ui.base.BaseViewModel;
  * Created by endre on 21/09/18.
  */
 
-public class WatchlistViewModel extends BaseViewModel {
+public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
 
     private final ObservableList<Watchlist> list = new ObservableArrayList<>();
 
@@ -24,7 +24,7 @@ public class WatchlistViewModel extends BaseViewModel {
     }
 
     public void onActionButtonClick() {
-        //TODO
+        getNavigator().onActionButtonClick();
     }
 
     public ObservableList<Watchlist> getList() {
