@@ -3,6 +3,7 @@ package com.ebsoft.watchlist.ui.search;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
@@ -13,7 +14,7 @@ import com.ebsoft.watchlist.ui.base.BaseActivity;
 import javax.inject.Inject;
 
 public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchViewModel> implements
-        android.support.v7.widget.SearchView.OnQueryTextListener {
+        android.support.v7.widget.SearchView.OnQueryTextListener, SearchListener {
 
     @Inject
     SearchViewModel mSearchViewModel;
@@ -53,6 +54,7 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
         viewDataBinding.searchRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.searchRecyclerView.setAdapter(mAdapter);
         viewDataBinding.searchView.setOnQueryTextListener(this);
+        mAdapter.setSearchListener(this);
     }
 
     @Override
@@ -64,5 +66,10 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
     @Override
     public boolean onQueryTextChange(String s) {
         return false;
+    }
+
+    @Override
+    public void onSearchSelected(String result) {
+        Log.d("D", result);
     }
 }

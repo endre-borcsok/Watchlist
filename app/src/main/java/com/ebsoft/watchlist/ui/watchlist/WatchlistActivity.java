@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
@@ -15,7 +16,7 @@ import com.ebsoft.watchlist.ui.search.SearchActivity;
 import javax.inject.Inject;
 
 public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, WatchlistViewModel>
-        implements WatchlistNavigator{
+        implements WatchlistNavigator, SymbolListener {
 
     @Inject
     WatchlistViewModel mWatchlistViewModel;
@@ -54,10 +55,16 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
         viewDataBinding.watchlistRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.watchlistRecyclerView.setAdapter(mAdapter);
         getViewModel().setNavigator(this);
+        mAdapter.setSymbolListener(this);
     }
 
     @Override
     public void onActionButtonClick() {
         startActivity(new Intent(this, SearchActivity.class));
+    }
+
+    @Override
+    public void onSymbolSelected(String symbol) {
+        Log.d("D", symbol);
     }
 }

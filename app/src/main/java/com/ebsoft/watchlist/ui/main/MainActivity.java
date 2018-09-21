@@ -7,15 +7,17 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
+import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.databinding.ActivityMainBinding;
 import com.ebsoft.watchlist.di.MainActivityQualifier;
 import com.ebsoft.watchlist.ui.base.BaseActivity;
 import com.ebsoft.watchlist.ui.create.CreateWatchlistActivity;
+import com.ebsoft.watchlist.ui.watchlist.WatchlistActivity;
 
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel>
-        implements MainNavigator {
+        implements MainNavigator, WatchlistListener {
 
     @Inject
     MainViewModel mMainViewModel;
@@ -60,10 +62,16 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         viewDataBinding.mainActivityRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.mainActivityRecyclerView.setAdapter(mAdapter);
         getViewModel().setNavigator(this);
+        mAdapter.setWatchlistListener(this);
     }
 
     @Override
     public void onActionButtonClick() {
         startActivity(new Intent(this, CreateWatchlistActivity.class));
+    }
+
+    @Override
+    public void onWatchlistSelected(Watchlist watchlist) {
+        startActivity(new Intent(this, WatchlistActivity.class));
     }
 }

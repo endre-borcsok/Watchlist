@@ -18,17 +18,25 @@ import java.util.List;
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
 
     private List<String> mDataSet;
+    private SearchListener mSearchListener;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
+        public View mView;
+
         public ViewHolder(View v) {
             super(v);
+            mView = v;
             mTextView = v.findViewById(R.id.recyclerViewItemText);
         }
     }
 
     public SearchAdapter() {
         mDataSet = new ArrayList<>();
+    }
+
+    public void setSearchListener(SearchListener listener) {
+        mSearchListener = listener;
     }
 
     public void addItems(List<String> items) {
@@ -51,10 +59,19 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.mTextView.setText(mDataSet.get(position));
+        holder.mView.setOnClickListener(getOnClickListenerForPosition(position));
     }
 
     @Override
     public int getItemCount() {
         return mDataSet.size();
+    }
+
+    private View.OnClickListener getOnClickListenerForPosition(int position) {
+        return view -> {
+            if (mSearchListener != null) {
+                mSearchListener.onSearchSelected(mDataSet.get(position));
+            }
+        };
     }
 }

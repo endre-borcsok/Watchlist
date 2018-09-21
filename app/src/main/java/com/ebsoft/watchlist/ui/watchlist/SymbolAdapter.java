@@ -19,17 +19,25 @@ import java.util.List;
 public class SymbolAdapter extends RecyclerView.Adapter<SymbolAdapter.ViewHolder> {
 
     private List<String> mDataSet;
+    private SymbolListener mSymbolListener;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
+        public View mView;
+
         public ViewHolder(View v) {
             super(v);
+            mView = v;
             mTextView = v.findViewById(R.id.recyclerViewItemText);
         }
     }
 
     public SymbolAdapter() {
         mDataSet = new ArrayList<>();
+    }
+
+    public void setSymbolListener(SymbolListener listener) {
+        mSymbolListener = listener;
     }
 
     public void addItems(List<String> items) {
@@ -52,10 +60,19 @@ public class SymbolAdapter extends RecyclerView.Adapter<SymbolAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.mTextView.setText(mDataSet.get(position));
+        holder.mView.setOnClickListener(getOnClickListenerForPosition(position));
     }
 
     @Override
     public int getItemCount() {
         return mDataSet.size();
+    }
+
+    private View.OnClickListener getOnClickListenerForPosition(int position) {
+        return view -> {
+            if (mSymbolListener != null) {
+                mSymbolListener.onSymbolSelected(mDataSet.get(position));
+            }
+        };
     }
 }
