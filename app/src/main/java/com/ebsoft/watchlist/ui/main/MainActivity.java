@@ -1,7 +1,5 @@
 package com.ebsoft.watchlist.ui.main;
 
-import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -19,7 +17,8 @@ import javax.inject.Inject;
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel>
         implements MainNavigator {
 
-    private MainViewModel mMainViewModel;
+    @Inject
+    MainViewModel mMainViewModel;
 
     @Inject
     WatchlistAdapter mAdapter;
@@ -27,9 +26,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     @Inject
     @MainActivityQualifier
     LinearLayoutManager mLayoutManager;
-
-    @Inject
-    ViewModelProvider.Factory mViewModelFactory;
 
     @Override
     public int getLayoutId() {
@@ -43,8 +39,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Override
     public MainViewModel getViewModel() {
-        mMainViewModel = ViewModelProviders.of(this, mViewModelFactory)
-                .get(MainViewModel.class);
         return mMainViewModel;
     }
 

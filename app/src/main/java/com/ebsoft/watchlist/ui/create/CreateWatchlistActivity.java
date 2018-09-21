@@ -1,7 +1,5 @@
 package com.ebsoft.watchlist.ui.create;
 
-import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 
 import com.ebsoft.watchlist.BR;
@@ -14,10 +12,8 @@ import javax.inject.Inject;
 public class CreateWatchlistActivity extends BaseActivity<ActivityCreateWatchlistBinding, CreateWatchlistViewModel>
         implements CreateWatchlistNavigator{
 
-    private CreateWatchlistViewModel mCreateWatchlistViewModel;
-
     @Inject
-    ViewModelProvider.Factory mViewModelFactory;
+    CreateWatchlistViewModel mCreateWatchlistViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,8 +28,6 @@ public class CreateWatchlistActivity extends BaseActivity<ActivityCreateWatchlis
 
     @Override
     public CreateWatchlistViewModel getViewModel() {
-        mCreateWatchlistViewModel = ViewModelProviders.of(this, mViewModelFactory)
-                .get(CreateWatchlistViewModel.class);
         return mCreateWatchlistViewModel;
     }
 

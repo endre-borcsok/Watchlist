@@ -6,6 +6,8 @@ import com.ebsoft.watchlist.ui.main.MainActivity;
 import com.ebsoft.watchlist.ui.main.MainActivityModule;
 import com.ebsoft.watchlist.ui.search.SearchActivity;
 import com.ebsoft.watchlist.ui.search.SearchActivityModule;
+import com.ebsoft.watchlist.ui.watchlist.WatchlistActivity;
+import com.ebsoft.watchlist.ui.watchlist.WatchlistModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -28,4 +30,8 @@ public abstract class ActivityBuilder {
     @ContributesAndroidInjector(modules = {
             CreateWatchlistModule.class})
     abstract CreateWatchlistActivity bindCreateWatchlistActivity();
+
+    @ContributesAndroidInjector(modules = {
+            WatchlistModule.class})
+    abstract WatchlistActivity bindWatchlistActivity();
 }

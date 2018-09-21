@@ -1,9 +1,7 @@
 package com.ebsoft.watchlist.ui.main;
 
-import android.arch.lifecycle.ViewModelProvider;
 import android.support.v7.widget.LinearLayoutManager;
 
-import com.ebsoft.watchlist.ViewModelProviderFactory;
 import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.di.MainActivityQualifier;
 
@@ -17,11 +15,6 @@ import dagger.Provides;
 
 @Module
 public class MainActivityModule {
-
-    @Provides
-    ViewModelProvider.Factory mainViewModelProvider(MainViewModel mainViewModel) {
-        return new ViewModelProviderFactory<>(mainViewModel);
-    }
 
     @Provides
     MainViewModel provideMainViewModel(DataManager DataManager) {

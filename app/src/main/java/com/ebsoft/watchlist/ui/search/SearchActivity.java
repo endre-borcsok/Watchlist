@@ -1,7 +1,5 @@
 package com.ebsoft.watchlist.ui.search;
 
-import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,7 +15,8 @@ import javax.inject.Inject;
 public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchViewModel> implements
         android.support.v7.widget.SearchView.OnQueryTextListener {
 
-    private SearchViewModel mSearchViewModel;
+    @Inject
+    SearchViewModel mSearchViewModel;
 
     @Inject
     SearchAdapter mAdapter;
@@ -25,9 +24,6 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
     @Inject
     @SearchActivityQualifier
     LinearLayoutManager mLayoutManager;
-
-    @Inject
-    ViewModelProvider.Factory mViewModelFactory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +38,6 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
 
     @Override
     public SearchViewModel getViewModel() {
-        mSearchViewModel = ViewModelProviders.of(this, mViewModelFactory)
-                .get(SearchViewModel.class);
         return mSearchViewModel;
     }
 
