@@ -1,5 +1,6 @@
 package com.ebsoft.watchlist.ui.watchlist;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -8,6 +9,7 @@ import android.util.Log;
 
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
+import com.ebsoft.watchlist.data.model.db.Symbol;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.databinding.ActivityWatchlistBinding;
 import com.ebsoft.watchlist.di.WatchlistActivityQualifier;
@@ -20,6 +22,7 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
         implements WatchlistNavigator, SymbolListener {
 
     public static final String EXTRA_KEY_WATCHLIST = "watchlistKey";
+    private final int RESULT_CODE = 0;
 
     @Inject
     WatchlistViewModel mWatchlistViewModel;
@@ -70,7 +73,20 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
 
     @Override
     public void onActionButtonClick() {
-        startActivity(new Intent(this, SearchActivity.class));
+        startActivityForResult(new Intent(this, SearchActivity.class), RESULT_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == RESULT_CODE) {
+            if(resultCode == Activity.RESULT_OK){
+                String result = data.getStringExtra(SearchActivity.RESULT_KEY);
+                Watchlist watchlist = (Watchlist) getIntent()
+                        .getSerializableExtra(EXTRA_KEY_WATCHLIST);
+                Symbol symbol = new Symbol(result, watchlist.name);
+                getViewModel().insertSymbol(symbol);
+            }
+        }
     }
 
     @Override

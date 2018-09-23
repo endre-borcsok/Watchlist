@@ -1,5 +1,7 @@
 package com.ebsoft.watchlist.ui.search;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,7 +17,9 @@ import com.ebsoft.watchlist.ui.base.BaseActivity;
 import javax.inject.Inject;
 
 public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchViewModel> implements
-        android.support.v7.widget.SearchView.OnQueryTextListener, SearchNavigator, SearchListener {
+        android.support.v7.widget.SearchView.OnQueryTextListener, SearchListener {
+
+    public static final String RESULT_KEY = "result";
 
     @Inject
     SearchViewModel mSearchViewModel;
@@ -55,7 +59,6 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
         viewDataBinding.searchRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.searchRecyclerView.setAdapter(mAdapter);
         viewDataBinding.searchView.setOnQueryTextListener(this);
-        getViewModel().setNavigator(this);
         mAdapter.setSearchListener(this);
     }
 
@@ -71,13 +74,10 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
     }
 
     @Override
-    public void onSearchSelected(String name) {
-        Symbol symbol = new Symbol(name, "watchlist");
-        mSearchViewModel.insertSelected(symbol);
-    }
-
-    @Override
-    public void onSymbolInserted() {
+    public void onSearchSelected(String symbol) {
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra(RESULT_KEY, symbol);
+        setResult(Activity.RESULT_OK, returnIntent);
         finish();
     }
 }

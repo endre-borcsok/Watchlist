@@ -8,5 +8,5 @@ import com.ebsoft.watchlist.data.model.db.Symbol;
 
 public interface SearchListener {
 
-    void onSearchSelected(String name);
+    void onSearchSelected(String symbol);
 }

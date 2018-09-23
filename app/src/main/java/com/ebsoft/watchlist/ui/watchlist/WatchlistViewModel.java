@@ -43,6 +43,16 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
         getNavigator().onActionButtonClick();
     }
 
+    public void insertSymbol(Symbol symbol) {
+        getCompositeDisposable().add(mDataManager.getDbManager()
+                .insertSymbol(symbol)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aBoolean -> {
+                    list.add(symbol.name);
+                }));
+    }
+
     public ObservableList<String> getList() {
         return list;
     }
