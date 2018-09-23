@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class YahooApiFactory {
 
-    private static String END_POINT = "http://d.yimg.com/autoc.finance.yahoo.com/";
+    private static String END_POINT = "http://autoc.finance.yahoo.com/";
 
     public static YahooAPI createYahooAPI() {
         return new Retrofit.Builder()
