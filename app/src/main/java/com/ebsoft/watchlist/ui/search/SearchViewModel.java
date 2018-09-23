@@ -5,18 +5,20 @@ import android.databinding.ObservableList;
 
 import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.data.model.Yahoo.Item;
+import com.ebsoft.watchlist.data.model.db.Symbol;
 import com.ebsoft.watchlist.ui.base.BaseViewModel;
 
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by endre on 09/09/18.
  */
 
-public class SearchViewModel extends BaseViewModel {
+public class SearchViewModel extends BaseViewModel<SearchNavigator> {
 
     private final ObservableList<String> list = new ObservableArrayList<>();
 
@@ -46,6 +48,14 @@ public class SearchViewModel extends BaseViewModel {
                 list.add(item.getSymbol());
             }
         }
+    }
+
+    public void insertSelected(Symbol symbol) {
+        getCompositeDisposable().add(mDataManager.getDbManager()
+                .insertSymbol(symbol)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aBoolean -> getNavigator().onSymbolInserted()));
     }
 
     public ObservableList<String> getList() {

@@ -72,6 +72,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Override
     public void onWatchlistSelected(Watchlist watchlist) {
-        startActivity(new Intent(this, WatchlistActivity.class));
+        Intent intent = new Intent(this, WatchlistActivity.class);
+        intent.putExtra(WatchlistActivity.EXTRA_KEY_WATCHLIST, watchlist);
+        startActivity(intent);
     }
 }

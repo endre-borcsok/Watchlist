@@ -5,12 +5,14 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import java.io.Serializable;
+
 /**
  * Created by endre on 09/09/18.
  */
 
 @Entity(tableName = "watchlist")
-public class Watchlist {
+public class Watchlist implements Serializable {
 
     @PrimaryKey
     @ColumnInfo(name = "name")

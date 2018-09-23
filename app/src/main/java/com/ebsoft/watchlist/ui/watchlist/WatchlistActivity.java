@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
+import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.databinding.ActivityWatchlistBinding;
 import com.ebsoft.watchlist.di.WatchlistActivityQualifier;
 import com.ebsoft.watchlist.ui.base.BaseActivity;
@@ -17,6 +18,8 @@ import javax.inject.Inject;
 
 public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, WatchlistViewModel>
         implements WatchlistNavigator, SymbolListener {
+
+    public static final String EXTRA_KEY_WATCHLIST = "watchlistKey";
 
     @Inject
     WatchlistViewModel mWatchlistViewModel;
@@ -32,6 +35,13 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setUp();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Watchlist watchlist = (Watchlist) getIntent().getSerializableExtra(EXTRA_KEY_WATCHLIST);
+        mWatchlistViewModel.loadSymbols(watchlist);
     }
 
     @Override

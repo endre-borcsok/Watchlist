@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
+import com.ebsoft.watchlist.data.model.db.Symbol;
 import com.ebsoft.watchlist.databinding.ActivitySearchBinding;
 import com.ebsoft.watchlist.di.SearchActivityQualifier;
 import com.ebsoft.watchlist.ui.base.BaseActivity;
@@ -14,7 +15,7 @@ import com.ebsoft.watchlist.ui.base.BaseActivity;
 import javax.inject.Inject;
 
 public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchViewModel> implements
-        android.support.v7.widget.SearchView.OnQueryTextListener, SearchListener {
+        android.support.v7.widget.SearchView.OnQueryTextListener, SearchNavigator, SearchListener {
 
     @Inject
     SearchViewModel mSearchViewModel;
@@ -54,6 +55,7 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
         viewDataBinding.searchRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.searchRecyclerView.setAdapter(mAdapter);
         viewDataBinding.searchView.setOnQueryTextListener(this);
+        getViewModel().setNavigator(this);
         mAdapter.setSearchListener(this);
     }
 
@@ -69,7 +71,13 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
     }
 
     @Override
-    public void onSearchSelected(String result) {
-        Log.d("D", result);
+    public void onSearchSelected(String name) {
+        Symbol symbol = new Symbol(name, "watchlist");
+        mSearchViewModel.insertSelected(symbol);
+    }
+
+    @Override
+    public void onSymbolInserted() {
+        finish();
     }
 }
