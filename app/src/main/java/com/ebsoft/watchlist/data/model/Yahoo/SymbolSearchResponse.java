@@ -7,8 +7,6 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.List;
 
-import retrofit2.Response;
-
 /**
  * Created by endre on 09/09/18.
  */
@@ -28,20 +26,8 @@ public class SymbolSearchResponse {
         this.items = items;
     }
 
-    public String getQuery() {
-        return query;
-    }
-
-    public void setQuery(String query) {
-        this.query = query;
-    }
-
     public List<Item> getItems() {
         return items;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
     }
 
     @Override

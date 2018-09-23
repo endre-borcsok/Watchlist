@@ -1,9 +1,8 @@
 package com.ebsoft.watchlist.network;
 
-import com.ebsoft.watchlist.data.model.Yahoo.SymbolSearch;
+import java.util.List;
 
-import io.reactivex.Observable;
-import retrofit2.Response;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by endre on 09/09/18.
@@ -11,5 +10,5 @@ import retrofit2.Response;
 
 public interface APIManager {
 
-    Observable<Response<SymbolSearch>> searchSymbol(String symbol);
+    Disposable searchSymbol(String symbol, List<String> targetList);
 }
