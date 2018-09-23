@@ -6,18 +6,23 @@ import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 /**
- * Created by endre on 09/09/18.
+ * Created by endre on 23/09/18.
  */
 
-@Entity(tableName = "watchlist")
-public class Watchlist {
+@Entity(tableName = "symbol")
+public class Symbol {
 
     @PrimaryKey
     @ColumnInfo(name = "name")
     @NonNull
     public final String name;
 
-    public Watchlist(String name) {
+    @ColumnInfo(name = "listid")
+    @NonNull
+    public final String listid;
+
+    public Symbol(String name, String listid) {
         this.name = name;
+        this.listid = listid;
     }
 }

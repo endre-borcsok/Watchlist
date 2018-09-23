@@ -26,8 +26,7 @@ public class CreateWatchlistViewModel extends BaseViewModel<CreateWatchlistNavig
     }
 
     public void create() {
-        Watchlist watchlist = new Watchlist();
-        watchlist.name = editTextContent.get();
+        Watchlist watchlist = new Watchlist(editTextContent.get());
         getCompositeDisposable().add(
                 mDataManager.getDbManager().insertWatchlist(watchlist)
                         .subscribeOn(Schedulers.io())

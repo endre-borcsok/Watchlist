@@ -1,5 +1,6 @@
 package com.ebsoft.watchlist.data.local.db;
 
+import com.ebsoft.watchlist.data.model.db.Symbol;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 
 import java.util.List;
@@ -31,13 +32,23 @@ public class DBManagerImpl implements DBManager {
     }
 
     @Override
+    public Observable<List<Symbol>> loadSymbolsForWatchlist(Watchlist watchlist) {
+        return Observable.fromCallable(() -> mDataBase.symbolDao().findByWatchlist(watchlist.name));
+    }
+
+    @Override
     public Observable<Boolean> insertWatchlist(final Watchlist watchlist) {
-        return Observable.fromCallable(new Callable<Boolean>() {
-            @Override
-            public Boolean call() throws Exception {
-                mDataBase.watchlistDao().insert(watchlist);
-                return true;
-            }
+        return Observable.fromCallable(() -> {
+            mDataBase.watchlistDao().insert(watchlist);
+            return true;
+        });
+    }
+
+    @Override
+    public Observable<Boolean> insertSymbol(Symbol symbol) {
+        return Observable.fromCallable(() -> {
+            mDataBase.symbolDao().insert(symbol);
+            return true;
         });
     }
 }
