@@ -4,6 +4,7 @@ import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 
 import com.ebsoft.watchlist.data.DataManager;
+import com.ebsoft.watchlist.data.model.Yahoo.SymbolSearch;
 import com.ebsoft.watchlist.data.model.Yahoo.SymbolSearchResponse;
 import com.ebsoft.watchlist.ui.base.BaseViewModel;
 
@@ -28,8 +29,8 @@ public class SearchViewModel extends BaseViewModel {
                 .searchSymbol(text)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(symbolSearchResponse -> {
-                    SymbolSearchResponse.processResponse(symbolSearchResponse, list);
+                .subscribe(symbolSearch -> {
+                    SymbolSearch.processResponse(symbolSearch, list);
                 })
         );
     }

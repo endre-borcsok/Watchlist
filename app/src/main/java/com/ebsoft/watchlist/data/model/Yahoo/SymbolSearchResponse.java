@@ -15,8 +15,6 @@ import retrofit2.Response;
 
 public class SymbolSearchResponse {
 
-    private final static String SYMBOL_FILTER = "S";
-
     @SerializedName("Query")
     @Expose
     private String query;
@@ -52,17 +50,5 @@ public class SymbolSearchResponse {
                 .append("query", query)
                 .append("items", items)
                 .toString();
-    }
-
-    public static void processResponse(Response<SymbolSearch> response, List<String> list) {
-        List<Item> items = response.body()
-                .getSymbolSearchResponse()
-                .getItems();
-        list.clear();
-        for (Item item : items) {
-            if (item.getType().equals(SYMBOL_FILTER)) {
-                list.add(item.getSymbol());
-            }
-        }
     }
 }
