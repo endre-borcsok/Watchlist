@@ -7,7 +7,6 @@ import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
 import com.ebsoft.watchlist.data.model.db.Symbol;
-import com.ebsoft.watchlist.data.model.db.Watchlist;
 
 import java.util.List;
 

@@ -4,7 +4,6 @@ import com.ebsoft.watchlist.data.model.db.Symbol;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

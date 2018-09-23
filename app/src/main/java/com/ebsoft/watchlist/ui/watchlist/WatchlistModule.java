@@ -4,7 +4,6 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.di.WatchlistActivityQualifier;
-import com.ebsoft.watchlist.ui.main.MainActivity;
 
 import dagger.Module;
 import dagger.Provides;

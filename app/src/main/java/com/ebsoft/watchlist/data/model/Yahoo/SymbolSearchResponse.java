@@ -7,11 +7,15 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.List;
 
+import retrofit2.Response;
+
 /**
  * Created by endre on 09/09/18.
  */
 
 public class SymbolSearchResponse {
+
+    private final static String SYMBOL_FILTER = "S";
 
     @SerializedName("Query")
     @Expose
@@ -50,4 +54,15 @@ public class SymbolSearchResponse {
                 .toString();
     }
 
+    public static void processResponse(Response<SymbolSearch> response, List<String> list) {
+        List<Item> items = response.body()
+                .getSymbolSearchResponse()
+                .getItems();
+        list.clear();
+        for (Item item : items) {
+            if (item.getType().equals(SYMBOL_FILTER)) {
+                list.add(item.getSymbol());
+            }
+        }
+    }
 }

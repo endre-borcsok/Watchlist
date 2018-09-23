@@ -1,7 +1,5 @@
 package com.ebsoft.watchlist.utils;
 
-import android.content.Context;
-import android.content.Intent;
 import android.databinding.BindingAdapter;
 import android.support.v7.widget.RecyclerView;
 
@@ -9,7 +7,6 @@ import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.ui.main.WatchlistAdapter;
 import com.ebsoft.watchlist.ui.search.SearchAdapter;
 import com.ebsoft.watchlist.ui.watchlist.SymbolAdapter;
-import com.ebsoft.watchlist.ui.watchlist.WatchlistActivity;
 
 import java.util.List;
 

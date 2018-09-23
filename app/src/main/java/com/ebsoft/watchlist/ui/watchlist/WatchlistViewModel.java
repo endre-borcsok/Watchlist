@@ -8,10 +8,7 @@ import com.ebsoft.watchlist.data.model.db.Symbol;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.ui.base.BaseViewModel;
 
-import java.util.List;
-
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**

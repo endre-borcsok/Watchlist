@@ -5,11 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
-import com.ebsoft.watchlist.data.model.db.Symbol;
 import com.ebsoft.watchlist.databinding.ActivitySearchBinding;
 import com.ebsoft.watchlist.di.SearchActivityQualifier;
 import com.ebsoft.watchlist.ui.base.BaseActivity;
