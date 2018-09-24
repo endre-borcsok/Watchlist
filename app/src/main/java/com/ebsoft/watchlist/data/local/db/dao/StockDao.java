@@ -6,7 +6,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
-import com.ebsoft.watchlist.data.model.db.Symbol;
+import com.ebsoft.watchlist.data.model.db.Stock;
 
 import java.util.List;
 
@@ -15,17 +15,17 @@ import java.util.List;
  */
 
 @Dao
-public interface SymbolDao {
+public interface StockDao {
 
-    @Query("SELECT * FROM symbol")
-    List<Symbol> loadAll();
+    @Query("SELECT * FROM stock")
+    List<Stock> loadAll();
 
     @Delete
-    void delete(Symbol symbol);
+    void delete(Stock stock);
 
-    @Query("SELECT * FROM symbol WHERE listid LIKE :listid")
-    List<Symbol> findByWatchlist(String listid);
+    @Query("SELECT * FROM stock WHERE listid LIKE :listid")
+    List<Stock> findByWatchlist(String listid);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Symbol symbol);
+    void insert(Stock stock);
 }

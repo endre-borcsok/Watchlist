@@ -4,9 +4,8 @@ import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 
 import com.ebsoft.watchlist.data.DataManager;
-import com.ebsoft.watchlist.data.model.db.Symbol;
+import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
-import com.ebsoft.watchlist.network.QuoteQueryListener;
 import com.ebsoft.watchlist.ui.base.BaseViewModel;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -31,8 +30,8 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(symbols -> {
                     list.clear();
-                    for (Symbol symbol : symbols) {
-                        list.add(symbol.name);
+                    for (Stock stock : symbols) {
+                        list.add(stock.name);
                     }
                 }));
     }
@@ -41,13 +40,13 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
         getNavigator().onActionButtonClick();
     }
 
-    public void insertSymbol(Symbol symbol) {
+    public void insertSymbol(Stock stock) {
         getCompositeDisposable().add(mDataManager.getDbManager()
-                .insertSymbol(symbol)
+                .insertSymbol(stock)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aBoolean -> {
-                    list.add(symbol.name);
+                    list.add(stock.name);
                 }));
     }
 

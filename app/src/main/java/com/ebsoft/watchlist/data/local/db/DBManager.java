@@ -1,6 +1,6 @@
 package com.ebsoft.watchlist.data.local.db;
 
-import com.ebsoft.watchlist.data.model.db.Symbol;
+import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public interface DBManager {
 
     Observable<Boolean> insertWatchlist(Watchlist watchlist);
 
-    Observable<List<Symbol>> loadSymbolsForWatchlist(Watchlist watchlist);
+    Observable<List<Stock>> loadSymbolsForWatchlist(Watchlist watchlist);
 
-    Observable<Boolean> insertSymbol(Symbol symbol);
+    Observable<Boolean> insertSymbol(Stock stock);
 }

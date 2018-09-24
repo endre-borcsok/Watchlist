@@ -4,11 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
-import com.ebsoft.watchlist.data.model.db.Symbol;
+import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.databinding.ActivityWatchlistBinding;
 import com.ebsoft.watchlist.di.WatchlistActivityQualifier;
@@ -78,8 +77,8 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
                 String result = data.getStringExtra(Constants.SEARCH_RESULT_KEY);
                 Watchlist watchlist = (Watchlist) getIntent()
                         .getSerializableExtra(Constants.EXTRA_KEY_WATCHLIST);
-                Symbol symbol = new Symbol(result, watchlist.name);
-                getViewModel().insertSymbol(symbol);
+                Stock stock = new Stock(result, watchlist.name);
+                getViewModel().insertSymbol(stock);
             }
         }
     }

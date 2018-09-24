@@ -1,8 +1,8 @@
 package com.ebsoft.watchlist.network;
 
-import com.ebsoft.watchlist.data.model.db.Symbol;
+import com.ebsoft.watchlist.data.model.db.Stock;
 
 public interface QuoteQueryListener {
 
-    void onComplete(Symbol symbol);
+    void onComplete(Stock stock);
 }
