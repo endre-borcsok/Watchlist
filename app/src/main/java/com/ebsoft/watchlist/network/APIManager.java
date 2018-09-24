@@ -1,7 +1,5 @@
 package com.ebsoft.watchlist.network;
 
-import java.util.List;
-
 import io.reactivex.disposables.Disposable;
 
 /**
