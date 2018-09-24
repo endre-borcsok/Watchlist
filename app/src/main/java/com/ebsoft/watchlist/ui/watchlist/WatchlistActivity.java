@@ -78,7 +78,7 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
                 Watchlist watchlist = (Watchlist) getIntent()
                         .getSerializableExtra(Constants.EXTRA_KEY_WATCHLIST);
                 Stock stock = new Stock(result, watchlist.name);
-                getViewModel().upsertStock(stock);
+                getViewModel().insertStock(stock);
             }
         }
     }

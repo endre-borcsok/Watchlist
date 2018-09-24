@@ -41,7 +41,7 @@ public class DBManagerImpl implements DBManager {
     }
 
     @Override
-    public Observable<Boolean> upsertWatchlist(final Watchlist watchlist) {
+    public Observable<Boolean> insertWatchlist(final Watchlist watchlist) {
         return Observable.fromCallable(() -> {
             mDataBase.watchlistDao().insert(watchlist);
             return true;
@@ -49,7 +49,7 @@ public class DBManagerImpl implements DBManager {
     }
 
     @Override
-    public Observable<Boolean> upsertStock(Stock stock) {
+    public Observable<Boolean> insertStock(Stock stock) {
         return Observable.fromCallable(() -> {
             mDataBase.symbolDao().insert(stock);
             return true;

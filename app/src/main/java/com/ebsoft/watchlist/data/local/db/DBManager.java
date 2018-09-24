@@ -15,11 +15,11 @@ public interface DBManager {
 
     Observable<List<Watchlist>> queryWatchlists();
 
-    Observable<Boolean> upsertWatchlist(Watchlist watchlist);
+    Observable<Boolean> insertWatchlist(Watchlist watchlist);
 
     Observable<List<Stock>> queryWatchlist(Watchlist watchlist);
 
     Observable<List<Stock>> querySymbol(String symbol);
 
-    Observable<Boolean> upsertStock(Stock stock);
+    Observable<Boolean> insertStock(Stock stock);
 }
