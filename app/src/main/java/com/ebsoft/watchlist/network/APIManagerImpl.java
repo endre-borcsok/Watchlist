@@ -3,7 +3,9 @@ package com.ebsoft.watchlist.network;
 import android.support.annotation.NonNull;
 
 import com.ebsoft.watchlist.data.model.AlphaVantage.AVQuote;
+import com.ebsoft.watchlist.data.model.AlphaVantage.GlobalQuote;
 import com.ebsoft.watchlist.data.model.Yahoo.Item;
+import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.network.AlphaVantage.AlphaVantageAPI;
 import com.ebsoft.watchlist.network.Yahoo.YahooAPI;
 
@@ -60,7 +62,12 @@ public class APIManagerImpl implements APIManager {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(avQuoteResponse -> {
-                    listener.onComplete(null);
+                    GlobalQuote gq = avQuoteResponse.body().getGlobalQuote();
+                    Stock stock = new Stock(symbol, null);
+                    stock.setPrice(Float.parseFloat(gq.getPrice()));
+                    stock.setChange(Float.parseFloat(gq.getChange()));
+                    stock.setChangePercent(Float.parseFloat(gq.getChangePercent()));
+                    listener.onComplete(stock);
                 });
     }
 }

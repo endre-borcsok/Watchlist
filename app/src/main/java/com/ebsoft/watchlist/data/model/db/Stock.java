@@ -21,8 +21,46 @@ public class Stock {
     @NonNull
     public final String listid;
 
+    @ColumnInfo(name = "price")
+    public float price;
+
+    @ColumnInfo(name = "change")
+    public float change;
+
+    @ColumnInfo(name = "changePercent")
+    public float changePercent;
+
     public Stock(String symbol, String listid) {
         this.symbol = symbol;
         this.listid = listid;
+    }
+
+    @NonNull
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public float getChange() {
+        return change;
+    }
+
+    public void setChange(float change) {
+        this.change = change;
+    }
+
+    public float getChangePercent() {
+        return changePercent;
+    }
+
+    public void setChangePercent(float changePercent) {
+        this.changePercent = changePercent;
     }
 }

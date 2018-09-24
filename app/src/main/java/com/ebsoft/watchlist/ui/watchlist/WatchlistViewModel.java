@@ -52,9 +52,13 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
 
     public void getQuote(String symbol) {
         getCompositeDisposable().add(mDataManager.getApiManager()
-                .getQuote(symbol, symbol1 -> {
-                    //TODO
+                .getQuote(symbol, stock -> {
+
                 }));
+    }
+
+    private void updateStock(Stock newStock) {
+        Stock stock = mDataManager.getDbManager().
     }
 
     public ObservableList<String> getList() {
