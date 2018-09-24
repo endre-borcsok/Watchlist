@@ -3,8 +3,10 @@ package com.ebsoft.watchlist.network;
 import android.support.annotation.NonNull;
 
 import com.ebsoft.watchlist.data.model.Yahoo.Item;
+import com.ebsoft.watchlist.network.Yahoo.YahooAPI;
 import com.ebsoft.watchlist.network.Yahoo.YahooApiFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -22,23 +24,27 @@ import io.reactivex.schedulers.Schedulers;
 public class APIManagerImpl implements APIManager {
 
     @Inject
+    YahooAPI mYahooApi;
+
+    @Inject
     APIManagerImpl() {}
 
     @Override
-    public Disposable searchSymbol(String symbol, List<String> targetList) {
-        return YahooApiFactory.createYahooAPI().searchSymbol(symbol)
+    public Disposable searchSymbol(@NonNull String symbol, @NonNull SymbolSearchListener mListener) {
+        return mYahooApi.searchSymbol(symbol)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(symbolSearchResponse -> {
+                    List<String> list = new ArrayList<>();
                     List<Item> items = symbolSearchResponse.body()
                             .getSymbolSearchResponse()
                             .getItems();
-                    targetList.clear();
                     for (Item item : items) {
                         if (item.getType().equals("S")) {
-                            targetList.add(item.getSymbol());
+                            list.add(item.getSymbol());
                         }
                     }
+                    mListener.onComplete(list);
                 });
     }
 }

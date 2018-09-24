@@ -10,5 +10,5 @@ import io.reactivex.disposables.Disposable;
 
 public interface APIManager {
 
-    Disposable searchSymbol(String symbol, List<String> targetList);
+    Disposable searchSymbol(String symbol, SymbolSearchListener listener);
 }

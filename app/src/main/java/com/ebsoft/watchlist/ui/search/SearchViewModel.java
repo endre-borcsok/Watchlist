@@ -4,7 +4,10 @@ import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 
 import com.ebsoft.watchlist.data.DataManager;
+import com.ebsoft.watchlist.network.SymbolSearchListener;
 import com.ebsoft.watchlist.ui.base.BaseViewModel;
+
+import java.util.List;
 
 /**
  * Created by endre on 09/09/18.
@@ -21,7 +24,10 @@ public class SearchViewModel extends BaseViewModel {
     public void performSearch(String symbol) {
         getCompositeDisposable().add(getDataManager()
                 .getApiManager()
-                .searchSymbol(symbol, list));
+                .searchSymbol(symbol, list -> {
+                    this.list.clear();
+                    this.list.addAll(list);
+                }));
     }
 
     public ObservableList<String> getList() {
