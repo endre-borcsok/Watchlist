@@ -17,7 +17,7 @@ public interface DBManager {
 
     Observable<Boolean> insertWatchlist(Watchlist watchlist);
 
-    Observable<List<Stock>> loadSymbolsForWatchlist(Watchlist watchlist);
+    Observable<List<Stock>> loadStocksForWatchlist(Watchlist watchlist);
 
-    Observable<Boolean> insertSymbol(Stock stock);
+    Observable<Boolean> insertStock(Stock stock);
 }

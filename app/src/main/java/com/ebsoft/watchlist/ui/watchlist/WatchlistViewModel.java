@@ -23,15 +23,15 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
         super(DataManager);
     }
 
-    public void loadSymbols(Watchlist watchlist) {
+    public void loadStocks(Watchlist watchlist) {
         getCompositeDisposable().add(mDataManager.getDbManager()
-                .loadSymbolsForWatchlist(watchlist)
+                .loadStocksForWatchlist(watchlist)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(symbols -> {
+                .subscribe(stocks -> {
                     list.clear();
-                    for (Stock stock : symbols) {
-                        list.add(stock.name);
+                    for (Stock stock : stocks) {
+                        list.add(stock.symbol);
                     }
                 }));
     }
@@ -40,13 +40,13 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
         getNavigator().onActionButtonClick();
     }
 
-    public void insertSymbol(Stock stock) {
+    public void insertStock(Stock stock) {
         getCompositeDisposable().add(mDataManager.getDbManager()
-                .insertSymbol(stock)
+                .insertStock(stock)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aBoolean -> {
-                    list.add(stock.name);
+                    list.add(stock.symbol);
                 }));
     }
 

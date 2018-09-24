@@ -13,16 +13,16 @@ import android.support.annotation.NonNull;
 public class Stock {
 
     @PrimaryKey
-    @ColumnInfo(name = "name")
+    @ColumnInfo(name = "symbol")
     @NonNull
-    public final String name;
+    public final String symbol;
 
     @ColumnInfo(name = "listid")
     @NonNull
     public final String listid;
 
-    public Stock(String name, String listid) {
-        this.name = name;
+    public Stock(String symbol, String listid) {
+        this.symbol = symbol;
         this.listid = listid;
     }
 }

@@ -37,7 +37,7 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
         super.onResume();
         Watchlist watchlist = (Watchlist) getIntent()
                 .getSerializableExtra(Constants.EXTRA_KEY_WATCHLIST);
-        mWatchlistViewModel.loadSymbols(watchlist);
+        mWatchlistViewModel.loadStocks(watchlist);
     }
 
     @Override
@@ -78,7 +78,7 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
                 Watchlist watchlist = (Watchlist) getIntent()
                         .getSerializableExtra(Constants.EXTRA_KEY_WATCHLIST);
                 Stock stock = new Stock(result, watchlist.name);
-                getViewModel().insertSymbol(stock);
+                getViewModel().insertStock(stock);
             }
         }
     }
