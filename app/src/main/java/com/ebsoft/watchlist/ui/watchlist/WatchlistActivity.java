@@ -35,17 +35,21 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
     LinearLayoutManager mLayoutManager;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setUp();
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         Watchlist watchlist = (Watchlist) getIntent()
                 .getSerializableExtra(Constants.EXTRA_KEY_WATCHLIST);
         mWatchlistViewModel.loadSymbols(watchlist);
+    }
+
+    @Override
+    public void setup() {
+        ActivityWatchlistBinding viewDataBinding = getViewDatabinding();
+        viewDataBinding.watchlistRecyclerView.setLayoutManager(mLayoutManager);
+        viewDataBinding.watchlistRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        viewDataBinding.watchlistRecyclerView.setAdapter(mAdapter);
+        getViewModel().setNavigator(this);
+        mAdapter.setSymbolListener(this);
     }
 
     @Override
@@ -61,15 +65,6 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
     @Override
     public int getBindingVariable() {
         return BR.viewModel;
-    }
-
-    private void setUp() {
-        ActivityWatchlistBinding viewDataBinding = getViewDatabinding();
-        viewDataBinding.watchlistRecyclerView.setLayoutManager(mLayoutManager);
-        viewDataBinding.watchlistRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        viewDataBinding.watchlistRecyclerView.setAdapter(mAdapter);
-        getViewModel().setNavigator(this);
-        mAdapter.setSymbolListener(this);
     }
 
     @Override

@@ -17,7 +17,10 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
         injectDependencies();
         super.onCreate(savedInstanceState);
         bindData();
+        setup();
     }
+
+    public abstract void setup();
 
     public abstract int getLayoutId();
 

@@ -29,9 +29,14 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
     LinearLayoutManager mLayoutManager;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setUp();
+    public void setup() {
+        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        ActivitySearchBinding viewDataBinding = getViewDatabinding();
+        viewDataBinding.searchRecyclerView.setLayoutManager(mLayoutManager);
+        viewDataBinding.searchRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        viewDataBinding.searchRecyclerView.setAdapter(mAdapter);
+        viewDataBinding.searchView.setOnQueryTextListener(this);
+        mAdapter.setSearchListener(this);
     }
 
     @Override
@@ -47,16 +52,6 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
     @Override
     public int getBindingVariable() {
         return BR.viewModel;
-    }
-
-    private void setUp() {
-        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        ActivitySearchBinding viewDataBinding = getViewDatabinding();
-        viewDataBinding.searchRecyclerView.setLayoutManager(mLayoutManager);
-        viewDataBinding.searchRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        viewDataBinding.searchRecyclerView.setAdapter(mAdapter);
-        viewDataBinding.searchView.setOnQueryTextListener(this);
-        mAdapter.setSearchListener(this);
     }
 
     @Override

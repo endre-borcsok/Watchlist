@@ -31,6 +31,16 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     LinearLayoutManager mLayoutManager;
 
     @Override
+    public void setup() {
+        ActivityMainBinding viewDataBinding = getViewDatabinding();
+        viewDataBinding.mainActivityRecyclerView.setLayoutManager(mLayoutManager);
+        viewDataBinding.mainActivityRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        viewDataBinding.mainActivityRecyclerView.setAdapter(mAdapter);
+        getViewModel().setNavigator(this);
+        mAdapter.setWatchlistListener(this);
+    }
+
+    @Override
     public int getLayoutId() {
         return R.layout.activity_main;
     }
@@ -46,24 +56,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setUp();
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         getViewModel().loadWatchlists();
-    }
-
-    private void setUp() {
-        ActivityMainBinding viewDataBinding = getViewDatabinding();
-        viewDataBinding.mainActivityRecyclerView.setLayoutManager(mLayoutManager);
-        viewDataBinding.mainActivityRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        viewDataBinding.mainActivityRecyclerView.setAdapter(mAdapter);
-        getViewModel().setNavigator(this);
-        mAdapter.setWatchlistListener(this);
     }
 
     @Override

@@ -16,10 +16,7 @@ public class CreateWatchlistActivity extends BaseActivity<ActivityCreateWatchlis
     CreateWatchlistViewModel mCreateWatchlistViewModel;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setUp();
-    }
+    public void setup() { mCreateWatchlistViewModel.setNavigator(this); }
 
     @Override
     public int getLayoutId() {
@@ -39,9 +36,5 @@ public class CreateWatchlistActivity extends BaseActivity<ActivityCreateWatchlis
     @Override
     public void onWatchlistCreated() {
         finish();
-    }
-
-    private void setUp() {
-        mCreateWatchlistViewModel.setNavigator(this);
     }
 }
