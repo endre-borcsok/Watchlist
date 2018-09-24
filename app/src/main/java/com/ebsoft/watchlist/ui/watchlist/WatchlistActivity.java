@@ -86,6 +86,6 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
 
     @Override
     public void onSymbolSelected(String symbol) {
-        Log.d("D", symbol);
+        getViewModel().getQuote(symbol);
     }
 }

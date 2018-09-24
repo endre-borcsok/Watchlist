@@ -6,6 +6,7 @@ import android.databinding.ObservableList;
 import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.data.model.db.Symbol;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
+import com.ebsoft.watchlist.network.QuoteQueryListener;
 import com.ebsoft.watchlist.ui.base.BaseViewModel;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -47,6 +48,13 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aBoolean -> {
                     list.add(symbol.name);
+                }));
+    }
+
+    public void getQuote(String symbol) {
+        getCompositeDisposable().add(mDataManager.getApiManager()
+                .getQuote(symbol, symbol1 -> {
+                    //TODO
                 }));
     }
 

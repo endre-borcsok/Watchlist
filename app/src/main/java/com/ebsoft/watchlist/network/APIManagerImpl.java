@@ -2,7 +2,9 @@ package com.ebsoft.watchlist.network;
 
 import android.support.annotation.NonNull;
 
+import com.ebsoft.watchlist.data.model.AlphaVantage.AVQuote;
 import com.ebsoft.watchlist.data.model.Yahoo.Item;
+import com.ebsoft.watchlist.network.AlphaVantage.AlphaVantageAPI;
 import com.ebsoft.watchlist.network.Yahoo.YahooAPI;
 
 import java.util.ArrayList;
@@ -13,7 +15,9 @@ import javax.inject.Singleton;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Response;
 
 /**
  * Created by endre on 09/09/18.
@@ -26,10 +30,13 @@ public class APIManagerImpl implements APIManager {
     YahooAPI mYahooApi;
 
     @Inject
+    AlphaVantageAPI mAlphaVantageApi;
+
+    @Inject
     APIManagerImpl() {}
 
     @Override
-    public Disposable searchSymbol(@NonNull String symbol, @NonNull SymbolSearchListener mListener) {
+    public Disposable searchSymbol(@NonNull String symbol, @NonNull SymbolSearchListener listener) {
         return mYahooApi.searchSymbol(symbol)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -43,7 +50,17 @@ public class APIManagerImpl implements APIManager {
                             list.add(item.getSymbol());
                         }
                     }
-                    mListener.onComplete(list);
+                    listener.onComplete(list);
+                });
+    }
+
+    @Override
+    public Disposable getQuote(String symbol, QuoteQueryListener listener) {
+        return mAlphaVantageApi.getQuote(symbol)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(avQuoteResponse -> {
+                    listener.onComplete(null);
                 });
     }
 }
