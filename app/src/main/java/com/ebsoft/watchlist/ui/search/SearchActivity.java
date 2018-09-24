@@ -11,13 +11,12 @@ import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.databinding.ActivitySearchBinding;
 import com.ebsoft.watchlist.di.SearchActivityQualifier;
 import com.ebsoft.watchlist.ui.base.BaseActivity;
+import com.ebsoft.watchlist.utils.Constants;
 
 import javax.inject.Inject;
 
 public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchViewModel> implements
         android.support.v7.widget.SearchView.OnQueryTextListener, SearchListener {
-
-    public static final String RESULT_KEY = "result";
 
     @Inject
     SearchViewModel mSearchViewModel;
@@ -74,7 +73,7 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
     @Override
     public void onSearchSelected(String symbol) {
         Intent returnIntent = new Intent();
-        returnIntent.putExtra(RESULT_KEY, symbol);
+        returnIntent.putExtra(Constants.SEARCH_RESULT_KEY, symbol);
         setResult(Activity.RESULT_OK, returnIntent);
         finish();
     }

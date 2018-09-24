@@ -13,6 +13,7 @@ import com.ebsoft.watchlist.di.MainActivityQualifier;
 import com.ebsoft.watchlist.ui.base.BaseActivity;
 import com.ebsoft.watchlist.ui.create.CreateWatchlistActivity;
 import com.ebsoft.watchlist.ui.watchlist.WatchlistActivity;
+import com.ebsoft.watchlist.utils.Constants;
 
 import javax.inject.Inject;
 
@@ -73,7 +74,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     @Override
     public void onWatchlistSelected(Watchlist watchlist) {
         Intent intent = new Intent(this, WatchlistActivity.class);
-        intent.putExtra(WatchlistActivity.EXTRA_KEY_WATCHLIST, watchlist);
+        intent.putExtra(Constants.EXTRA_KEY_WATCHLIST, watchlist);
         startActivity(intent);
     }
 }

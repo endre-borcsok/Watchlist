@@ -6,6 +6,8 @@ package com.ebsoft.watchlist.utils;
 
 public class Constants {
 
-    public final static String DB_NAME = "application_database";
-    public final static String YAHOO_API_END_POINT = "http://autoc.finance.yahoo.com/";
+    public static final String DB_NAME = "application_database";
+    public static final String YAHOO_API_END_POINT = "http://autoc.finance.yahoo.com/";
+    public static final String SEARCH_RESULT_KEY = "result";
+    public static final String EXTRA_KEY_WATCHLIST = "watchlistKey";
 }

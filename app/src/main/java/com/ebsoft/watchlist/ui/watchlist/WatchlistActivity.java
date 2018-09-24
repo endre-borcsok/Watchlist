@@ -15,13 +15,13 @@ import com.ebsoft.watchlist.databinding.ActivityWatchlistBinding;
 import com.ebsoft.watchlist.di.WatchlistActivityQualifier;
 import com.ebsoft.watchlist.ui.base.BaseActivity;
 import com.ebsoft.watchlist.ui.search.SearchActivity;
+import com.ebsoft.watchlist.utils.Constants;
 
 import javax.inject.Inject;
 
 public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, WatchlistViewModel>
         implements WatchlistNavigator, SymbolListener {
 
-    public static final String EXTRA_KEY_WATCHLIST = "watchlistKey";
     private final int RESULT_CODE = 0;
 
     @Inject
@@ -43,7 +43,8 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
     @Override
     public void onResume() {
         super.onResume();
-        Watchlist watchlist = (Watchlist) getIntent().getSerializableExtra(EXTRA_KEY_WATCHLIST);
+        Watchlist watchlist = (Watchlist) getIntent()
+                .getSerializableExtra(Constants.EXTRA_KEY_WATCHLIST);
         mWatchlistViewModel.loadSymbols(watchlist);
     }
 
@@ -80,9 +81,9 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RESULT_CODE) {
             if(resultCode == Activity.RESULT_OK){
-                String result = data.getStringExtra(SearchActivity.RESULT_KEY);
+                String result = data.getStringExtra(Constants.SEARCH_RESULT_KEY);
                 Watchlist watchlist = (Watchlist) getIntent()
-                        .getSerializableExtra(EXTRA_KEY_WATCHLIST);
+                        .getSerializableExtra(Constants.EXTRA_KEY_WATCHLIST);
                 Symbol symbol = new Symbol(result, watchlist.name);
                 getViewModel().insertSymbol(symbol);
             }
