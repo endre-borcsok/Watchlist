@@ -1,7 +1,6 @@
 package com.ebsoft.watchlist.ui.main;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 

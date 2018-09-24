@@ -1,7 +1,5 @@
 package com.ebsoft.watchlist.ui.create;
 
-import android.os.Bundle;
-
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.databinding.ActivityCreateWatchlistBinding;
