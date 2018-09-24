@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ebsoft.watchlist.R;
+import com.ebsoft.watchlist.data.model.db.Stock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +16,9 @@ import java.util.List;
  * Created by endre on 08/09/18.
  */
 
-public class SymbolAdapter extends RecyclerView.Adapter<SymbolAdapter.ViewHolder> {
+public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> {
 
-    private List<String> mDataSet;
+    private List<Stock> mDataSet;
     private SymbolListener mSymbolListener;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -31,7 +32,7 @@ public class SymbolAdapter extends RecyclerView.Adapter<SymbolAdapter.ViewHolder
         }
     }
 
-    public SymbolAdapter() {
+    public StockAdapter() {
         mDataSet = new ArrayList<>();
     }
 
@@ -39,7 +40,7 @@ public class SymbolAdapter extends RecyclerView.Adapter<SymbolAdapter.ViewHolder
         mSymbolListener = listener;
     }
 
-    public void addItems(List<String> items) {
+    public void addItems(List<Stock> items) {
         mDataSet.addAll(items);
         notifyDataSetChanged();
     }
@@ -58,7 +59,7 @@ public class SymbolAdapter extends RecyclerView.Adapter<SymbolAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTextView.setText(mDataSet.get(position));
+        holder.mTextView.setText(mDataSet.get(position).symbol);
         holder.mView.setOnClickListener(getOnClickListenerForPosition(position));
     }
 
@@ -70,7 +71,7 @@ public class SymbolAdapter extends RecyclerView.Adapter<SymbolAdapter.ViewHolder
     private View.OnClickListener getOnClickListenerForPosition(int position) {
         return view -> {
             if (mSymbolListener != null) {
-                mSymbolListener.onSymbolSelected(mDataSet.get(position));
+                mSymbolListener.onSymbolSelected(mDataSet.get(position).symbol);
             }
         };
     }

@@ -17,7 +17,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
 
-    private final ObservableList<String> list = new ObservableArrayList<>();
+    private final ObservableList<Stock> list = new ObservableArrayList<>();
 
     public WatchlistViewModel(DataManager DataManager) {
         super(DataManager);
@@ -25,13 +25,13 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
 
     public void loadStocks(Watchlist watchlist) {
         getCompositeDisposable().add(mDataManager.getDbManager()
-                .loadStocksForWatchlist(watchlist)
+                .queryWatchlist(watchlist)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(stocks -> {
                     list.clear();
                     for (Stock stock : stocks) {
-                        list.add(stock.symbol);
+                        list.add(stock);
                     }
                 }));
     }
@@ -40,28 +40,39 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
         getNavigator().onActionButtonClick();
     }
 
-    public void insertStock(Stock stock) {
+    public void upsertStock(Stock stock) {
         getCompositeDisposable().add(mDataManager.getDbManager()
-                .insertStock(stock)
+                .upsertStock(stock)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aBoolean -> {
-                    list.add(stock.symbol);
+                    if (!list.contains(stock.symbol)) {
+                        list.add(stock);
+                    }
                 }));
     }
 
     public void getQuote(String symbol) {
         getCompositeDisposable().add(mDataManager.getApiManager()
                 .getQuote(symbol, stock -> {
-
+                    updateStock(stock);
                 }));
     }
 
-    private void updateStock(Stock newStock) {
-        Stock stock = mDataManager.getDbManager().
+    private void updateStock(Stock updatedStock) {
+        getCompositeDisposable().add(mDataManager.getDbManager()
+                .querySymbol(updatedStock.symbol)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(stocks -> {
+                    for (Stock stock : stocks) {
+                        stock.update(updatedStock);
+                        upsertStock(stock);
+                    }
+                }));
     }
 
-    public ObservableList<String> getList() {
+    public ObservableList<Stock> getList() {
         return list;
     }
 }

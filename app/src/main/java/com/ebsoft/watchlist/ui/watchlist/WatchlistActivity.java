@@ -26,7 +26,7 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
     WatchlistViewModel mWatchlistViewModel;
 
     @Inject
-    SymbolAdapter mAdapter;
+    StockAdapter mAdapter;
 
     @Inject
     @WatchlistActivityQualifier
@@ -78,7 +78,7 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
                 Watchlist watchlist = (Watchlist) getIntent()
                         .getSerializableExtra(Constants.EXTRA_KEY_WATCHLIST);
                 Stock stock = new Stock(result, watchlist.name);
-                getViewModel().insertStock(stock);
+                getViewModel().upsertStock(stock);
             }
         }
     }

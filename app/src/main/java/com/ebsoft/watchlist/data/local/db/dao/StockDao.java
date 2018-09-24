@@ -26,6 +26,9 @@ public interface StockDao {
     @Query("SELECT * FROM stock WHERE listid LIKE :listid")
     List<Stock> findByWatchlist(String listid);
 
+    @Query("SELECT * FROM stock WHERE symbol LIKE :symbol")
+    List<Stock> findBySymbol(String symbol);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Stock stock);
 }

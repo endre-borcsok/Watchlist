@@ -26,17 +26,22 @@ public class DBManagerImpl implements DBManager {
 
 
     @Override
-    public Observable<List<Watchlist>> loadWatchlists() {
+    public Observable<List<Watchlist>> queryWatchlists() {
         return Observable.fromCallable(() -> mDataBase.watchlistDao().loadAll());
     }
 
     @Override
-    public Observable<List<Stock>> loadStocksForWatchlist(Watchlist watchlist) {
+    public Observable<List<Stock>> queryWatchlist(Watchlist watchlist) {
         return Observable.fromCallable(() -> mDataBase.symbolDao().findByWatchlist(watchlist.name));
     }
 
     @Override
-    public Observable<Boolean> insertWatchlist(final Watchlist watchlist) {
+    public Observable<List<Stock>> querySymbol(String symbol) {
+        return Observable.fromCallable(() -> mDataBase.symbolDao().findBySymbol(symbol));
+    }
+
+    @Override
+    public Observable<Boolean> upsertWatchlist(final Watchlist watchlist) {
         return Observable.fromCallable(() -> {
             mDataBase.watchlistDao().insert(watchlist);
             return true;
@@ -44,7 +49,7 @@ public class DBManagerImpl implements DBManager {
     }
 
     @Override
-    public Observable<Boolean> insertStock(Stock stock) {
+    public Observable<Boolean> upsertStock(Stock stock) {
         return Observable.fromCallable(() -> {
             mDataBase.symbolDao().insert(stock);
             return true;

@@ -29,7 +29,7 @@ public class WatchlistModule {
     }
 
     @Provides
-    SymbolAdapter providesAdapter() {
-        return new SymbolAdapter();
+    StockAdapter providesAdapter() {
+        return new StockAdapter();
     }
 }

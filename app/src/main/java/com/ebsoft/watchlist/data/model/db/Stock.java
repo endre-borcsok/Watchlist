@@ -35,32 +35,9 @@ public class Stock {
         this.listid = listid;
     }
 
-    @NonNull
-    public String getSymbol() {
-        return symbol;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public float getChange() {
-        return change;
-    }
-
-    public void setChange(float change) {
-        this.change = change;
-    }
-
-    public float getChangePercent() {
-        return changePercent;
-    }
-
-    public void setChangePercent(float changePercent) {
-        this.changePercent = changePercent;
+    public void update(Stock updatedStock) {
+        this.price = updatedStock.price;
+        this.change = updatedStock.change;
+        this.changePercent = updatedStock.changePercent;
     }
 }
