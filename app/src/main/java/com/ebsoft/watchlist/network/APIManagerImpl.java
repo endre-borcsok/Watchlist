@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 
 import com.ebsoft.watchlist.data.model.Yahoo.Item;
 import com.ebsoft.watchlist.network.Yahoo.YahooAPI;
-import com.ebsoft.watchlist.network.Yahoo.YahooApiFactory;
 
 import java.util.ArrayList;
 import java.util.List;

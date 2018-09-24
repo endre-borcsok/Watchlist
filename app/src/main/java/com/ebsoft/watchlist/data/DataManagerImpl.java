@@ -15,12 +15,12 @@ public class DataManagerImpl implements DataManager {
 
     private APIManager mApiManager;
 
-    private com.ebsoft.watchlist.data.local.db.DBManager mDbManager;
+    private DBManager mDbManager;
 
     @Inject
-    public DataManagerImpl(APIManager ApiManager, com.ebsoft.watchlist.data.local.db.DBManager DbManager){
-        this.mApiManager = ApiManager;
-        this.mDbManager = DbManager;
+    public DataManagerImpl(APIManager apiManger, DBManager dbManager) {
+        mApiManager = apiManger;
+        mDbManager = dbManager;
     }
 
     @Override

@@ -45,26 +45,20 @@ public class AppModule {
 
     @Provides
     @Singleton
-    APIManager provideAPIManager(APIManagerImpl apiManager) {
-        return apiManager;
-    }
+    APIManager provideApiManager(APIManagerImpl apiManager) { return apiManager; }
 
     @Provides
     @Singleton
-    DBManager provideDataBase(DBManagerImpl dbManager) {
-        return dbManager;
-    }
+    DBManager provideDbManager(DBManagerImpl dbManager) { return dbManager; }
 
     @Provides
-    @Singleton
-    AbstractDataBase provideAbstractDatabase(Context context) {
+    AbstractDataBase provideDatabase(Context context) {
         return Room.databaseBuilder(context, AbstractDataBase.class, Constants.DB_NAME)
                 .fallbackToDestructiveMigration()
                 .build();
     }
 
     @Provides
-    @Singleton
     YahooAPI provideYahooApi(Gson gson) {
         return new Retrofit.Builder()
                 .baseUrl(Constants.YAHOO_API_END_POINT)
@@ -75,7 +69,6 @@ public class AppModule {
     }
 
     @Provides
-    @Singleton
     Gson provideGson() {
         return new GsonBuilder()
                 .setLenient()
