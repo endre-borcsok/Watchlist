@@ -61,6 +61,11 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
     }
 
     @Override
+    public void subscribeForLiveData() {
+
+    }
+
+    @Override
     public int getBindingVariable() {
         return BR.viewModel;
     }

@@ -55,6 +55,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     @Override
+    public void subscribeForLiveData() {}
+
+    @Override
     public void onResume() {
         super.onResume();
         getViewModel().loadWatchlists();
