@@ -1,6 +1,5 @@
 package com.ebsoft.watchlist.ui.watchlist;
 
-import android.arch.lifecycle.MutableLiveData;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 
@@ -8,8 +7,6 @@ import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.ui.base.BaseViewModel;
-
-import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -58,7 +55,7 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(stocks -> {
                     for (Stock stock : stocks) {
-                        stock.update(updatedStock);
+                        stock.copy(updatedStock);
                         insertStock(stock);
                     }
                 }));

@@ -35,7 +35,7 @@ public class Stock {
         this.listid = listid;
     }
 
-    public void update(Stock updatedStock) {
+    public void copy(Stock updatedStock) {
         this.price = updatedStock.price;
         this.change = updatedStock.change;
         this.changePercent = updatedStock.changePercent;
