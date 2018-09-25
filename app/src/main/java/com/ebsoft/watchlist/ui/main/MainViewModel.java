@@ -24,7 +24,7 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
 
     public void loadWatchlists() {
         getCompositeDisposable().add(
-                mDataManager.getDbManager().queryWatchlists()
+                mDataManager.getDbManager().loadyWatchlists()
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(watchlists -> {

@@ -1,14 +1,13 @@
 package com.ebsoft.watchlist.ui.watchlist;
 
-import android.databinding.ObservableArrayList;
-import android.databinding.ObservableList;
+import android.arch.lifecycle.MutableLiveData;
 
 import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.ui.base.BaseViewModel;
 
-import java.util.Iterator;
+import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -19,7 +18,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
 
-    private final ObservableList<Stock> list = new ObservableArrayList<>();
+    private final MutableLiveData<List<Stock>> list = new MutableLiveData();
 
     public WatchlistViewModel(DataManager DataManager) {
         super(DataManager);
@@ -34,49 +33,31 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
 
     public void loadStocks(Watchlist watchlist) {
         getCompositeDisposable().add(mDataManager.getDbManager()
-                .queryWatchlist(watchlist)
+                .loadStocks(watchlist)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(stocks -> {
-                    list.clear();
-                    list.addAll(stocks);
+                    list.setValue(stocks);
                 }));
     }
 
     public void insertStock(Stock stock) {
         getCompositeDisposable().add(mDataManager.getDbManager()
-                .insertStock(stock)
+                .saveStock(stock)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(aBoolean -> {
-                    list.add(stock);
-                }));
+                .subscribe());
     }
 
     private void updateStock(Stock updatedStock) {
         getCompositeDisposable().add(mDataManager.getDbManager()
-                .querySymbol(updatedStock.getSymbol())
+                .queryStock(updatedStock.getSymbol())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(stocks -> {
                     for (Stock stock : stocks) {
                         stock.update(updatedStock);
-                        upsertStock(stock);
-                    }
-                }));
-    }
-
-    private void upsertStock(Stock updatedStock) {
-        getCompositeDisposable().add(mDataManager.getDbManager()
-                .insertStock(updatedStock)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(aBoolean -> {
-                    for (Stock stock : list) {
-                        if (stock.getSymbol().equals(updatedStock.getSymbol())) {
-                            stock.update(updatedStock);
-                            break;
-                        }
+                        insertStock(stock);
                     }
                 }));
     }
@@ -85,7 +66,7 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
         getNavigator().onActionButtonClick();
     }
 
-    public ObservableList<Stock> getList() {
+    public MutableLiveData<List<Stock>> getList() {
         return list;
     }
 }
