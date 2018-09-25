@@ -2,12 +2,8 @@ package com.ebsoft.watchlist.data.model.db;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
-import android.databinding.BindingAdapter;
-import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
-import android.widget.TextView;
 
 /**
  * Created by endre on 23/09/18.
@@ -19,23 +15,23 @@ public class Stock {
     @PrimaryKey
     @ColumnInfo(name = "symbol")
     @NonNull
-    public final ObservableField<String> symbol;
+    public final String symbol;
 
     @ColumnInfo(name = "listid")
     @NonNull
     public final String listid;
 
     @ColumnInfo(name = "price")
-    public float price = 0.0f;
+    public float price;
 
     @ColumnInfo(name = "change")
-    public float change = 0.0f;
+    public float change;
 
     @ColumnInfo(name = "changePercent")
-    public float changePercent = 0.0f;
+    public float changePercent;
 
     public Stock(String symbol, String listid) {
-        this.symbol = new ObservableField<>(symbol);
+        this.symbol = symbol;
         this.listid = listid;
     }
 
