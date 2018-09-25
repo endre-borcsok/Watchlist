@@ -1,14 +1,21 @@
 package com.ebsoft.watchlist.ui.watchlist;
 
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
+import android.support.annotation.Nullable;
 
 import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.ui.base.BaseViewModel;
 
+import java.util.List;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -23,20 +30,21 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
         super(DataManager);
     }
 
+    public void loadStocks(LifecycleOwner owner, Watchlist watchlist) {
+         getCompositeDisposable().add(mDataManager.getDbManager()
+                 .loadStocks(watchlist)
+                 .subscribeOn(Schedulers.io())
+                 .observeOn(AndroidSchedulers.mainThread())
+                 .subscribe(listLiveData -> listLiveData.observe(owner, stocks -> {
+                     list.clear();
+                     list.addAll(stocks);
+                 })));
+    }
+
     public void getQuote(String symbol) {
         getCompositeDisposable().add(mDataManager.getApiManager()
                 .getQuote(symbol, stock -> {
                     updateStock(stock);
-                }));
-    }
-
-    public void loadStocks(Watchlist watchlist) {
-        getCompositeDisposable().add(mDataManager.getDbManager()
-                .loadStocks(watchlist)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(stocks -> {
-                    list.addAll(stocks);
                 }));
     }
 

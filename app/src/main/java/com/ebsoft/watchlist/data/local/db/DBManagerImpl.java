@@ -1,5 +1,7 @@
 package com.ebsoft.watchlist.data.local.db;
 
+import android.arch.lifecycle.LiveData;
+
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 
@@ -31,7 +33,7 @@ public class DBManagerImpl implements DBManager {
     }
 
     @Override
-    public Observable<List<Stock>> loadStocks(Watchlist watchlist) {
+    public Observable<LiveData<List<Stock>>> loadStocks(Watchlist watchlist) {
         return Observable.fromCallable(() -> mDataBase.symbolDao()
                 .findByWatchlist(watchlist.getName()));
     }

@@ -17,7 +17,6 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
         injectDependencies();
         super.onCreate(savedInstanceState);
         bindData();
-        subscribeForLiveData();
         setup();
     }
 
@@ -26,8 +25,6 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
     public abstract int getLayoutId();
 
     public abstract V getViewModel();
-
-    public abstract void subscribeForLiveData();
 
     public T getViewDatabinding() {
         return mViewDataBinding;

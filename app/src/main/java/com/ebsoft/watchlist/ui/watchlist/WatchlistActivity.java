@@ -1,7 +1,9 @@
 package com.ebsoft.watchlist.ui.watchlist;
 
 import android.app.Activity;
+import android.arch.lifecycle.Observer;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 
@@ -14,6 +16,8 @@ import com.ebsoft.watchlist.di.WatchlistActivityQualifier;
 import com.ebsoft.watchlist.ui.base.BaseActivity;
 import com.ebsoft.watchlist.ui.search.SearchActivity;
 import com.ebsoft.watchlist.utils.Constants;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -33,20 +37,14 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
     LinearLayoutManager mLayoutManager;
 
     @Override
-    public void onResume() {
-        super.onResume();
-        Watchlist watchlist = (Watchlist) getIntent()
-                .getSerializableExtra(Constants.EXTRA_KEY_WATCHLIST);
-        mWatchlistViewModel.loadStocks(watchlist);
-    }
-
-    @Override
     public void setup() {
         ActivityWatchlistBinding viewDataBinding = getViewDatabinding();
         viewDataBinding.watchlistRecyclerView.setLayoutManager(mLayoutManager);
         viewDataBinding.watchlistRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.watchlistRecyclerView.setAdapter(mAdapter);
         getViewModel().setNavigator(this);
+        getViewModel().loadStocks(this, (Watchlist) getIntent()
+                .getSerializableExtra(Constants.EXTRA_KEY_WATCHLIST));
         mAdapter.setSymbolListener(this);
     }
 
@@ -58,11 +56,6 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
     @Override
     public WatchlistViewModel getViewModel() {
         return mWatchlistViewModel;
-    }
-
-    @Override
-    public void subscribeForLiveData() {
-
     }
 
     @Override

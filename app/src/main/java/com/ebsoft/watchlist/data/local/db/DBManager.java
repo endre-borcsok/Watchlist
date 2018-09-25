@@ -1,5 +1,7 @@
 package com.ebsoft.watchlist.data.local.db;
 
+import android.arch.lifecycle.LiveData;
+
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 
@@ -17,7 +19,7 @@ public interface DBManager {
 
     Observable<Boolean> saveWatchlist(Watchlist watchlist);
 
-    Observable<List<Stock>> loadStocks(Watchlist watchlist);
+    Observable<LiveData<List<Stock>>> loadStocks(Watchlist watchlist);
 
     Observable<List<Stock>> queryStock(String symbol);
 

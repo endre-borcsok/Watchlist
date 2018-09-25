@@ -1,5 +1,6 @@
 package com.ebsoft.watchlist.data.local.db.dao;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -24,7 +25,7 @@ public interface StockDao {
     void delete(Stock stock);
 
     @Query("SELECT * FROM stock WHERE listid LIKE :listid")
-    List<Stock> findByWatchlist(String listid);
+    LiveData<List<Stock>> findByWatchlist(String listid);
 
     @Query("SELECT * FROM stock WHERE symbol LIKE :symbol")
     List<Stock> findBySymbol(String symbol);

@@ -49,9 +49,6 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
     }
 
     @Override
-    public void subscribeForLiveData() {}
-
-    @Override
     public int getBindingVariable() {
         return BR.viewModel;
     }

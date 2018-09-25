@@ -27,9 +27,6 @@ public class CreateWatchlistActivity extends BaseActivity<ActivityCreateWatchlis
     }
 
     @Override
-    public void subscribeForLiveData() {}
-
-    @Override
     public int getBindingVariable() {
         return BR.viewModel;
     }
