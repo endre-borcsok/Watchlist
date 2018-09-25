@@ -17,9 +17,14 @@ public class Watchlist implements Serializable {
     @PrimaryKey
     @ColumnInfo(name = "name")
     @NonNull
-    public final String name;
+    private final String name;
 
     public Watchlist(String name) {
         this.name = name;
+    }
+
+    @NonNull
+    public String getName() {
+        return name;
     }
 }

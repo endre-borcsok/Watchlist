@@ -15,20 +15,20 @@ public class Stock {
     @PrimaryKey
     @ColumnInfo(name = "symbol")
     @NonNull
-    public final String symbol;
+    private final String symbol;
 
     @ColumnInfo(name = "listid")
     @NonNull
-    public final String listid;
+    private final String listid;
 
     @ColumnInfo(name = "price")
-    public float price;
+    private float price;
 
     @ColumnInfo(name = "change")
-    public float change;
+    private float change;
 
     @ColumnInfo(name = "changePercent")
-    public float changePercent;
+    private float changePercent;
 
     public Stock(String symbol, String listid) {
         this.symbol = symbol;
@@ -39,5 +39,39 @@ public class Stock {
         this.price = updatedStock.price;
         this.change = updatedStock.change;
         this.changePercent = updatedStock.changePercent;
+    }
+
+    @NonNull
+    public String getSymbol() {
+        return symbol;
+    }
+
+    @NonNull
+    public String getListid() {
+        return listid;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public float getChange() {
+        return change;
+    }
+
+    public void setChange(float change) {
+        this.change = change;
+    }
+
+    public float getChangePercent() {
+        return changePercent;
+    }
+
+    public void setChangePercent(float changePercent) {
+        this.changePercent = changePercent;
     }
 }

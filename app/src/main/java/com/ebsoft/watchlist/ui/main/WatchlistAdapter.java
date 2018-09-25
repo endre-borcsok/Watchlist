@@ -63,7 +63,7 @@ public class WatchlistAdapter extends RecyclerView.Adapter<WatchlistAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTextView.setText(mDataSet.get(position).name);
+        holder.mTextView.setText(mDataSet.get(position).getName());
         holder.mView.setOnClickListener(getOnClickListenerForPosition(position));
     }
 

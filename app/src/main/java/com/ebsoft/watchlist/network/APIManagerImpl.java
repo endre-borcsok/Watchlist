@@ -64,10 +64,10 @@ public class APIManagerImpl implements APIManager {
                 .subscribe(avQuoteResponse -> {
                     GlobalQuote gq = avQuoteResponse.body().getGlobalQuote();
                     Stock stock = new Stock(symbol, null);
-                    stock.price = Float.parseFloat(gq.getPrice());
-                    stock.change = Float.parseFloat(gq.getChange());
-                    stock.changePercent = Float.parseFloat(gq.getChangePercent()
-                            .replace("%", ""));
+                    stock.setPrice(Float.parseFloat(gq.getPrice()));
+                    stock.setChange(Float.parseFloat(gq.getChange()));
+                    stock.setChangePercent(Float.parseFloat(gq.getChangePercent()
+                            .replace("%", "")));
                     listener.onComplete(stock);
                 });
     }

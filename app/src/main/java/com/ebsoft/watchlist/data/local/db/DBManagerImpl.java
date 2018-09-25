@@ -32,7 +32,8 @@ public class DBManagerImpl implements DBManager {
 
     @Override
     public Observable<List<Stock>> queryWatchlist(Watchlist watchlist) {
-        return Observable.fromCallable(() -> mDataBase.symbolDao().findByWatchlist(watchlist.name));
+        return Observable.fromCallable(() -> mDataBase.symbolDao()
+                .findByWatchlist(watchlist.getName()));
     }
 
     @Override

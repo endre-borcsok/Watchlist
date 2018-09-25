@@ -55,7 +55,7 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
 
     private void updateStock(Stock updatedStock) {
         getCompositeDisposable().add(mDataManager.getDbManager()
-                .querySymbol(updatedStock.symbol)
+                .querySymbol(updatedStock.getSymbol())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(stocks -> {
@@ -73,7 +73,7 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aBoolean -> {
                     for (Stock stock : list) {
-                        if (stock.symbol.equals(updatedStock.symbol)) {
+                        if (stock.getSymbol().equals(updatedStock.getSymbol())) {
                             stock.update(updatedStock);
                             break;
                         }
