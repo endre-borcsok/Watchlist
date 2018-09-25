@@ -41,10 +41,10 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
                  })));
     }
 
-    public void getQuote(String symbol) {
+    public void getQuote(Stock stock) {
         getCompositeDisposable().add(mDataManager.getApiManager()
-                .getQuote(symbol, stock -> {
-                    updateStock(stock);
+                .getQuote(stock, stock1 -> {
+                    insertStock(stock1);
                 }));
     }
 
@@ -54,19 +54,6 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe());
-    }
-
-    private void updateStock(Stock updatedStock) {
-        getCompositeDisposable().add(mDataManager.getDbManager()
-                .queryStock(updatedStock.getSymbol())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(stocks -> {
-                    for (Stock stock : stocks) {
-                        stock.copy(updatedStock);
-                        insertStock(stock);
-                    }
-                }));
     }
 
     public void onActionButtonClick() {

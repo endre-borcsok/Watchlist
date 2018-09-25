@@ -63,7 +63,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTextView.setText(mDataSet.get(position).getSymbol());
+        holder.mTextView.setText(mDataSet.get(position).getSymbol() + " " + mDataSet.get(position).getPrice());
         holder.mView.setOnClickListener(getOnClickListenerForPosition(position));
     }
 
@@ -75,7 +75,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>
     private View.OnClickListener getOnClickListenerForPosition(int position) {
         return view -> {
             if (mSymbolListener != null) {
-                mSymbolListener.onSymbolSelected(mDataSet.get(position).getSymbol());
+                mSymbolListener.onStockSelected(mDataSet.get(position));
             }
         };
     }

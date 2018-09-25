@@ -82,7 +82,7 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
     }
 
     @Override
-    public void onSymbolSelected(String symbol) {
-        getViewModel().getQuote(symbol);
+    public void onStockSelected(Stock stock) {
+        getViewModel().getQuote(stock);
     }
 }

@@ -57,13 +57,12 @@ public class APIManagerImpl implements APIManager {
     }
 
     @Override
-    public Disposable getQuote(String symbol, QuoteQueryListener listener) {
-        return mAlphaVantageApi.getQuote(symbol)
+    public Disposable getQuote(Stock stock, QuoteQueryListener listener) {
+        return mAlphaVantageApi.getQuote(stock.getSymbol())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(avQuoteResponse -> {
                     GlobalQuote gq = avQuoteResponse.body().getGlobalQuote();
-                    Stock stock = new Stock(symbol, null);
                     stock.setPrice(Float.parseFloat(gq.getPrice()));
                     stock.setChange(Float.parseFloat(gq.getChange()));
                     stock.setChangePercent(Float.parseFloat(gq.getChangePercent()
