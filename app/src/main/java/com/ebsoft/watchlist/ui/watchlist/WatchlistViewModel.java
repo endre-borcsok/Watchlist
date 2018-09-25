@@ -1,6 +1,8 @@
 package com.ebsoft.watchlist.ui.watchlist;
 
 import android.arch.lifecycle.MutableLiveData;
+import android.databinding.ObservableArrayList;
+import android.databinding.ObservableList;
 
 import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.data.model.db.Stock;
@@ -18,7 +20,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
 
-    private final MutableLiveData<List<Stock>> list = new MutableLiveData();
+    private final ObservableList<Stock> list = new ObservableArrayList<>();
 
     public WatchlistViewModel(DataManager DataManager) {
         super(DataManager);
@@ -37,7 +39,7 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(stocks -> {
-                    list.setValue(stocks);
+                    list.addAll(stocks);
                 }));
     }
 
@@ -66,7 +68,7 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
         getNavigator().onActionButtonClick();
     }
 
-    public MutableLiveData<List<Stock>> getList() {
+    public ObservableList<Stock> getList() {
         return list;
     }
 }
