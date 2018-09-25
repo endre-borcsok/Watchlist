@@ -1,5 +1,7 @@
 package com.ebsoft.watchlist.ui.watchlist;
 
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,22 +19,11 @@ import java.util.List;
  * Created by endre on 08/09/18.
  */
 
-public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>
+public class StockAdapter extends RecyclerView.Adapter<StockViewHolder>
         implements BindableAdapter<List<Stock>> {
 
     private List<Stock> mDataSet;
     private SymbolListener mSymbolListener;
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView mTextView;
-        public View mView;
-
-        public ViewHolder(View v) {
-            super(v);
-            mView = v;
-            mTextView = v.findViewById(R.id.recyclerViewItemText);
-        }
-    }
 
     public StockAdapter() {
         mDataSet = new ArrayList<>();
@@ -54,22 +45,26 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.layout_recycler_view_element, parent, false);
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+    public StockViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        ViewDataBinding binding = DataBindingUtil.inflate(
+                layoutInflater, viewType, parent, false);
+        return new StockViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTextView.setText(mDataSet.get(position).symbol);
-        holder.mView.setOnClickListener(getOnClickListenerForPosition(position));
+    public void onBindViewHolder(StockViewHolder holder, int position) {
+        holder.bind(mDataSet.get(position));
     }
 
     @Override
     public int getItemCount() {
         return mDataSet.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return R.layout.test_layout;
     }
 
     private View.OnClickListener getOnClickListenerForPosition(int position) {
