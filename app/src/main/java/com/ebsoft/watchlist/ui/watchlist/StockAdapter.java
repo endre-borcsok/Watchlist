@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.model.db.Stock;
+import com.ebsoft.watchlist.ui.base.BindableAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,8 @@ import java.util.List;
  * Created by endre on 08/09/18.
  */
 
-public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> {
+public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>
+        implements BindableAdapter<List<Stock>> {
 
     private List<Stock> mDataSet;
     private SymbolListener mSymbolListener;
@@ -40,11 +42,13 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> 
         mSymbolListener = listener;
     }
 
+    @Override
     public void addItems(List<Stock> items) {
         mDataSet.addAll(items);
         notifyDataSetChanged();
     }
 
+    @Override
     public void clearItems() {
         mDataSet.clear();
     }

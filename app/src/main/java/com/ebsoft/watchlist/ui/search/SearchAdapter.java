@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ebsoft.watchlist.R;
+import com.ebsoft.watchlist.ui.base.BindableAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,8 @@ import java.util.List;
  * Created by endre on 08/09/18.
  */
 
-public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
+public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder>
+        implements BindableAdapter<List<String>> {
 
     private List<String> mDataSet;
     private SearchListener mSearchListener;
@@ -39,11 +41,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         mSearchListener = listener;
     }
 
+    @Override
     public void addItems(List<String> items) {
         mDataSet.addAll(items);
         notifyDataSetChanged();
     }
 
+    @Override
     public void clearItems() {
         mDataSet.clear();
     }

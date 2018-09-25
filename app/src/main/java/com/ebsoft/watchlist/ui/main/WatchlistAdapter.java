@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
+import com.ebsoft.watchlist.ui.base.BindableAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,8 @@ import java.util.List;
  * Created by endre on 08/09/18.
  */
 
-public class WatchlistAdapter extends RecyclerView.Adapter<WatchlistAdapter.ViewHolder> {
+public class WatchlistAdapter extends RecyclerView.Adapter<WatchlistAdapter.ViewHolder>
+        implements BindableAdapter<List<Watchlist>> {
 
     private List<Watchlist> mDataSet;
     private WatchlistListener mWatchlistListener;
@@ -40,11 +42,13 @@ public class WatchlistAdapter extends RecyclerView.Adapter<WatchlistAdapter.View
         mWatchlistListener = listener;
     }
 
+    @Override
     public void addItems(List<Watchlist> items) {
         mDataSet.addAll(items);
         notifyDataSetChanged();
     }
 
+    @Override
     public void clearItems() {
         mDataSet.clear();
     }
