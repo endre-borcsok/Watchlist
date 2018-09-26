@@ -16,22 +16,11 @@ import java.util.List;
  * Created by endre on 08/09/18.
  */
 
-public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder>
+public class SearchAdapter extends RecyclerView.Adapter<ViewHolder>
         implements BindableAdapter<List<String>> {
 
     private List<String> mDataSet;
     private SearchListener mSearchListener;
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView mTextView;
-        public View mView;
-
-        public ViewHolder(View v) {
-            super(v);
-            mView = v;
-            mTextView = v.findViewById(R.id.cardViewTitle);
-        }
-    }
 
     public SearchAdapter() {
         mDataSet = new ArrayList<>();

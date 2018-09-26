@@ -17,22 +17,11 @@ import java.util.List;
  * Created by endre on 08/09/18.
  */
 
-public class WatchlistAdapter extends RecyclerView.Adapter<WatchlistAdapter.ViewHolder>
+public class WatchlistAdapter extends RecyclerView.Adapter<ViewHolder>
         implements BindableAdapter<List<Watchlist>> {
 
     private List<Watchlist> mDataSet;
     private WatchlistListener mWatchlistListener;
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView mTextView;
-        public View mView;
-
-        public ViewHolder(View v) {
-            super(v);
-            mView = v;
-            mTextView = v.findViewById(R.id.cardViewTitle);
-        }
-    }
 
     public WatchlistAdapter() {
         mDataSet = new ArrayList<>();
