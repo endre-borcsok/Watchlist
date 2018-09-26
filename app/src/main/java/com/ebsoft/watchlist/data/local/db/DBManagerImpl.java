@@ -28,7 +28,7 @@ public class DBManagerImpl implements DBManager {
 
 
     @Override
-    public Observable<List<Watchlist>> loadyWatchlists() {
+    public Observable<List<Watchlist>> loadWatchlists() {
         return Observable.fromCallable(() -> mDataBase.watchlistDao().loadAll());
     }
 

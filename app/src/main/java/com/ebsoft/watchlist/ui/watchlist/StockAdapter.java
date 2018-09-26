@@ -30,7 +30,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder>
         public ViewHolder(View v) {
             super(v);
             mView = v;
-            mTextView = v.findViewById(R.id.recyclerViewItemText);
+            mTextView = v.findViewById(R.id.cardViewTitle);
         }
     }
 

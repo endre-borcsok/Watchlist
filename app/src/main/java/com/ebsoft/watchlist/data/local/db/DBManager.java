@@ -15,7 +15,7 @@ import io.reactivex.Observable;
 
 public interface DBManager {
 
-    Observable<List<Watchlist>> loadyWatchlists();
+    Observable<List<Watchlist>> loadWatchlists();
 
     Observable<Boolean> saveWatchlist(Watchlist watchlist);
 

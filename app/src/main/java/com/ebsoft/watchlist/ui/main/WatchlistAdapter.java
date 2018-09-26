@@ -30,7 +30,7 @@ public class WatchlistAdapter extends RecyclerView.Adapter<WatchlistAdapter.View
         public ViewHolder(View v) {
             super(v);
             mView = v;
-            mTextView = v.findViewById(R.id.recyclerViewItemText);
+            mTextView = v.findViewById(R.id.cardViewTitle);
         }
     }
 
