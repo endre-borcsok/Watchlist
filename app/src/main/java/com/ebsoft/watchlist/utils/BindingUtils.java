@@ -3,14 +3,7 @@ package com.ebsoft.watchlist.utils;
 import android.databinding.BindingAdapter;
 import android.support.v7.widget.RecyclerView;
 
-import com.ebsoft.watchlist.data.model.db.Stock;
-import com.ebsoft.watchlist.data.model.db.Watchlist;
-import com.ebsoft.watchlist.ui.base.BindableAdapter;
-import com.ebsoft.watchlist.ui.main.WatchlistAdapter;
-import com.ebsoft.watchlist.ui.search.SearchAdapter;
-import com.ebsoft.watchlist.ui.watchlist.StockAdapter;
-
-import java.util.List;
+import com.ebsoft.watchlist.ui.adapter.BindableAdapter;
 
 /**
  * Created by endre on 08/09/18.

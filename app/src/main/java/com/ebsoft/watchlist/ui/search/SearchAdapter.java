@@ -4,10 +4,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.ebsoft.watchlist.R;
-import com.ebsoft.watchlist.ui.base.BindableAdapter;
+import com.ebsoft.watchlist.ui.adapter.BindableAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

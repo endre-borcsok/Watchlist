@@ -1,4 +1,4 @@
-package com.ebsoft.watchlist.ui.base;
+package com.ebsoft.watchlist.ui.adapter;
 
 public interface BindableAdapter<T> {
 
