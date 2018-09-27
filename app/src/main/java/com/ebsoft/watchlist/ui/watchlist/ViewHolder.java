@@ -5,14 +5,20 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ebsoft.watchlist.R;
+import com.ebsoft.watchlist.data.model.db.Stock;
+import com.ebsoft.watchlist.data.model.db.Watchlist;
+import com.ebsoft.watchlist.ui.adapter.BaseCardViewHolder;
 
-class ViewHolder extends RecyclerView.ViewHolder {
+class ViewHolder extends BaseCardViewHolder<Stock> {
     public TextView mTextView;
-    public View mView;
 
     public ViewHolder(View v) {
         super(v);
-        mView = v;
         mTextView = v.findViewById(R.id.cardViewTitle);
+    }
+
+    @Override
+    public void onBindViewHolder(Stock item) {
+        mTextView.setText(item.getSymbol() + " " + item.getPrice());
     }
 }

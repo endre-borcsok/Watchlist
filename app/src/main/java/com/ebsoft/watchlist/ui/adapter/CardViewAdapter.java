@@ -48,7 +48,7 @@ public class CardViewAdapter<E, T extends BaseCardViewHolder<E>> extends Recycle
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BaseCardViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull T viewHolder, int position) {
         viewHolder.onBindViewHolder(mDataSet.get(position));
         viewHolder.getView().setOnClickListener(getOnClickListenerForPosition(position));
     }

@@ -13,6 +13,8 @@ import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.databinding.ActivityWatchlistBinding;
 import com.ebsoft.watchlist.di.WatchlistActivityQualifier;
+import com.ebsoft.watchlist.ui.adapter.CardViewAdapter;
+import com.ebsoft.watchlist.ui.adapter.CardViewItemClickListener;
 import com.ebsoft.watchlist.ui.base.BaseActivity;
 import com.ebsoft.watchlist.ui.search.SearchActivity;
 import com.ebsoft.watchlist.utils.Constants;
@@ -22,7 +24,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, WatchlistViewModel>
-        implements WatchlistNavigator, SymbolListener {
+        implements WatchlistNavigator, CardViewItemClickListener<Stock> {
 
     private final int RESULT_CODE = 0;
 
@@ -30,7 +32,7 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
     WatchlistViewModel mWatchlistViewModel;
 
     @Inject
-    StockAdapter mAdapter;
+    CardViewAdapter mAdapter;
 
     @Inject
     @WatchlistActivityQualifier
@@ -45,7 +47,7 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
         getViewModel().setNavigator(this);
         getViewModel().loadStocks(this, (Watchlist) getIntent()
                 .getSerializableExtra(Constants.EXTRA_KEY_WATCHLIST));
-        mAdapter.setSymbolListener(this);
+        mAdapter.setItemClickListener(this);
     }
 
     @Override
@@ -82,7 +84,7 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
     }
 
     @Override
-    public void onStockSelected(Stock stock) {
-        getViewModel().getQuote(stock);
+    public void onItemClick(Stock item) {
+        getViewModel().getQuote(item);
     }
 }

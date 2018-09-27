@@ -2,8 +2,10 @@ package com.ebsoft.watchlist.ui.search;
 
 import android.support.v7.widget.LinearLayoutManager;
 
+import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.di.SearchActivityQualifier;
+import com.ebsoft.watchlist.ui.adapter.CardViewAdapter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -29,7 +31,7 @@ public class SearchActivityModule {
     }
 
     @Provides
-    SearchAdapter providesAdapter() {
-        return new SearchAdapter();
+    CardViewAdapter providesAdapter() {
+        return new CardViewAdapter<String, ViewHolder>(R.layout.layout_recycler_view_element);
     }
 }

@@ -2,8 +2,11 @@ package com.ebsoft.watchlist.ui.main;
 
 import android.support.v7.widget.LinearLayoutManager;
 
+import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.DataManager;
+import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.di.MainActivityQualifier;
+import com.ebsoft.watchlist.ui.adapter.CardViewAdapter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -30,7 +33,7 @@ public class MainActivityModule {
     }
 
     @Provides
-    WatchlistAdapter providesAdapter() {
-        return new WatchlistAdapter();
+    CardViewAdapter providesAdapter() {
+        return new CardViewAdapter<Watchlist, ViewHolder>(R.layout.layout_recycler_view_element);
     }
 }
