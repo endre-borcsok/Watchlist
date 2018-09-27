@@ -7,10 +7,10 @@ import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.ui.adapter.BaseCardViewHolder;
 
-class ViewHolder extends BaseCardViewHolder<Watchlist> {
+public class MainViewHolder extends BaseCardViewHolder<Watchlist> {
     public TextView mTextView;
 
-    public ViewHolder(View v) {
+    public MainViewHolder(View v) {
         super(v);
         mTextView = v.findViewById(R.id.cardViewTitle);
     }

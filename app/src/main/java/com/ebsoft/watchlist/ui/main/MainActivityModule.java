@@ -34,6 +34,6 @@ public class MainActivityModule {
 
     @Provides
     CardViewAdapter providesAdapter() {
-        return new CardViewAdapter<Watchlist, ViewHolder>(R.layout.layout_recycler_view_element);
+        return new CardViewAdapter<Watchlist, MainViewHolder>(R.layout.layout_recycler_view_element);
     }
 }
