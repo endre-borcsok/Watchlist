@@ -13,16 +13,26 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.main.MainActivity">
+
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:label="@string/main_activity_label">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.search.SearchActivity" />
-        <activity android:name=".ui.create.CreateWatchlistActivity" />
-        <activity android:name=".ui.watchlist.WatchlistActivity"></activity>
+
+        <activity
+            android:name=".ui.search.SearchActivity"
+            android:label="@string/search_activity_label"/>
+
+        <activity
+            android:name=".ui.create.CreateWatchlistActivity"
+            android:label="@string/create_watchlist_activity_label"/>
+
+        <activity
+            android:name=".ui.watchlist.WatchlistActivity"/>
     </application>
 
 </manifest>

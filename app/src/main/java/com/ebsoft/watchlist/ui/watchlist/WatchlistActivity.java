@@ -34,16 +34,20 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
     @WatchlistActivityQualifier
     LinearLayoutManager mLayoutManager;
 
+    private Watchlist mWatchlist;
+
     @Override
     public void setup() {
+        mWatchlist = (Watchlist) getIntent()
+                .getSerializableExtra(Constants.EXTRA_KEY_WATCHLIST);
+        mAdapter.setItemClickListener(this);
         ActivityWatchlistBinding viewDataBinding = getViewDatabinding();
         viewDataBinding.watchlistRecyclerView.setLayoutManager(mLayoutManager);
         viewDataBinding.watchlistRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.watchlistRecyclerView.setAdapter(mAdapter);
         getViewModel().setNavigator(this);
-        getViewModel().loadStocks(this, (Watchlist) getIntent()
-                .getSerializableExtra(Constants.EXTRA_KEY_WATCHLIST));
-        mAdapter.setItemClickListener(this);
+        getViewModel().loadStocks(this, mWatchlist);
+        setTitle(mWatchlist.getName());
     }
 
     @Override
