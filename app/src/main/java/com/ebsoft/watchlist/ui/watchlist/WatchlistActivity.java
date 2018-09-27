@@ -38,8 +38,7 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
 
     @Override
     public void setup() {
-        mWatchlist = (Watchlist) getIntent()
-                .getSerializableExtra(Constants.EXTRA_KEY_WATCHLIST);
+        mWatchlist = (Watchlist) getIntent().getSerializableExtra(Constants.EXTRA_KEY_WATCHLIST);
         mAdapter.setItemClickListener(this);
         ActivityWatchlistBinding viewDataBinding = getViewDatabinding();
         viewDataBinding.watchlistRecyclerView.setLayoutManager(mLayoutManager);
