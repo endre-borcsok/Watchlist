@@ -1,15 +1,13 @@
 package com.ebsoft.watchlist.ui.watchlist;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.model.db.Stock;
-import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.ui.adapter.BaseCardViewHolder;
 
-public class WatchlistViewHolder extends BaseCardViewHolder<Stock> {
+class WatchlistViewHolder extends BaseCardViewHolder<Stock> {
     public TextView mTextView;
 
     public WatchlistViewHolder(View v) {

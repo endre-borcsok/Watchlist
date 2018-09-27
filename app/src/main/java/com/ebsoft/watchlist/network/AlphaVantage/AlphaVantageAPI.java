@@ -1,7 +1,6 @@
 package com.ebsoft.watchlist.network.AlphaVantage;
 
 import com.ebsoft.watchlist.data.model.AlphaVantage.AVQuote;
-import com.ebsoft.watchlist.data.model.Yahoo.SymbolSearch;
 
 import io.reactivex.Observable;
 import retrofit2.Response;

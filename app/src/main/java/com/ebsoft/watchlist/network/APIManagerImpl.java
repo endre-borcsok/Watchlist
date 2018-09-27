@@ -2,7 +2,6 @@ package com.ebsoft.watchlist.network;
 
 import android.support.annotation.NonNull;
 
-import com.ebsoft.watchlist.data.model.AlphaVantage.AVQuote;
 import com.ebsoft.watchlist.data.model.AlphaVantage.GlobalQuote;
 import com.ebsoft.watchlist.data.model.Yahoo.Item;
 import com.ebsoft.watchlist.data.model.db.Stock;
@@ -17,9 +16,7 @@ import javax.inject.Singleton;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Response;
 
 /**
  * Created by endre on 09/09/18.
