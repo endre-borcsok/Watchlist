@@ -15,7 +15,7 @@ import io.reactivex.Observable;
 
 public interface DBManager {
 
-    Observable<List<Watchlist>> loadWatchlists();
+    Observable<LiveData<List<Watchlist>>> loadWatchlists();
 
     Observable<Boolean> deleteWatchlist(Watchlist watchlist);
 

@@ -1,5 +1,6 @@
 package com.ebsoft.watchlist.data.local.db.dao;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -18,7 +19,7 @@ import java.util.List;
 public interface WatchlistDao {
 
     @Query("SELECT * FROM watchlist")
-    List<Watchlist> loadAll();
+    LiveData<List<Watchlist>> loadAll();
 
     @Delete
     void delete(Watchlist watchlist);

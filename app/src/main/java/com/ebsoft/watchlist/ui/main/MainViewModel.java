@@ -60,9 +60,11 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(watchlists -> {
-                            list.clear();
-                            list.addAll(watchlists);
-                            loadStockLists(watchlists, owner);
+                            watchlists.observe(owner, watchlists1 -> {
+                                list.clear();
+                                list.addAll(watchlists1);
+                                loadStockLists(watchlists1, owner);
+                            });
                         }));
     }
 
