@@ -37,11 +37,11 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
     @WatchlistActivityQualifier
     LinearLayoutManager mLayoutManager;
 
-    private Watchlist mWatchlist;
+    @Inject
+    Watchlist mWatchlist;
 
     @Override
     public void setup() {
-        mWatchlist = (Watchlist) getIntent().getSerializableExtra(Constants.EXTRA_KEY_WATCHLIST);
         mAdapter.setItemClickListener(this);
         mAdapter.setItemRemoveListener(this);
         ActivityWatchlistBinding viewDataBinding = getViewDatabinding();
@@ -78,10 +78,8 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
         if (requestCode == RESULT_CODE) {
             if(resultCode == Activity.RESULT_OK){
                 String result = data.getStringExtra(Constants.SEARCH_RESULT_KEY);
-                Watchlist watchlist = (Watchlist) getIntent()
-                        .getSerializableExtra(Constants.EXTRA_KEY_WATCHLIST);
-                Stock stock = new Stock(result, watchlist.getName());
-                getViewModel().insertStock(stock);
+                Stock stock = new Stock(result, mWatchlist.getName());
+                getViewModel().saveStock(stock);
             }
         }
     }

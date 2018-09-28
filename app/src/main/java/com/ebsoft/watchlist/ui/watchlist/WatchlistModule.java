@@ -4,8 +4,10 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.DataManager;
+import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.di.WatchlistActivityQualifier;
 import com.ebsoft.watchlist.ui.adapter.CardViewAdapter;
+import com.ebsoft.watchlist.utils.Constants;
 
 import dagger.Module;
 import dagger.Provides;
@@ -34,5 +36,10 @@ public class WatchlistModule {
     CardViewAdapter providesAdapter() {
         return new CardViewAdapter<>(R.layout.layout_stock_item,
                 WatchlistViewHolder.class);
+    }
+
+    @Provides
+    Watchlist provideWatchlist(WatchlistActivity activity) {
+        return (Watchlist) activity.getIntent().getSerializableExtra(Constants.EXTRA_KEY_WATCHLIST);
     }
 }

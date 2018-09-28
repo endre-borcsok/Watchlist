@@ -10,6 +10,7 @@ import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.ui.base.BaseViewModel;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -43,14 +44,22 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
                  })));
     }
 
+    public void saveStock(Stock stock) {
+        getCompositeDisposable().add(mDataManager.getDbManager()
+                .saveStock(stock)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aBoolean -> getQuote(stock)));
+    }
+
     public void getQuote(Stock stock) {
         getCompositeDisposable().add(mDataManager.getApiManager()
                 .getQuote(stock, stock1 -> {
-                    insertStock(stock1);
+                    updateStock(stock1);
                 }));
     }
 
-    public void insertStock(Stock stock) {
+    private void updateStock(Stock stock) {
         getCompositeDisposable().add(mDataManager.getDbManager()
                 .saveStock(stock)
                 .subscribeOn(Schedulers.io())
