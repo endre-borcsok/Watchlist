@@ -33,7 +33,7 @@ public class MainActivityModule {
 
     @Provides
     CardViewAdapter providesAdapter() {
-        return new CardViewAdapter<>(R.layout.layout_recycler_view_element,
+        return new CardViewAdapter<>(R.layout.layout_main_menu_cardview_item,
                 MainViewHolder.class);
     }
 }

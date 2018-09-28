@@ -38,6 +38,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         viewDataBinding.mainActivityRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.mainActivityRecyclerView.setAdapter(mAdapter);
         getViewModel().setNavigator(this);
+        getViewModel().loadWatchlists(this);
         mAdapter.setItemClickListener(this);
     }
 
@@ -54,12 +55,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     @Override
     public MainViewModel getViewModel() {
         return mMainViewModel;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        getViewModel().loadWatchlists();
     }
 
     @Override

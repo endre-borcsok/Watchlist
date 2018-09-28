@@ -3,10 +3,11 @@
 
     <!-- TextView -->
     <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_medium">14sp</dimen>
 
     <!-- CardView -->
     <dimen name="card_view_height">100dp</dimen>
     <dimen name="card_view_margin">5dp</dimen>
-    <dimen name="card_view_corner_radius">5dp</dimen>
-    <dimen name="card_view_title_margin">8dp</dimen>
+    <dimen name="card_view_corner_radius">0dp</dimen>
+    <dimen name="card_view_constraint_margin">8dp</dimen>
 </resources>

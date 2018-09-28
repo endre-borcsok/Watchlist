@@ -5,12 +5,14 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import java.io.Serializable;
+
 /**
  * Created by endre on 23/09/18.
  */
 
 @Entity(tableName = "stock")
-public class Stock {
+public class Stock implements Serializable {
 
     @PrimaryKey
     @ColumnInfo(name = "symbol")
