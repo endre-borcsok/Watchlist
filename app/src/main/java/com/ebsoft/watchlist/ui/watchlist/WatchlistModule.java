@@ -32,7 +32,7 @@ public class WatchlistModule {
 
     @Provides
     CardViewAdapter providesAdapter() {
-        return new CardViewAdapter<>(R.layout.layout_recycler_view_element,
+        return new CardViewAdapter<>(R.layout.layout_stock_item,
                 WatchlistViewHolder.class);
     }
 }

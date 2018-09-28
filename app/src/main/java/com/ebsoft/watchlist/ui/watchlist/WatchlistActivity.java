@@ -13,6 +13,7 @@ import com.ebsoft.watchlist.databinding.ActivityWatchlistBinding;
 import com.ebsoft.watchlist.di.WatchlistActivityQualifier;
 import com.ebsoft.watchlist.ui.adapter.CardViewAdapter;
 import com.ebsoft.watchlist.ui.adapter.CardViewItemClickListener;
+import com.ebsoft.watchlist.ui.adapter.CardViewItemRemoveListener;
 import com.ebsoft.watchlist.ui.base.BaseActivity;
 import com.ebsoft.watchlist.ui.search.SearchActivity;
 import com.ebsoft.watchlist.utils.Constants;
@@ -20,7 +21,9 @@ import com.ebsoft.watchlist.utils.Constants;
 import javax.inject.Inject;
 
 public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, WatchlistViewModel>
-        implements WatchlistNavigator, CardViewItemClickListener<Stock> {
+        implements WatchlistNavigator,
+        CardViewItemClickListener<Stock>,
+        CardViewItemRemoveListener<Stock> {
 
     private final int RESULT_CODE = 0;
 
@@ -40,6 +43,7 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
     public void setup() {
         mWatchlist = (Watchlist) getIntent().getSerializableExtra(Constants.EXTRA_KEY_WATCHLIST);
         mAdapter.setItemClickListener(this);
+        mAdapter.setItemRemoveListener(this);
         ActivityWatchlistBinding viewDataBinding = getViewDatabinding();
         viewDataBinding.watchlistRecyclerView.setLayoutManager(mLayoutManager);
         viewDataBinding.watchlistRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -85,5 +89,10 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
     @Override
     public void onItemClick(Stock item) {
         getViewModel().getQuote(item);
+    }
+
+    @Override
+    public void onRemove(Stock item) {
+        getViewModel().removeStock(item);
     }
 }

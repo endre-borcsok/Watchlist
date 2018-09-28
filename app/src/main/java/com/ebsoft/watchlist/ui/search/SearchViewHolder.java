@@ -7,7 +7,7 @@ import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.ui.adapter.BaseCardViewHolder;
 
 class SearchViewHolder extends BaseCardViewHolder<String> {
-    public TextView mTextView;
+    private final TextView mTextView;
 
     public SearchViewHolder(View v) {
         super(v);
