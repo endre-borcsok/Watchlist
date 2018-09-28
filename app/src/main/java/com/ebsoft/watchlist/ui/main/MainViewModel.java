@@ -5,6 +5,7 @@ import android.arch.lifecycle.Observer;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.data.model.db.Stock;
@@ -27,6 +28,10 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
 
     public MainViewModel(DataManager DataManager) {
         super(DataManager);
+    }
+
+    public void deleteWatchlist(Watchlist watchlist) {
+        Log.d("ASD", "CLICK");
     }
 
     public void loadWatchlists(LifecycleOwner owner) {

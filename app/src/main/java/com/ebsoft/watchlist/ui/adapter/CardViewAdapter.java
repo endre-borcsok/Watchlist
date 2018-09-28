@@ -27,6 +27,8 @@ public class CardViewAdapter<E, T extends BaseCardViewHolder<E>> extends Recycle
 
     private CardViewItemClickListener<E> mItemClickListener;
 
+    private CardViewItemRemoveListener<E> mItemRemoveListener;
+
     public CardViewAdapter(int layoutId, Class<T> viewHolderClass) {
         this.mLayoutId = layoutId;
         this.mDataSet = new ArrayList<>();
@@ -35,6 +37,10 @@ public class CardViewAdapter<E, T extends BaseCardViewHolder<E>> extends Recycle
 
     public void setItemClickListener(CardViewItemClickListener<E> listener) {
         this.mItemClickListener = listener;
+    }
+
+    public void setItemRemoveListener(CardViewItemRemoveListener<E> listener) {
+        this.mItemRemoveListener = listener;
     }
 
     @Override
@@ -58,7 +64,8 @@ public class CardViewAdapter<E, T extends BaseCardViewHolder<E>> extends Recycle
     @Override
     public void onBindViewHolder(@NonNull T viewHolder, int position) {
         viewHolder.onBindViewHolder(mDataSet.get(position));
-        viewHolder.getView().setOnClickListener(getOnClickListenerForPosition(position));
+        viewHolder.setClickListener(getOnClickListenerForPosition(position));
+        viewHolder.setRemoveClickListener(getItemRemoveListenerForPosition(position));
     }
 
     @Override
@@ -79,6 +86,14 @@ public class CardViewAdapter<E, T extends BaseCardViewHolder<E>> extends Recycle
         return view -> {
             if (mItemClickListener != null) {
                 mItemClickListener.onItemClick(mDataSet.get(position));
+            }
+        };
+    }
+
+    private View.OnClickListener getItemRemoveListenerForPosition(int position) {
+        return view -> {
+            if (mItemRemoveListener != null) {
+                mItemRemoveListener.onRemove(mDataSet.get(position));
             }
         };
     }

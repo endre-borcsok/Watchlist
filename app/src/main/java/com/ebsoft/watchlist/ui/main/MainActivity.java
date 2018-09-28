@@ -11,6 +11,7 @@ import com.ebsoft.watchlist.databinding.ActivityMainBinding;
 import com.ebsoft.watchlist.di.MainActivityQualifier;
 import com.ebsoft.watchlist.ui.adapter.CardViewAdapter;
 import com.ebsoft.watchlist.ui.adapter.CardViewItemClickListener;
+import com.ebsoft.watchlist.ui.adapter.CardViewItemRemoveListener;
 import com.ebsoft.watchlist.ui.base.BaseActivity;
 import com.ebsoft.watchlist.ui.create.CreateWatchlistActivity;
 import com.ebsoft.watchlist.ui.watchlist.WatchlistActivity;
@@ -19,7 +20,9 @@ import com.ebsoft.watchlist.utils.Constants;
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel>
-        implements MainNavigator, CardViewItemClickListener<Watchlist> {
+        implements MainNavigator,
+        CardViewItemClickListener<Watchlist>,
+        CardViewItemRemoveListener<Watchlist> {
 
     @Inject
     MainViewModel mMainViewModel;
@@ -40,6 +43,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         getViewModel().setNavigator(this);
         getViewModel().loadWatchlists(this);
         mAdapter.setItemClickListener(this);
+        mAdapter.setItemRemoveListener(this);
     }
 
     @Override
@@ -67,5 +71,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         Intent intent = new Intent(this, WatchlistActivity.class);
         intent.putExtra(Constants.EXTRA_KEY_WATCHLIST, item);
         startActivity(intent);
+    }
+
+    @Override
+    public void onRemove(Watchlist item) {
+        getViewModel().deleteWatchlist(item);
     }
 }

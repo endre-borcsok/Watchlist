@@ -15,7 +15,9 @@ public class BaseCardViewHolder<T> extends RecyclerView.ViewHolder {
 
     public void onBindViewHolder(T item) {}
 
-    public View getView() {
-        return mView;
+    public void setClickListener(View.OnClickListener listener) {
+       mView.setOnClickListener(listener);
     }
+
+    public void setRemoveClickListener(View.OnClickListener listener) {}
 }
