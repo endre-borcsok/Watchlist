@@ -31,7 +31,26 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
     }
 
     public void deleteWatchlist(Watchlist watchlist) {
-        Log.d("ASD", "CLICK");
+        getCompositeDisposable().add(
+                mDataManager.getDbManager()
+                        .deleteWatchlist(watchlist)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(watchlists -> {
+                            list.remove(watchlist);
+                            removeStocks(watchlist);
+                        }));
+    }
+
+    private void removeStocks(Watchlist watchlist) {
+        for (Stock stock : watchlist.getStocks()) {
+            getCompositeDisposable().add(
+                    mDataManager.getDbManager()
+                            .deleteStock(stock)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe());
+        }
     }
 
     public void loadWatchlists(LifecycleOwner owner) {

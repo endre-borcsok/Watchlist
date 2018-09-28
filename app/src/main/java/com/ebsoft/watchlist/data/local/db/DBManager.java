@@ -17,11 +17,15 @@ public interface DBManager {
 
     Observable<List<Watchlist>> loadWatchlists();
 
+    Observable<Boolean> deleteWatchlist(Watchlist watchlist);
+
     Observable<Boolean> saveWatchlist(Watchlist watchlist);
 
     Observable<LiveData<List<Stock>>> loadStocks(Watchlist watchlist);
 
     Observable<List<Stock>> queryStock(String symbol);
+
+    Observable<Boolean> deleteStock(Stock stock);
 
     Observable<Boolean> saveStock(Stock stock);
 }

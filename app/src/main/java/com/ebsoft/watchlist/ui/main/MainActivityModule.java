@@ -14,7 +14,6 @@ import dagger.Provides;
  * Created by endre on 07/09/18.
  */
 
-
 @Module
 public class MainActivityModule {
 

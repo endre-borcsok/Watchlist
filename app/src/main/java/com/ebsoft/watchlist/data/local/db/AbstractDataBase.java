@@ -17,5 +17,5 @@ public abstract class AbstractDataBase extends RoomDatabase {
 
     public abstract WatchlistDao watchlistDao();
 
-    public abstract StockDao symbolDao();
+    public abstract StockDao stockDao();
 }
