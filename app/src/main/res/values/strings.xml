@@ -6,4 +6,6 @@
 
     <string name="create">Create</string>
     <string name="item_count">%1$d items</string>
+    <string name="stock_item_price">%1$.2f</string>
+    <string name="stock_item_change_percent">%1$.2f%%</string>
 </resources>

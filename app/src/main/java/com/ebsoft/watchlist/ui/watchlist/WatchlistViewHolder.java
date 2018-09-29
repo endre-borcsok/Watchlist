@@ -25,8 +25,10 @@ class WatchlistViewHolder extends BaseCardViewHolder<Stock> {
     @Override
     public void onBindViewHolder(Stock item) {
         mSymbol.setText(item.getSymbol());
-        mPrice.setText(String.format("%.2f", item.getPrice()));
-        mChangePercent.setText(String.format("%.2f%%", item.getChangePercent()));
+        mPrice.setText(String.format(mPrice.getContext()
+                .getString(R.string.stock_item_price), item.getPrice()));
+        mChangePercent.setText(String.format(mChangePercent.getContext()
+                .getString(R.string.stock_item_change_percent), item.getChangePercent()));
         mPrice.setTextColor(item.getColor());
         mChangePercent.setTextColor(item.getColor());
     }
