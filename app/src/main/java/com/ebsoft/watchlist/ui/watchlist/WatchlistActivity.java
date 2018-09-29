@@ -37,9 +37,6 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
     @WatchlistActivityQualifier
     LinearLayoutManager mLayoutManager;
 
-    @Inject
-    Watchlist mWatchlist;
-
     @Override
     public void setup() {
         mAdapter.setItemClickListener(this);
@@ -49,8 +46,8 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
         viewDataBinding.watchlistRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.watchlistRecyclerView.setAdapter(mAdapter);
         getViewModel().setNavigator(this);
-        getViewModel().loadStocks(this, mWatchlist);
-        setTitle(mWatchlist.getName());
+        getViewModel().loadStocks(this);
+        setTitle(getViewModel().getWatchlist().getName());
     }
 
     @Override
@@ -78,7 +75,7 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
         if (requestCode == RESULT_CODE) {
             if(resultCode == Activity.RESULT_OK){
                 String result = data.getStringExtra(Constants.SEARCH_RESULT_KEY);
-                Stock stock = new Stock(result, mWatchlist.getName());
+                Stock stock = new Stock(result, getViewModel().getWatchlist().getName());
                 getViewModel().saveStock(stock);
             }
         }

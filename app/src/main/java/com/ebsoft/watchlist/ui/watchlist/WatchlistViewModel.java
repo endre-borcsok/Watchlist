@@ -21,8 +21,15 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
 
     private final ObservableList<Stock> list = new ObservableArrayList<>();
 
-    public WatchlistViewModel(DataManager DataManager) {
+    private final Watchlist mWatchlist;
+
+    public WatchlistViewModel(DataManager DataManager, Watchlist watchlist) {
         super(DataManager);
+        this.mWatchlist = watchlist;
+    }
+
+    public Watchlist getWatchlist() {
+        return mWatchlist;
     }
 
     public void removeStock(Stock stock) {
@@ -33,9 +40,9 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
                 .subscribe());
     }
 
-    public void loadStocks(LifecycleOwner owner, Watchlist watchlist) {
+    public void loadStocks(LifecycleOwner owner) {
          getCompositeDisposable().add(mDataManager.getDbManager()
-                 .loadStocks(watchlist)
+                 .loadStocks(mWatchlist)
                  .subscribeOn(Schedulers.io())
                  .observeOn(AndroidSchedulers.mainThread())
                  .subscribe(listLiveData -> listLiveData.observe(owner, stocks -> {

@@ -20,8 +20,8 @@ import dagger.Provides;
 public class WatchlistModule {
 
     @Provides
-    WatchlistViewModel provideWatchListViewModel(DataManager DataManager) {
-        return new WatchlistViewModel(DataManager);
+    WatchlistViewModel provideWatchListViewModel(DataManager DataManager, Watchlist watchlist) {
+        return new WatchlistViewModel(DataManager, watchlist);
     }
 
     @Provides
