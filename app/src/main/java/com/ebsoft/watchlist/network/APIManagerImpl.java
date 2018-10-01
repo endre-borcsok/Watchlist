@@ -52,16 +52,10 @@ public class APIManagerImpl implements APIManager {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(symbolSearchResponse -> {
-                    List<String> list = new ArrayList<>();
                     List<Item> items = symbolSearchResponse.body()
                             .getSymbolSearchResponse()
                             .getItems();
-                    for (Item item : items) {
-                        if (item.getType().equals("S")) {
-                            list.add(item.getSymbol());
-                        }
-                    }
-                    listener.onComplete(list);
+                    listener.onComplete(items);
                 });
     }
 

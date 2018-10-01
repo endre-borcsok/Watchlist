@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 
 import com.ebsoft.watchlist.R;
+import com.ebsoft.watchlist.data.model.Yahoo.Item;
 
 import java.io.Serializable;
 
@@ -20,11 +21,11 @@ public class Stock implements Serializable {
     @PrimaryKey
     @ColumnInfo(name = "symbol")
     @NonNull
-    private final String symbol;
+    private String symbol;
 
     @ColumnInfo(name = "listid")
     @NonNull
-    private final String listid;
+    private String listid;
 
     @ColumnInfo(name = "price")
     private float price;
@@ -35,25 +36,24 @@ public class Stock implements Serializable {
     @ColumnInfo(name = "changePercent")
     private float changePercent;
 
-    public Stock(String symbol, String listid) {
-        this.symbol = symbol;
-        this.listid = listid;
-    }
-
-    public void copy(Stock updatedStock) {
-        this.price = updatedStock.price;
-        this.change = updatedStock.change;
-        this.changePercent = updatedStock.changePercent;
-    }
+    public Stock() {}
 
     @NonNull
     public String getSymbol() {
         return symbol;
     }
 
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
     @NonNull
     public String getListid() {
         return listid;
+    }
+
+    public void setListid(String listId) {
+        this.listid = listId;
     }
 
     public float getPrice() {
@@ -86,5 +86,12 @@ public class Stock implements Serializable {
         } else {
             return Color.RED;
         }
+    }
+
+    public static Stock create(Item item, Watchlist watchlist) {
+        Stock stock = new Stock();
+        stock.setSymbol(item.getSymbol());
+        stock.setListid(watchlist.getName());
+        return stock;
     }
 }

@@ -32,7 +32,7 @@ public class SearchActivityModule {
 
     @Provides
     CardViewAdapter providesAdapter() {
-        return new CardViewAdapter<>(R.layout.layout_recycler_view_element,
+        return new CardViewAdapter<>(R.layout.layout_search_item,
                 SearchViewHolder.class);
     }
 }

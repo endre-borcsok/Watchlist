@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
+import com.ebsoft.watchlist.data.model.Yahoo.Item;
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.databinding.ActivityWatchlistBinding;
 import com.ebsoft.watchlist.di.WatchlistActivityQualifier;
@@ -73,9 +74,8 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RESULT_CODE) {
             if(resultCode == Activity.RESULT_OK){
-                String result = data.getStringExtra(Constants.SEARCH_RESULT_KEY);
-                Stock stock = new Stock(result, getViewModel().getWatchlist().getName());
-                getViewModel().insertStock(stock);
+                Item result = (Item) data.getExtras().getSerializable(Constants.SEARCH_RESULT_KEY);
+                getViewModel().insertStock(Stock.create(result, getViewModel().getWatchlist()));
             }
         }
     }

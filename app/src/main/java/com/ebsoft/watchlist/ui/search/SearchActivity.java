@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
+import com.ebsoft.watchlist.data.model.Yahoo.Item;
 import com.ebsoft.watchlist.databinding.ActivitySearchBinding;
 import com.ebsoft.watchlist.di.SearchActivityQualifier;
 import com.ebsoft.watchlist.ui.adapter.CardViewAdapter;
@@ -17,7 +18,7 @@ import com.ebsoft.watchlist.utils.Constants;
 import javax.inject.Inject;
 
 public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchViewModel> implements
-        android.support.v7.widget.SearchView.OnQueryTextListener, CardViewItemClickListener<String> {
+        android.support.v7.widget.SearchView.OnQueryTextListener, CardViewItemClickListener<Item> {
 
     @Inject
     SearchViewModel mSearchViewModel;
@@ -67,7 +68,7 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
     }
 
     @Override
-    public void onItemClick(String item) {
+    public void onItemClick(Item item) {
         Intent returnIntent = new Intent();
         returnIntent.putExtra(Constants.SEARCH_RESULT_KEY, item);
         setResult(Activity.RESULT_OK, returnIntent);

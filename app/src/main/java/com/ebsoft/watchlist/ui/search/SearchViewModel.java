@@ -4,6 +4,7 @@ import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 
 import com.ebsoft.watchlist.data.DataManager;
+import com.ebsoft.watchlist.data.model.Yahoo.Item;
 import com.ebsoft.watchlist.ui.base.BaseViewModel;
 
 /**
@@ -12,7 +13,7 @@ import com.ebsoft.watchlist.ui.base.BaseViewModel;
 
 public class SearchViewModel extends BaseViewModel {
 
-    private final ObservableList<String> list = new ObservableArrayList<>();
+    private final ObservableList<Item> list = new ObservableArrayList<>();
 
     public SearchViewModel(DataManager DataManager) {
         super(DataManager);
@@ -27,7 +28,7 @@ public class SearchViewModel extends BaseViewModel {
                 }));
     }
 
-    public ObservableList<String> getList() {
+    public ObservableList<Item> getList() {
         return list;
     }
 }

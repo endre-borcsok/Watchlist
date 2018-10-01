@@ -5,11 +5,13 @@ import com.google.gson.annotations.SerializedName;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.io.Serializable;
+
 /**
  * Created by endre on 09/09/18.
  */
 
-public class Item {
+public class Item implements Serializable {
 
     @SerializedName("symbol")
     @Expose
