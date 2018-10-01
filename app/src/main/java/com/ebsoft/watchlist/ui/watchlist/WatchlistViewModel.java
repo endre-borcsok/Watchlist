@@ -8,11 +8,11 @@ import android.util.Log;
 import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
-import com.ebsoft.watchlist.network.QuoteQueryListener;
 import com.ebsoft.watchlist.ui.base.BaseViewModel;
 
+import org.apache.commons.lang3.mutable.MutableBoolean;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -47,15 +47,22 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
                  .loadStocks(mWatchlist)
                  .subscribeOn(Schedulers.io())
                  .observeOn(AndroidSchedulers.mainThread())
-                 .subscribe(listLiveData -> listLiveData.observe(owner, stocks -> {
-                     list.clear();
-                     list.addAll(stocks);
-                 })));
+                 .subscribe(listLiveData -> {
+                     MutableBoolean refreshOnFirstLoad = new MutableBoolean(true);
+                     listLiveData.observe(owner, stocks -> {
+                         list.clear();
+                         list.addAll(stocks);
+                         if (refreshOnFirstLoad.getValue()) {
+                             refreshOnFirstLoad.setValue(false);
+                             refresh();
+                         }
+                     });
+                 }));
     }
 
-    public void saveStock(Stock stock) {
+    public void insertStock(Stock stock) {
         getCompositeDisposable().add(mDataManager.getDbManager()
-                .saveStock(stock)
+                .insertStock(stock)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aBoolean -> getQuote(stock)));
@@ -66,14 +73,18 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
                 .getQuote(stock, () -> updateStock(stock)));
     }
 
-    public void getBatchQuote() {
+    public void refresh() {
         getCompositeDisposable().add(mDataManager.getApiManager()
-                .getBatchQuote(list, () -> Log.d("ASD", list.toString())));
+                .getBatchQuote(list, () -> {
+                    for (Stock stock : list) {
+                        updateStock(stock);
+                    }
+                }));
     }
 
     private void updateStock(Stock stock) {
         getCompositeDisposable().add(mDataManager.getDbManager()
-                .saveStock(stock)
+                .updateStock(stock)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe());

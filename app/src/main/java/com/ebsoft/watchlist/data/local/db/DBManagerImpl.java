@@ -68,9 +68,17 @@ public class DBManagerImpl implements DBManager {
     }
 
     @Override
-    public Observable<Boolean> saveStock(Stock stock) {
+    public Observable<Boolean> insertStock(Stock stock) {
         return Observable.fromCallable(() -> {
             mDataBase.stockDao().insert(stock);
+            return true;
+        });
+    }
+
+    @Override
+    public Observable<Boolean> updateStock(Stock stock) {
+        return Observable.fromCallable(() -> {
+            mDataBase.stockDao().update(stock);
             return true;
         });
     }

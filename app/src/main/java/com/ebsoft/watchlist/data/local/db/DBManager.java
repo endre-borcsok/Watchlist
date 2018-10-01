@@ -27,5 +27,7 @@ public interface DBManager {
 
     Observable<Boolean> deleteStock(Stock stock);
 
-    Observable<Boolean> saveStock(Stock stock);
+    Observable<Boolean> insertStock(Stock stock);
+
+    Observable<Boolean> updateStock(Stock stock);
 }

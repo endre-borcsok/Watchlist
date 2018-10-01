@@ -12,6 +12,7 @@ import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.network.AlphaVantage.AlphaVantageAPI;
 import com.ebsoft.watchlist.network.IEX.IEXApi;
 import com.ebsoft.watchlist.network.Yahoo.YahooAPI;
+import com.ebsoft.watchlist.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +66,7 @@ public class APIManagerImpl implements APIManager {
     }
 
     @Override
-    public Disposable getQuote(Stock stock, QuoteQueryListener listener) {
+    public Disposable getQuote(@NonNull Stock stock, @NonNull QuoteQueryListener listener) {
         return mAlphaVantageApi.getQuote(stock.getSymbol())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -80,7 +81,7 @@ public class APIManagerImpl implements APIManager {
     }
 
     @Override
-    public Disposable getBatchQuote(List<Stock> stocks, QuoteQueryListener listener) {
+    public Disposable getBatchQuote(@NonNull List<Stock> stocks, @NonNull QuoteQueryListener listener) {
         return mIEXApi.getQuote(getSymbols(stocks))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -91,8 +92,10 @@ public class APIManagerImpl implements APIManager {
                         if (stockQuote != null) {
                             Quote quote = stockQuote.getQuote();
                             stock.setPrice(quote.getLatestPrice().floatValue());
-                            stock.setChangePercent(quote.getChangePercent().floatValue());
-                            stock.setChange(quote.getChange().floatValue());
+                            stock.setChangePercent(quote.getChangePercent()
+                                    .floatValue() * Constants.IEX_API_PERCENTAGE_MULTIPLIER);
+                            stock.setChange(quote.getChange()
+                                    .floatValue() * Constants.IEX_API_PERCENTAGE_MULTIPLIER);
                         }
                     }
                     listener.onComplete();

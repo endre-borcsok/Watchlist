@@ -6,6 +6,7 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import com.ebsoft.watchlist.data.model.db.Stock;
 
@@ -32,4 +33,7 @@ public interface StockDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Stock stock);
+
+    @Update
+    void update(Stock stock);
 }
