@@ -83,7 +83,7 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
 
     @Override
     public void onItemClick(Stock item) {
-        getViewModel().getQuote(item);
+        getViewModel().getBatchQuote();
     }
 
     @Override

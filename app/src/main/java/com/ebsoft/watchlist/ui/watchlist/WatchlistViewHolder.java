@@ -8,7 +8,7 @@ import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.ui.adapter.BaseCardViewHolder;
 
-class WatchlistViewHolder extends BaseCardViewHolder<Stock> {
+public class WatchlistViewHolder extends BaseCardViewHolder<Stock> {
     private final TextView mSymbol;
     private final TextView mPrice;
     private final TextView mChangePercent;

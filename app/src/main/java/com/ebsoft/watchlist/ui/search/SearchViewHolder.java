@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.ui.adapter.BaseCardViewHolder;
 
-class SearchViewHolder extends BaseCardViewHolder<String> {
+public class SearchViewHolder extends BaseCardViewHolder<String> {
     private final TextView mTextView;
 
     public SearchViewHolder(View v) {

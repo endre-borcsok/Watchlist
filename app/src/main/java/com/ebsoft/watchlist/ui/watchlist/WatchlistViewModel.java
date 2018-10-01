@@ -3,10 +3,12 @@ package com.ebsoft.watchlist.ui.watchlist;
 import android.arch.lifecycle.LifecycleOwner;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
+import android.util.Log;
 
 import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
+import com.ebsoft.watchlist.network.QuoteQueryListener;
 import com.ebsoft.watchlist.ui.base.BaseViewModel;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -61,9 +63,12 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
 
     public void getQuote(Stock stock) {
         getCompositeDisposable().add(mDataManager.getApiManager()
-                .getQuote(stock, stock1 -> {
-                    updateStock(stock1);
-                }));
+                .getQuote(stock, () -> updateStock(stock)));
+    }
+
+    public void getBatchQuote() {
+        getCompositeDisposable().add(mDataManager.getApiManager()
+                .getBatchQuote(list, () -> Log.d("ASD", list.toString())));
     }
 
     private void updateStock(Stock stock) {

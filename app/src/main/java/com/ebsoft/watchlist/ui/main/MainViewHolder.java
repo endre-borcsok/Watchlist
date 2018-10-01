@@ -9,7 +9,7 @@ import com.ebsoft.watchlist.WatchlistApplication;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.ui.adapter.BaseCardViewHolder;
 
-class MainViewHolder extends BaseCardViewHolder<Watchlist> {
+public class MainViewHolder extends BaseCardViewHolder<Watchlist> {
     private final TextView mTextView;
     private final TextView mNumberOfItems;
     private final ImageView mDeleteButton;
