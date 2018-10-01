@@ -5,11 +5,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ebsoft.watchlist.R;
-import com.ebsoft.watchlist.WatchlistApplication;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
-import com.ebsoft.watchlist.ui.adapter.BaseCardViewHolder;
+import com.ebsoft.watchlist.ui.adapter.AbstractCardViewHolder;
 
-public class MainViewHolder extends BaseCardViewHolder<Watchlist> {
+public class MainViewHolder extends AbstractCardViewHolder<Watchlist> {
     private final TextView mTextView;
     private final TextView mNumberOfItems;
     private final ImageView mDeleteButton;

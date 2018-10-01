@@ -6,9 +6,9 @@ import android.widget.TextView;
 
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.model.db.Stock;
-import com.ebsoft.watchlist.ui.adapter.BaseCardViewHolder;
+import com.ebsoft.watchlist.ui.adapter.AbstractCardViewHolder;
 
-public class WatchlistViewHolder extends BaseCardViewHolder<Stock> {
+public class WatchlistViewHolder extends AbstractCardViewHolder<Stock> {
     private final TextView mSymbol;
     private final TextView mPrice;
     private final TextView mChangePercent;

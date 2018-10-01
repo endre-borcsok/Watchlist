@@ -14,7 +14,7 @@ import java.util.List;
  * Created by endre on 08/09/18.
  */
 
-public class CardViewAdapter<E, T extends BaseCardViewHolder<E>> extends RecyclerView.Adapter<T>
+public class CardViewAdapter<E, T extends AbstractCardViewHolder<E>> extends RecyclerView.Adapter<T>
         implements BindableAdapter<List<E>> {
 
     private final String TAG = CardViewAdapter.class.getSimpleName();

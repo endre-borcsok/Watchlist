@@ -4,16 +4,16 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-public class BaseCardViewHolder<T> extends RecyclerView.ViewHolder {
+public abstract class AbstractCardViewHolder<T> extends RecyclerView.ViewHolder {
 
     private final View mView;
 
-    public BaseCardViewHolder(@NonNull View itemView) {
+    public AbstractCardViewHolder(@NonNull View itemView) {
         super(itemView);
         this.mView = itemView;
     }
 
-    public void onBindViewHolder(T item) {}
+    public abstract void onBindViewHolder(T item);
 
     public void setClickListener(View.OnClickListener listener) {
        mView.setOnClickListener(listener);
