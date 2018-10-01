@@ -23,17 +23,17 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
         setup();
     }
 
-    public abstract void setup();
-
     public abstract int getLayoutId();
 
+    public abstract int getBindingVariable();
+
     public abstract V getViewModel();
+
+    public abstract void setup();
 
     public T getViewDataBinding() {
         return mViewDataBinding;
     }
-
-    public abstract int getBindingVariable();
 
     private void injectDependencies() {
         AndroidInjection.inject(this);
