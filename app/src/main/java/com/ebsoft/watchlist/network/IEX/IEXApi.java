@@ -1,6 +1,5 @@
 package com.ebsoft.watchlist.network.IEX;
 
-import com.ebsoft.watchlist.data.model.IEX.Quote;
 import com.ebsoft.watchlist.data.model.IEX.StockQuote;
 
 import java.util.Map;

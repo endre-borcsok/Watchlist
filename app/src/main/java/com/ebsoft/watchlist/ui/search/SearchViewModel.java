@@ -4,7 +4,7 @@ import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 
 import com.ebsoft.watchlist.data.DataManager;
-import com.ebsoft.watchlist.data.model.Yahoo.Item;
+import com.ebsoft.watchlist.data.model.yahoo.Item;
 import com.ebsoft.watchlist.ui.base.BaseViewModel;
 
 /**

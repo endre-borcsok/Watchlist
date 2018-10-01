@@ -1,6 +1,6 @@
 package com.ebsoft.watchlist.network;
 
-import com.ebsoft.watchlist.data.model.Yahoo.Item;
+import com.ebsoft.watchlist.data.model.yahoo.Item;
 
 import java.util.List;
 

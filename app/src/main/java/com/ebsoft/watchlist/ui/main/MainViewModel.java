@@ -1,11 +1,8 @@
 package com.ebsoft.watchlist.ui.main;
 
 import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.Observer;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
-import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.data.model.db.Stock;

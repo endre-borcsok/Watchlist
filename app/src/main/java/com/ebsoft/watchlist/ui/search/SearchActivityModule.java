@@ -4,6 +4,7 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.DataManager;
+import com.ebsoft.watchlist.data.model.yahoo.Item;
 import com.ebsoft.watchlist.di.SearchActivityQualifier;
 import com.ebsoft.watchlist.ui.adapter.CardViewAdapter;
 
@@ -32,7 +33,6 @@ public class SearchActivityModule {
 
     @Provides
     CardViewAdapter providesAdapter() {
-        return new CardViewAdapter<>(R.layout.layout_search_item,
-                SearchViewHolder.class);
+        return new CardViewAdapter<Item>(R.layout.layout_search_item);
     }
 }

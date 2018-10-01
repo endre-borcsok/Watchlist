@@ -1,4 +1,4 @@
-package com.ebsoft.watchlist.data.model.Yahoo;
+package com.ebsoft.watchlist.data.model.yahoo;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

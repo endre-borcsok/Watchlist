@@ -1,8 +1,9 @@
 package com.ebsoft.watchlist.ui.adapter;
 
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,25 +15,20 @@ import java.util.List;
  * Created by endre on 08/09/18.
  */
 
-public class CardViewAdapter<E, T extends AbstractCardViewHolder<E>> extends RecyclerView.Adapter<T>
+public class CardViewAdapter<E> extends RecyclerView.Adapter<CardViewHolder<E>>
         implements BindableAdapter<List<E>> {
-
-    private final String TAG = CardViewAdapter.class.getSimpleName();
 
     private final int mLayoutId;
 
     private final List<E> mDataSet;
 
-    private final Class<T> mViewHolderClass;
-
     private CardViewItemClickListener<E> mItemClickListener;
 
     private CardViewItemRemoveListener<E> mItemRemoveListener;
 
-    public CardViewAdapter(int layoutId, Class<T> viewHolderClass) {
+    public CardViewAdapter(int layoutId) {
         this.mLayoutId = layoutId;
         this.mDataSet = new ArrayList<>();
-        this.mViewHolderClass = viewHolderClass;
     }
 
     public void setItemClickListener(CardViewItemClickListener<E> listener) {
@@ -55,31 +51,29 @@ public class CardViewAdapter<E, T extends AbstractCardViewHolder<E>> extends Rec
     }
 
     @Override
-    public T onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(mLayoutId, parent, false);
-        return createViewHolder(v);
+    public CardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater =
+                LayoutInflater.from(parent.getContext());
+        ViewDataBinding binding = DataBindingUtil.inflate(
+                layoutInflater, viewType, parent, false);
+        return new CardViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull T viewHolder, int position) {
-        viewHolder.onBindViewHolder(mDataSet.get(position));
+    public void onBindViewHolder(@NonNull CardViewHolder viewHolder, int position) {
+        viewHolder.bind(mDataSet.get(position));
         viewHolder.setClickListener(getOnClickListenerForPosition(position));
         viewHolder.setRemoveClickListener(getItemRemoveListenerForPosition(position));
     }
 
     @Override
-    public int getItemCount() {
-        return mDataSet.size();
+    public int getItemViewType(int position) {
+        return mLayoutId;
     }
 
-    private T createViewHolder(View v) {
-        try {
-            return mViewHolderClass.getConstructor(View.class).newInstance(v);
-        } catch (Exception e) {
-            Log.e(TAG, e.toString());
-        }
-        return null;
+    @Override
+    public int getItemCount() {
+        return mDataSet.size();
     }
 
     private View.OnClickListener getOnClickListenerForPosition(int position) {

@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="item"
+            type="com.ebsoft.watchlist.data.model.db.Watchlist"/>
+    </data>
 
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -24,14 +28,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size_large"
-                android:text="Title"/>
+                android:text="@{item.getName()}"/>
 
             <TextView
                 android:id="@+id/numberOfItems"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size_medium"
-                android:text="N items"
+                android:text="@{@string/item_count(item.getStocks().size())}"
                 app:layout_constraintStart_toStartOf="@+id/cardViewTitle"
                 app:layout_constraintTop_toBottomOf="@+id/cardViewTitle"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -49,4 +53,4 @@
         </android.support.constraint.ConstraintLayout>
 
     </android.support.v7.widget.CardView>
-</LinearLayout>
+</layout>

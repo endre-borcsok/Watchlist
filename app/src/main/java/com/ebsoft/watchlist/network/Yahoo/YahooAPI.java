@@ -1,6 +1,6 @@
 package com.ebsoft.watchlist.network.Yahoo;
 
-import com.ebsoft.watchlist.data.model.Yahoo.SymbolSearch;
+import com.ebsoft.watchlist.data.model.yahoo.SymbolSearch;
 
 import io.reactivex.Observable;
 import retrofit2.Response;

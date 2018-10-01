@@ -7,8 +7,8 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
-import com.ebsoft.watchlist.data.model.Yahoo.Item;
 import com.ebsoft.watchlist.data.model.db.Stock;
+import com.ebsoft.watchlist.data.model.yahoo.Item;
 import com.ebsoft.watchlist.databinding.ActivityWatchlistBinding;
 import com.ebsoft.watchlist.di.WatchlistActivityQualifier;
 import com.ebsoft.watchlist.ui.adapter.CardViewAdapter;
