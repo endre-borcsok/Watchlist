@@ -41,7 +41,7 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
     public void setup() {
         mAdapter.setItemClickListener(this);
         mAdapter.setItemRemoveListener(this);
-        ActivityWatchlistBinding viewDataBinding = getViewDatabinding();
+        ActivityWatchlistBinding viewDataBinding = getViewDataBinding();
         viewDataBinding.watchlistRecyclerView.setLayoutManager(mLayoutManager);
         viewDataBinding.watchlistRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.watchlistRecyclerView.setAdapter(mAdapter);

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Watchlist</string>
     <string name="main_activity_label">Watchlists</string>
-    <string name="create_watchlist_activity_label">Create New</string>
+    <string name="create_watchlist_activity_label">Create New Watchlist</string>
     <string name="search_activity_label">Search Symbol</string>
 
     <string name="create">Create</string>

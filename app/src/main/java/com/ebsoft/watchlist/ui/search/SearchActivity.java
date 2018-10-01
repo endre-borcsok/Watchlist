@@ -33,7 +33,7 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
     @Override
     public void setup() {
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        ActivitySearchBinding viewDataBinding = getViewDatabinding();
+        ActivitySearchBinding viewDataBinding = getViewDataBinding();
         viewDataBinding.searchRecyclerView.setLayoutManager(mLayoutManager);
         viewDataBinding.searchRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.searchRecyclerView.setAdapter(mAdapter);

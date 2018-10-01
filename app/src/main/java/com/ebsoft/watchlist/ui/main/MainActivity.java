@@ -36,7 +36,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Override
     public void setup() {
-        ActivityMainBinding viewDataBinding = getViewDatabinding();
+        ActivityMainBinding viewDataBinding = getViewDataBinding();
         viewDataBinding.mainActivityRecyclerView.setLayoutManager(mLayoutManager);
         viewDataBinding.mainActivityRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.mainActivityRecyclerView.setAdapter(mAdapter);

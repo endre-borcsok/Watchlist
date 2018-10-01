@@ -5,6 +5,8 @@ import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.ebsoft.watchlist.ui.main.MainActivity;
+
 import dagger.android.AndroidInjection;
 
 public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseViewModel> extends AppCompatActivity {
@@ -17,6 +19,7 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
         injectDependencies();
         super.onCreate(savedInstanceState);
         bindData();
+        prepareNavigationBar();
         setup();
     }
 
@@ -26,7 +29,7 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
 
     public abstract V getViewModel();
 
-    public T getViewDatabinding() {
+    public T getViewDataBinding() {
         return mViewDataBinding;
     }
 
@@ -41,5 +44,17 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
         mViewDataBinding = DataBindingUtil.setContentView(this, getLayoutId());
         mViewDataBinding.setVariable(getBindingVariable(), mViewModel);
         mViewDataBinding.executePendingBindings();
+    }
+
+    private void prepareNavigationBar() {
+        if (!(this instanceof MainActivity)) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
