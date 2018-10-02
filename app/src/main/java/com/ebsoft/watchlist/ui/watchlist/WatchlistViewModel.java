@@ -73,12 +73,13 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
     }
 
     public void refresh() {
-        getCompositeDisposable().add(mDataManager.getApiManager()
-                .getBatchQuote(list, () -> {
-                    for (Stock stock : list) {
-                        updateStock(stock);
-                    }
-                }));
+        if (list.size() > 0) {
+            getCompositeDisposable().add(mDataManager.getApiManager().getBatchQuote(list, () -> {
+                for (Stock stock : list) {
+                    updateStock(stock);
+                }
+            }));
+        }
     }
 
     private void updateStock(Stock stock) {

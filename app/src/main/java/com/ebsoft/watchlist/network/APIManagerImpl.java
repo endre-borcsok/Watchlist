@@ -94,10 +94,10 @@ public class APIManagerImpl implements APIManager {
     private String getSymbols(List<Stock> stocks) {
         StringBuilder sb = new StringBuilder();
         for (Stock stock : stocks) {
+            sb.append(',');
             sb.append(stock.getSymbol());
-            sb.append(",");
         }
-        sb.deleteCharAt(sb.length()-1);
+        if (sb.length() > 0) sb.deleteCharAt(0);
         return sb.toString();
     }
 }

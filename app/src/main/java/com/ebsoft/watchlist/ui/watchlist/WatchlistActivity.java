@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
@@ -35,7 +36,7 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
 
     @Inject
     @WatchlistActivityQualifier
-    LinearLayoutManager mLayoutManager;
+    RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     public void setup() {

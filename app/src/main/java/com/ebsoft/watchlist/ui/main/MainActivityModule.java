@@ -1,6 +1,7 @@
 package com.ebsoft.watchlist.ui.main;
 
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.DataManager;
@@ -25,7 +26,7 @@ public class MainActivityModule {
 
     @Provides
     @MainActivityQualifier
-    LinearLayoutManager providesLayoutManager(MainActivity activity) {
+    RecyclerView.LayoutManager providesLayoutManager(MainActivity activity) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         return layoutManager;

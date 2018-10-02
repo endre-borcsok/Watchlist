@@ -1,6 +1,7 @@
 package com.ebsoft.watchlist.ui.search;
 
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.DataManager;
@@ -25,7 +26,7 @@ public class SearchActivityModule {
 
     @Provides
     @SearchActivityQualifier
-    LinearLayoutManager providesLayoutManager(SearchActivity activity) {
+    RecyclerView.LayoutManager providesLayoutManager(SearchActivity activity) {
         LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         return layoutManager;

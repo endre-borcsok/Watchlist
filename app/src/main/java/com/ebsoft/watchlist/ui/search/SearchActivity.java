@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
@@ -28,11 +29,10 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
 
     @Inject
     @SearchActivityQualifier
-    LinearLayoutManager mLayoutManager;
+    RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     public void setup() {
-        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         ActivitySearchBinding viewDataBinding = getViewDataBinding();
         viewDataBinding.searchRecyclerView.setLayoutManager(mLayoutManager);
         viewDataBinding.searchRecyclerView.setItemAnimator(new DefaultItemAnimator());
