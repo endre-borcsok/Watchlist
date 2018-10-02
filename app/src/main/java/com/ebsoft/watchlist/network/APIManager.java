@@ -1,5 +1,7 @@
 package com.ebsoft.watchlist.network;
 
+import android.support.annotation.NonNull;
+
 import com.ebsoft.watchlist.data.model.db.Stock;
 
 import java.util.List;
@@ -12,9 +14,9 @@ import io.reactivex.disposables.Disposable;
 
 public interface APIManager {
 
-    Disposable searchSymbol(String symbol, SymbolSearchListener listener);
+    Disposable searchSymbol(@NonNull String symbol, @NonNull SymbolSearchListener listener);
 
-    Disposable getQuote(Stock stock, QuoteQueryListener listener);
+    Disposable getQuote(@NonNull Stock stock, @NonNull QuoteQueryListener listener);
 
-    Disposable getBatchQuote(List<Stock> stocks, QuoteQueryListener listener);
+    Disposable getBatchQuote(@NonNull List<Stock> stocks, @NonNull QuoteQueryListener listener);
 }

@@ -67,19 +67,19 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
                 .subscribe(aBoolean -> getQuote(stock)));
     }
 
-    public void getQuote(Stock stock) {
+    private void getQuote(Stock stock) {
         getCompositeDisposable().add(mDataManager.getApiManager()
                 .getQuote(stock, () -> updateStock(stock)));
     }
 
     public void refresh() {
-        if (list.size() > 0) {
-            getCompositeDisposable().add(mDataManager.getApiManager().getBatchQuote(list, () -> {
-                for (Stock stock : list) {
-                    updateStock(stock);
-                }
-            }));
-        }
+        if (list.size() < 1) return;
+        getCompositeDisposable().add(mDataManager.getApiManager()
+                .getBatchQuote(list, () -> {
+                    for (Stock stock : list) {
+                        updateStock(stock);
+                    }
+                }));
     }
 
     private void updateStock(Stock stock) {
