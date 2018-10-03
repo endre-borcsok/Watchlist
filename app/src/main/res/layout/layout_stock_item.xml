@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size_large"
-                android:text="@{@string/stock_item_change_percent(item.getChangePercent())}"
+                android:text='@{String.format("%s%s", item.getChangePercent() >= 0.0f ? "+" : "", @string/stock_item_change_percent(item.getChangePercent()))}'
                 android:textColor="@{item.getChangePercent() >= 0.0f ? @color/green : @color/red}"
                 android:layout_marginLeft="5dp"
                 app:layout_constraintStart_toEndOf="@+id/stockSymbol"
