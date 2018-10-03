@@ -61,10 +61,7 @@ public class APIManagerImpl implements APIManager {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(avQuoteResponse -> {
                     GlobalQuote gq = avQuoteResponse.body().getGlobalQuote();
-                    stock.setPrice(Float.parseFloat(gq.getPrice()));
-                    stock.setChange(Float.parseFloat(gq.getChange()));
-                    stock.setChangePercent(Float.parseFloat(gq.getChangePercent()
-                            .replace("%", "")));
+                    stock.update(gq);
                     listener.onComplete();
                 });
     }
@@ -79,12 +76,7 @@ public class APIManagerImpl implements APIManager {
                     for (Stock stock : stocks) {
                         StockQuote stockQuote = quoteMap.get(stock.getSymbol());
                         if (stockQuote != null) {
-                            Quote quote = stockQuote.getQuote();
-                            stock.setPrice(quote.getLatestPrice().floatValue());
-                            stock.setChangePercent(quote.getChangePercent()
-                                    .floatValue() * Constants.IEX_API_PERCENTAGE_MULTIPLIER);
-                            stock.setChange(quote.getChange()
-                                    .floatValue() * Constants.IEX_API_PERCENTAGE_MULTIPLIER);
+                            stock.update(stockQuote.getQuote());
                         }
                     }
                     listener.onComplete();

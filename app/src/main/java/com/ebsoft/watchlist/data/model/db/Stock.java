@@ -5,6 +5,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import com.ebsoft.watchlist.data.model.StockInfo;
 import com.ebsoft.watchlist.data.model.yahoo.Item;
 
 import java.io.Serializable;
@@ -14,16 +15,16 @@ import java.io.Serializable;
  */
 
 @Entity(tableName = "stock")
-public class Stock implements Serializable {
+public class Stock implements Serializable, StockInfo {
 
     @PrimaryKey
     @ColumnInfo(name = "symbol")
     @NonNull
-    private String symbol;
+    private String symbol = "";
 
     @ColumnInfo(name = "listid")
     @NonNull
-    private String listid;
+    private String listid = "";
 
     @ColumnInfo(name = "price")
     private float price;
@@ -34,8 +35,7 @@ public class Stock implements Serializable {
     @ColumnInfo(name = "changePercent")
     private float changePercent;
 
-    public Stock() {}
-
+    @Override
     @NonNull
     public String getSymbol() {
         return symbol;
@@ -43,6 +43,21 @@ public class Stock implements Serializable {
 
     public void setSymbol(String symbol) {
         this.symbol = symbol;
+    }
+
+    @Override
+    public float getPrice() {
+        return price;
+    }
+
+    @Override
+    public float getChange() {
+        return change;
+    }
+
+    @Override
+    public float getChangePercent() {
+        return changePercent;
     }
 
     @NonNull
@@ -54,28 +69,22 @@ public class Stock implements Serializable {
         this.listid = listId;
     }
 
-    public float getPrice() {
-        return price;
-    }
-
     public void setPrice(float price) {
         this.price = price;
-    }
-
-    public float getChange() {
-        return change;
     }
 
     public void setChange(float change) {
         this.change = change;
     }
 
-    public float getChangePercent() {
-        return changePercent;
-    }
-
     public void setChangePercent(float changePercent) {
         this.changePercent = changePercent;
+    }
+
+    public void update(StockInfo stockInfo) {
+        this.setPrice(stockInfo.getPrice());
+        this.setChange(stockInfo.getChange());
+        this.setChangePercent(stockInfo.getChangePercent());
     }
 
     public static Stock create(Item item, Watchlist watchlist) {
