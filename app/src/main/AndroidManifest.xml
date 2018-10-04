@@ -29,6 +29,7 @@
 
         <activity
             android:name=".ui.create.CreateWatchlistActivity"
+            android:windowSoftInputMode="stateAlwaysVisible"
             android:label="@string/create_watchlist_activity_label"/>
 
         <activity
