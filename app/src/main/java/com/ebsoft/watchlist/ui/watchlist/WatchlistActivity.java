@@ -2,6 +2,7 @@ package com.ebsoft.watchlist.ui.watchlist;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,6 +24,7 @@ import javax.inject.Inject;
 
 public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, WatchlistViewModel>
         implements WatchlistNavigator,
+        SwipeRefreshLayout.OnRefreshListener,
         CardViewItemClickListener<Stock>,
         CardViewItemRemoveListener<Stock> {
 
@@ -46,6 +48,7 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
         viewDataBinding.watchlistRecyclerView.setLayoutManager(mLayoutManager);
         viewDataBinding.watchlistRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.watchlistRecyclerView.setAdapter(mAdapter);
+        viewDataBinding.swipeRefresh.setOnRefreshListener(this);
         getViewModel().setNavigator(this);
         getViewModel().loadStocks(this);
         setTitle(getViewModel().getWatchlist().getName());
@@ -83,11 +86,16 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
 
     @Override
     public void onItemClick(Stock item) {
-        getViewModel().refresh();
+        // TODO
     }
 
     @Override
     public void onRemove(Stock item) {
         getViewModel().removeStock(item);
+    }
+
+    @Override
+    public void onRefresh() {
+        getViewModel().refresh();
     }
 }

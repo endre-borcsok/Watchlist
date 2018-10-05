@@ -2,6 +2,7 @@ package com.ebsoft.watchlist.ui.watchlist;
 
 import android.arch.lifecycle.LifecycleOwner;
 import android.databinding.ObservableArrayList;
+import android.databinding.ObservableBoolean;
 import android.databinding.ObservableList;
 
 import com.ebsoft.watchlist.data.DataManager;
@@ -21,6 +22,8 @@ import io.reactivex.schedulers.Schedulers;
 public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
 
     private final ObservableList<Stock> list = new ObservableArrayList<>();
+
+    private final ObservableBoolean loading = new ObservableBoolean();
 
     private final Watchlist mWatchlist;
 
@@ -74,11 +77,13 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
 
     public void refresh() {
         if (list.size() < 1) return;
+        loading.set(true);
         getCompositeDisposable().add(mDataManager.getApiManager()
                 .getBatchQuote(list, () -> {
                     for (Stock stock : list) {
                         updateStock(stock);
                     }
+                    loading.set(false);
                 }));
     }
 
@@ -97,4 +102,6 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
     public ObservableList<Stock> getList() {
         return list;
     }
+
+    public ObservableBoolean getLoading() {return loading;}
 }
