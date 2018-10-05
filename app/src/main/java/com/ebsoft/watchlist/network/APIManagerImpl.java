@@ -1,6 +1,7 @@
 package com.ebsoft.watchlist.network;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.ebsoft.watchlist.data.model.AlphaVantage.GlobalQuote;
 import com.ebsoft.watchlist.data.model.IEX.Quote;
@@ -12,6 +13,7 @@ import com.ebsoft.watchlist.network.IEX.IEXApi;
 import com.ebsoft.watchlist.network.Yahoo.YahooAPI;
 import com.ebsoft.watchlist.utils.Constants;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +22,7 @@ import javax.inject.Singleton;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -28,6 +31,8 @@ import io.reactivex.schedulers.Schedulers;
 
 @Singleton
 public class APIManagerImpl implements APIManager {
+
+    private final String TAG = APIManagerImpl.class.getSimpleName();
 
     @Inject
     YahooAPI mYahooApi;
@@ -51,6 +56,9 @@ public class APIManagerImpl implements APIManager {
                             .getSymbolSearchResponse()
                             .getItems();
                     listener.onComplete(items);
+                }, throwable -> {
+                    Log.e(TAG, throwable.getLocalizedMessage());
+                    listener.onComplete(new ArrayList<>());
                 });
     }
 
@@ -62,6 +70,9 @@ public class APIManagerImpl implements APIManager {
                 .subscribe(avQuoteResponse -> {
                     GlobalQuote gq = avQuoteResponse.body().getGlobalQuote();
                     stock.update(gq);
+                    listener.onComplete();
+                }, throwable -> {
+                    Log.e(TAG, throwable.getLocalizedMessage());
                     listener.onComplete();
                 });
     }
@@ -79,6 +90,9 @@ public class APIManagerImpl implements APIManager {
                             stock.update(stockQuote.getQuote());
                         }
                     }
+                    listener.onComplete();
+                }, throwable -> {
+                    Log.e(TAG, throwable.getLocalizedMessage());
                     listener.onComplete();
                 });
     }
