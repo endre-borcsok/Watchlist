@@ -5,10 +5,10 @@ import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 
 import com.ebsoft.watchlist.data.DataManager;
-import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.ui.base.BaseViewModel;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -23,6 +23,8 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
 
     private final ObservableList<Watchlist> list = new ObservableArrayList<>();
 
+    private final List<Watchlist> mWatchlist = new ArrayList<>();
+
     public MainViewModel(DataManager DataManager) {
         super(DataManager);
     }
@@ -33,21 +35,7 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
                         .deleteWatchlist(watchlist)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(watchlists -> {
-                            list.remove(watchlist);
-                            removeStocks(watchlist);
-                        }));
-    }
-
-    private void removeStocks(Watchlist watchlist) {
-        for (Stock stock : watchlist.getStocks()) {
-            getCompositeDisposable().add(
-                    mDataManager.getDbManager()
-                            .deleteStock(stock)
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe());
-        }
+                        .subscribe());
     }
 
     public void loadWatchlists(LifecycleOwner owner) {
@@ -58,15 +46,14 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(watchlists -> {
                             watchlists.observe(owner, watchlists1 -> {
-                                list.clear();
-                                list.addAll(watchlists1);
+                                mWatchlist.clear();
+                                mWatchlist.addAll(watchlists1);
                                 loadStockLists(watchlists1, owner);
                             });
                         }));
     }
 
     private void loadStockLists(List<Watchlist> watchlists, LifecycleOwner owner) {
-        list.clear();
         loadNextStockList(watchlists.iterator(), owner);
     }
 
@@ -80,11 +67,15 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
                     .subscribe(listLiveData -> listLiveData.observe(owner, stocks -> {
                         wlist.getStocks().clear();
                         wlist.getStocks().addAll(listLiveData.getValue());
-                        list.remove(wlist);
-                        list.add(wlist);
+                        refreshObservableList();
                         loadNextStockList(it, owner);
                     })));
         }
+    }
+
+    private void refreshObservableList() {
+        list.clear();
+        list.addAll(mWatchlist);
     }
 
     public void onActionButtonClick() {
