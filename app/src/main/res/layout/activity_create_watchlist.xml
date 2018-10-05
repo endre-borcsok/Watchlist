@@ -14,29 +14,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/createWatchlistEditText"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="@dimen/edit_text_min_width"
-            android:text="@={viewModel.editTextContent}"
-            android:maxLines="1"
-            android:inputType="text"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <Button
-            android:id="@+id/createButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/create"
-            android:onClick="@{() -> viewModel.create()}"
-            app:layout_constraintLeft_toRightOf="@id/createWatchlistEditText"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/createWatchlistEditText"
+                android:layout_width="@dimen/edit_text_width"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.editTextContent}"
+                android:maxLines="1"
+                android:inputType="text"/>
+
+            <Button
+                android:id="@+id/createButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/create"
+                android:onClick="@{() -> viewModel.create()}"/>
+        </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 
 </layout>
