@@ -17,7 +17,11 @@ import java.util.List;
 @Entity(tableName = "watchlist")
 public class Watchlist implements Serializable {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    @NonNull
+    private int id;
+
     @ColumnInfo(name = "name")
     @NonNull
     private final String name;
@@ -33,6 +37,14 @@ public class Watchlist implements Serializable {
     @NonNull
     public String getName() {
         return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public List<Stock> getStocks() {

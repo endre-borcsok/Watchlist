@@ -24,8 +24,8 @@ public interface WatchlistDao {
     @Delete
     void delete(Watchlist watchlist);
 
-    @Query("SELECT * FROM watchlist WHERE name LIKE :name LIMIT 1")
-    Watchlist findByName(String name);
+    @Query("SELECT * FROM watchlist WHERE name LIKE :id LIMIT 1")
+    Watchlist findById(int id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Watchlist watchlist);

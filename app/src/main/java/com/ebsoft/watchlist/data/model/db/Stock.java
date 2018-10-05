@@ -17,14 +17,16 @@ import java.io.Serializable;
 @Entity(tableName = "stock")
 public class Stock implements Serializable, StockInfo {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    private int id;
+
     @ColumnInfo(name = "symbol")
     @NonNull
     private String symbol = "";
 
     @ColumnInfo(name = "listid")
-    @NonNull
-    private String listid = "";
+    private int listid;
 
     @ColumnInfo(name = "price")
     private float price;
@@ -34,6 +36,14 @@ public class Stock implements Serializable, StockInfo {
 
     @ColumnInfo(name = "changePercent")
     private float changePercent;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Override
     @NonNull
@@ -60,12 +70,11 @@ public class Stock implements Serializable, StockInfo {
         return changePercent;
     }
 
-    @NonNull
-    public String getListid() {
+    public int getListid() {
         return listid;
     }
 
-    public void setListid(String listId) {
+    public void setListid(int listId) {
         this.listid = listId;
     }
 
@@ -90,7 +99,7 @@ public class Stock implements Serializable, StockInfo {
     public static Stock create(Item item, Watchlist watchlist) {
         Stock stock = new Stock();
         stock.setSymbol(item.getSymbol());
-        stock.setListid(watchlist.getName());
+        stock.setListid(watchlist.getId());
         return stock;
     }
 }

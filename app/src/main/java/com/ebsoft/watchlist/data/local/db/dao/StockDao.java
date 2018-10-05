@@ -26,7 +26,7 @@ public interface StockDao {
     void delete(Stock stock);
 
     @Query("SELECT * FROM stock WHERE listid LIKE :listid")
-    LiveData<List<Stock>> findByWatchlist(String listid);
+    LiveData<List<Stock>> findByWatchlist(int listid);
 
     @Query("SELECT * FROM stock WHERE symbol LIKE :symbol")
     List<Stock> findBySymbol(String symbol);

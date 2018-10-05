@@ -43,7 +43,7 @@ public class DBManagerImpl implements DBManager {
     @Override
     public Observable<LiveData<List<Stock>>> loadStocks(Watchlist watchlist) {
         return Observable.fromCallable(() -> mDataBase.stockDao()
-                .findByWatchlist(watchlist.getName()));
+                .findByWatchlist(watchlist.getId()));
     }
 
     @Override
