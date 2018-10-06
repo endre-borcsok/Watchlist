@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
 public class WatchlistTest {
 
     @Test
-    public void testListNotNUll() {
+    public void testListNotNull() {
         Watchlist wlist = new Watchlist("test");
         assertTrue(wlist.getStocks() != null);
     }
