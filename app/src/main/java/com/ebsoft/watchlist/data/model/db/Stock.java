@@ -91,12 +91,13 @@ public class Stock implements Serializable, StockInfo {
     }
 
     public void update(StockInfo stockInfo) {
+        this.setSymbol(stockInfo.getSymbol());
         this.setPrice(stockInfo.getPrice());
         this.setChange(stockInfo.getChange());
         this.setChangePercent(stockInfo.getChangePercent());
     }
 
-    public static Stock create(Item item, Watchlist watchlist) {
+    public static Stock create(StockInfo item, Watchlist watchlist) {
         Stock stock = new Stock();
         stock.setSymbol(item.getSymbol());
         stock.setListid(watchlist.getId());

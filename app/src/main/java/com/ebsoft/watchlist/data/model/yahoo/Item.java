@@ -1,5 +1,6 @@
 package com.ebsoft.watchlist.data.model.yahoo;
 
+import com.ebsoft.watchlist.data.model.StockInfo;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -11,7 +12,7 @@ import java.io.Serializable;
  * Created by endre on 09/09/18.
  */
 
-public class Item implements Serializable {
+public class Item implements Serializable, StockInfo {
 
     @SerializedName("symbol")
     @Expose
@@ -25,8 +26,24 @@ public class Item implements Serializable {
     @Expose
     private String type;
 
+    @Override
     public String getSymbol() {
         return symbol;
+    }
+
+    @Override
+    public float getPrice() {
+        return 0;
+    }
+
+    @Override
+    public float getChange() {
+        return 0;
+    }
+
+    @Override
+    public float getChangePercent() {
+        return 0;
     }
 
     public void setSymbol(String symbol) {
