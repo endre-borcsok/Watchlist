@@ -60,6 +60,9 @@ public class StockDaoTest {
     @After
     public void closeDb() throws IOException {
         mDataBase.close();
+        mDataBase = null;
+        mStock = null;
+        mStockDao = null;
     }
 
     @Test

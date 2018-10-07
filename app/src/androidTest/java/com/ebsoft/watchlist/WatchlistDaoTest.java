@@ -55,6 +55,9 @@ public class WatchlistDaoTest {
     @After
     public void closeDb() throws IOException {
         mDataBase.close();
+        mWatchlist = null;
+        mWatchlistDao = null;
+        mDataBase = null;
     }
 
     @Test
