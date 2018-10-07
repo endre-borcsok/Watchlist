@@ -1,7 +1,6 @@
 package com.ebsoft.watchlist;
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule;
-import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -20,7 +19,6 @@ import org.junit.runner.RunWith;
 import java.io.IOException;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -40,11 +38,18 @@ public class StockDaoTest {
 
     private AbstractDataBase mDataBase;
 
+    private Stock mStock;
+
     @Rule
     public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
 
     @Before
     public void createDb() {
+        mStock = new Stock();
+        mStock.setSymbol(SYMBOL);
+        mStock.setId(STOCK_ID);
+        mStock.setListid(WLIST_ID);
+
         Context context = InstrumentationRegistry.getTargetContext();
         mDataBase = Room.inMemoryDatabaseBuilder(context, AbstractDataBase.class)
                 .allowMainThreadQueries()
@@ -59,28 +64,34 @@ public class StockDaoTest {
 
     @Test
     public void testStockDaoMethods() throws Exception {
-        Stock stock = new Stock();
-        stock.setSymbol(SYMBOL);
-        stock.setId(STOCK_ID);
-        stock.setListid(WLIST_ID);
+        assertTrue(insertAndFindBySymbol().get(0).getSymbol().equals(SYMBOL));
+        assertTrue(updateAndFindBySymbol().get(0).getSymbol().equals(SYMBOL_0));
+        assertTrue(loadAll().size() == 1);
+        assertTrue(findByWatchlist().get(0).getListid() == WLIST_ID);
+        assertTrue(deleteAndLoadAll().size() == 0);
+    }
 
-        mStockDao.insert(stock);
-        List<Stock> byName = mStockDao.findBySymbol(SYMBOL);
-        assertTrue(byName.get(0).getSymbol().equals(SYMBOL));
+    private List<Stock> insertAndFindBySymbol() {
+        mStockDao.insert(mStock);
+        return mStockDao.findBySymbol(SYMBOL);
+    }
 
-        stock.setSymbol(SYMBOL_0);
-        mStockDao.update(stock);
-        List<Stock> byNameUpdate = mStockDao.findBySymbol(SYMBOL_0);
-        assertTrue(byNameUpdate.get(0).getSymbol().equals(SYMBOL_0));
+    private List<Stock> updateAndFindBySymbol() {
+        mStock.setSymbol(SYMBOL_0);
+        mStockDao.update(mStock);
+        return mStockDao.findBySymbol(SYMBOL_0);
+    }
 
-        List<Stock> all = mStockDao.loadAll();
-        assertTrue(all.size() == 1);
+    private List<Stock> loadAll() {
+        return mStockDao.loadAll();
+    }
 
-        List<Stock> byId = LiveDataTestUtil.getValue(mStockDao.findByWatchlist(WLIST_ID));
-        assertTrue(byId.get(0).getListid() == WLIST_ID);
+    private List<Stock> findByWatchlist() throws InterruptedException {
+        return LiveDataTestUtil.getValue(mStockDao.findByWatchlist(WLIST_ID));
+    }
 
-        mStockDao.delete(stock);
-        List<Stock> afterDelete = mStockDao.loadAll();
-        assertTrue(afterDelete.size() == 0);
+    private List<Stock> deleteAndLoadAll() {
+        mStockDao.delete(mStock);
+        return mStockDao.loadAll();
     }
 }

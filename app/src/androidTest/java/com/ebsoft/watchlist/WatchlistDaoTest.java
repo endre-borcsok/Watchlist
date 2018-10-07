@@ -36,6 +36,8 @@ public class WatchlistDaoTest {
 
     private AbstractDataBase mDataBase;
 
+    private Watchlist mWatchlist;
+
     @Rule
     public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
 
@@ -46,6 +48,8 @@ public class WatchlistDaoTest {
                 .allowMainThreadQueries()
                 .build();
         mWatchlistDao = mDataBase.watchlistDao();
+        mWatchlist = new Watchlist(WLIST_NAME);
+        mWatchlist.setId(WLIST_ID);
     }
 
     @After
@@ -55,18 +59,22 @@ public class WatchlistDaoTest {
 
     @Test
     public void testWatchlistDaoMethods() throws Exception {
-        Watchlist wlist = new Watchlist(WLIST_NAME);
-        wlist.setId(WLIST_ID);
+        assertTrue(insertAndFindById().getId() == WLIST_ID);
+        assertTrue(loadAll().size() == 1);
+        assertTrue(deleteAndLoadAll().size() == 0);
+    }
 
-        mWatchlistDao.insert(wlist);
-        Watchlist findById = mWatchlistDao.findById(WLIST_ID);
-        assertTrue(findById.getId() == WLIST_ID);
+    private Watchlist insertAndFindById() {
+        mWatchlistDao.insert(mWatchlist);
+        return mWatchlistDao.findById(WLIST_ID);
+    }
 
-        List<Watchlist> all = LiveDataTestUtil.getValue(mWatchlistDao.loadAll());
-        assertTrue(all.size() == 1);
+    private List<Watchlist> loadAll() throws InterruptedException {
+         return LiveDataTestUtil.getValue(mWatchlistDao.loadAll());
+    }
 
-        mWatchlistDao.delete(wlist);
-        List<Watchlist> delete = LiveDataTestUtil.getValue(mWatchlistDao.loadAll());
-        assertTrue(delete.size() == 0);
+    private List<Watchlist> deleteAndLoadAll() throws InterruptedException {
+        mWatchlistDao.delete(mWatchlist);
+        return LiveDataTestUtil.getValue(mWatchlistDao.loadAll());
     }
 }
