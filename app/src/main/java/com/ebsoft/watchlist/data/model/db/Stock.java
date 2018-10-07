@@ -6,7 +6,6 @@ import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 import com.ebsoft.watchlist.data.model.StockInfo;
-import com.ebsoft.watchlist.data.model.yahoo.Item;
 
 import java.io.Serializable;
 

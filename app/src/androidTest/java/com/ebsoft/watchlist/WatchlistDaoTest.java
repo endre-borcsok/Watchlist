@@ -1,14 +1,11 @@
 package com.ebsoft.watchlist;
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule;
-import android.arch.persistence.room.Room;
-import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.ebsoft.watchlist.data.local.db.AbstractDataBase;
 import com.ebsoft.watchlist.data.local.db.dao.WatchlistDao;
-import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 
 import org.junit.After;

@@ -1,15 +1,9 @@
 package com.ebsoft.watchlist;
 
-import com.ebsoft.watchlist.data.model.yahoo.SymbolSearch;
 import com.ebsoft.watchlist.network.APIManager;
 import com.ebsoft.watchlist.network.APIManagerImpl;
 
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
-
-import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
-import retrofit2.Response;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

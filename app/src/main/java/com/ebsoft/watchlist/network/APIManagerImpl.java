@@ -4,14 +4,12 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.ebsoft.watchlist.data.model.AlphaVantage.GlobalQuote;
-import com.ebsoft.watchlist.data.model.IEX.Quote;
 import com.ebsoft.watchlist.data.model.IEX.StockQuote;
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.yahoo.Item;
 import com.ebsoft.watchlist.network.AlphaVantage.AlphaVantageAPI;
 import com.ebsoft.watchlist.network.IEX.IEXApi;
 import com.ebsoft.watchlist.network.Yahoo.YahooAPI;
-import com.ebsoft.watchlist.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +20,6 @@ import javax.inject.Singleton;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**

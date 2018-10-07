@@ -7,9 +7,6 @@ import com.ebsoft.watchlist.data.DataManagerImpl;
 import com.ebsoft.watchlist.data.local.db.AbstractDataBase;
 import com.ebsoft.watchlist.data.local.db.DBManagerImpl;
 
-import org.junit.After;
-import org.junit.Before;
-
 /**
  * Created by endre on 07/10/18.
  */
