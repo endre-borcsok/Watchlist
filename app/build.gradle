@@ -40,7 +40,8 @@ dependencies {
     testImplementation 'com.android.support.test:runner:1.0.2'
     testImplementation 'com.android.support.test:rules:1.0.2'
     testImplementation 'org.mockito:mockito-core:2.15.0'
-    androidTestImplementation "android.arch.core:core-testing:1.1.1"
+    androidTestImplementation 'org.mockito:mockito-android:2.15.0'
+    androidTestImplementation 'android.arch.core:core-testing:1.1.1'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 

@@ -43,10 +43,7 @@ public class WatchlistDaoTest {
 
     @Before
     public void createDb() {
-        Context context = InstrumentationRegistry.getTargetContext();
-        mDataBase = Room.inMemoryDatabaseBuilder(context, AbstractDataBase.class)
-                .allowMainThreadQueries()
-                .build();
+        mDataBase = DbManagerUtil.getDb(InstrumentationRegistry.getTargetContext());
         mWatchlistDao = mDataBase.watchlistDao();
         mWatchlist = new Watchlist(WLIST_NAME);
         mWatchlist.setId(WLIST_ID);

@@ -49,11 +49,7 @@ public class StockDaoTest {
         mStock.setSymbol(SYMBOL);
         mStock.setId(STOCK_ID);
         mStock.setListid(WLIST_ID);
-
-        Context context = InstrumentationRegistry.getTargetContext();
-        mDataBase = Room.inMemoryDatabaseBuilder(context, AbstractDataBase.class)
-                .allowMainThreadQueries()
-                .build();
+        mDataBase = DbManagerUtil.getDb(InstrumentationRegistry.getTargetContext());
         mStockDao = mDataBase.stockDao();
     }
 
