@@ -1,4 +1,4 @@
-package com.ebsoft.watchlist;
+package com.ebsoft.watchlist.db;
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule;
 import android.support.test.InstrumentationRegistry;
@@ -7,6 +7,8 @@ import android.support.test.runner.AndroidJUnit4;
 import com.ebsoft.watchlist.data.local.db.AbstractDataBase;
 import com.ebsoft.watchlist.data.local.db.dao.WatchlistDao;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
+import com.ebsoft.watchlist.util.DbManagerUtil;
+import com.ebsoft.watchlist.util.LiveDataTestUtil;
 
 import org.junit.After;
 import org.junit.Before;

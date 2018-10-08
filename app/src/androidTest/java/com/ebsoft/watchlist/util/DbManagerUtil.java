@@ -1,4 +1,4 @@
-package com.ebsoft.watchlist;
+package com.ebsoft.watchlist.util;
 
 import android.arch.persistence.room.Room;
 import android.content.Context;
