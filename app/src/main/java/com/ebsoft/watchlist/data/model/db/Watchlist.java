@@ -6,6 +6,8 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import org.apache.commons.lang3.mutable.MutableInt;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +29,11 @@ public class Watchlist implements Serializable {
     private final String name;
 
     @Ignore
-    private final List<Stock> mStocks;
+    private final MutableInt mStockCount;
 
     public Watchlist(String name) {
         this.name = name;
-        this.mStocks = new ArrayList<>();
+        this.mStockCount = new MutableInt();
     }
 
     @NonNull
@@ -47,7 +49,11 @@ public class Watchlist implements Serializable {
         this.id = id;
     }
 
-    public List<Stock> getStocks() {
-        return mStocks;
+    public int getStockCount() {
+        return mStockCount.intValue();
+    }
+
+    public void setStockCount(int count) {
+        this.mStockCount.setValue(count);
     }
 }

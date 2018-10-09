@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size_medium"
-                android:text="@{@string/item_count(item.getStocks().size())}"
+                android:text="@{@string/item_count(item.getStockCount())}"
                 app:layout_constraintStart_toStartOf="@+id/cardViewTitle"
                 app:layout_constraintTop_toBottomOf="@+id/cardViewTitle"
                 app:layout_constraintLeft_toLeftOf="parent"

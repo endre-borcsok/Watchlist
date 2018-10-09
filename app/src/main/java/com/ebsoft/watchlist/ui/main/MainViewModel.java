@@ -63,8 +63,7 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(listLiveData -> listLiveData.observe(owner, stocks -> {
-                        wlist.getStocks().clear();
-                        wlist.getStocks().addAll(listLiveData.getValue());
+                        wlist.setStockCount(stocks.size());
                         refreshObservableList();
                         loadNextStockList(it, owner);
                     })));
