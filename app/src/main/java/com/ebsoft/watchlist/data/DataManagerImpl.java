@@ -13,9 +13,9 @@ import javax.inject.Singleton;
 @Singleton
 public class DataManagerImpl implements DataManager {
 
-    private APIManager mApiManager;
+    private final APIManager mApiManager;
 
-    private DBManager mDbManager;
+    private final DBManager mDbManager;
 
     @Inject
     public DataManagerImpl(APIManager apiManger, DBManager dbManager) {
