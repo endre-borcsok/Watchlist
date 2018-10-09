@@ -37,7 +37,7 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
     }
 
     public void removeStock(Stock stock) {
-        getCompositeDisposable().add(mDataManager.getDbManager()
+        addDisposable(mDataManager.getDbManager()
                 .deleteStock(stock)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -45,7 +45,7 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
     }
 
     public void loadStocks(LifecycleOwner owner) {
-         getCompositeDisposable().add(mDataManager.getDbManager()
+         addDisposable(mDataManager.getDbManager()
                  .loadStocks(mWatchlist)
                  .subscribeOn(Schedulers.io())
                  .observeOn(AndroidSchedulers.mainThread())
@@ -63,7 +63,7 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
     }
 
     public void insertStock(Stock stock) {
-        getCompositeDisposable().add(mDataManager.getDbManager()
+        addDisposable(mDataManager.getDbManager()
                 .insertStock(stock)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -71,14 +71,14 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
     }
 
     private void getQuote(Stock stock) {
-        getCompositeDisposable().add(mDataManager.getApiManager()
+        addDisposable(mDataManager.getApiManager()
                 .getQuote(stock, () -> updateStock(stock)));
     }
 
     public void refresh() {
         if (list.size() < 1) return;
         loading.set(true);
-        getCompositeDisposable().add(mDataManager.getApiManager()
+        addDisposable(mDataManager.getApiManager()
                 .getBatchQuote(list, () -> {
                     for (Stock stock : list) {
                         updateStock(stock);
@@ -88,7 +88,7 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
     }
 
     private void updateStock(Stock stock) {
-        getCompositeDisposable().add(mDataManager.getDbManager()
+        addDisposable(mDataManager.getDbManager()
                 .updateStock(stock)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

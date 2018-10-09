@@ -7,6 +7,7 @@ import com.ebsoft.watchlist.data.DataManager;
 import java.lang.ref.WeakReference;
 
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by endre on 07/09/18.
@@ -27,8 +28,8 @@ public abstract class BaseViewModel<N> extends ViewModel {
         return mDataManager;
     }
 
-    public CompositeDisposable getCompositeDisposable() {
-        return mCompositeDisposable;
+    public void addDisposable(Disposable disposable) {
+        mCompositeDisposable.add(disposable);
     }
 
     public N getNavigator() {

@@ -30,27 +30,25 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
     }
 
     public void deleteWatchlist(Watchlist watchlist) {
-        getCompositeDisposable().add(
-                mDataManager.getDbManager()
-                        .deleteWatchlist(watchlist)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe());
+        addDisposable(mDataManager.getDbManager()
+                .deleteWatchlist(watchlist)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe());
     }
 
     public void loadWatchlists(LifecycleOwner owner) {
-        getCompositeDisposable().add(
-                mDataManager.getDbManager()
-                        .loadWatchlists()
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(watchlists -> {
-                            watchlists.observe(owner, watchlists1 -> {
-                                mWatchlist.clear();
-                                mWatchlist.addAll(watchlists1);
-                                loadStockLists(watchlists1, owner);
-                            });
-                        }));
+        addDisposable(mDataManager.getDbManager()
+                .loadWatchlists()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(watchlists -> {
+                    watchlists.observe(owner, watchlists1 -> {
+                        mWatchlist.clear();
+                        mWatchlist.addAll(watchlists1);
+                        loadStockLists(watchlists1, owner);
+                    });
+                }));
     }
 
     private void loadStockLists(List<Watchlist> watchlists, LifecycleOwner owner) {
@@ -60,7 +58,7 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
     private void loadNextStockList(Iterator it, LifecycleOwner owner) {
         if (it.hasNext()) {
             Watchlist wlist = (Watchlist) it.next();
-            getCompositeDisposable().add(mDataManager.getDbManager()
+            addDisposable(mDataManager.getDbManager()
                     .loadStocks(wlist)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())

@@ -20,7 +20,7 @@ public class SearchViewModel extends BaseViewModel {
     }
 
     public void performSearch(String symbol) {
-        getCompositeDisposable().add(getDataManager()
+        addDisposable(getDataManager()
                 .getApiManager()
                 .searchSymbol(symbol, list -> {
                     this.list.clear();
