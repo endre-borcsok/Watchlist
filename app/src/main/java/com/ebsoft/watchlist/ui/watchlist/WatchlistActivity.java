@@ -49,7 +49,7 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
         viewDataBinding.watchlistRecyclerView.setAdapter(mAdapter);
         viewDataBinding.swipeRefresh.setOnRefreshListener(this);
         getViewModel().setNavigator(this);
-        getViewModel().loadStocks(this);
+        getViewModel().subscribeToLiveData(this);
         setTitle(getViewModel().getWatchlist().getName());
     }
 

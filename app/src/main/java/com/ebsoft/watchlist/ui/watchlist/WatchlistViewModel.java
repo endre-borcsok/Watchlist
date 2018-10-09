@@ -36,20 +36,19 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
         return mWatchlist;
     }
 
+    public void subscribeToLiveData(LifecycleOwner owner) {
+        mDataManager.getDbManager().loadStocks(mWatchlist).observe(owner, stocks -> {
+            list.clear();
+            list.addAll(stocks);
+        });
+    }
+
     public void removeStock(Stock stock) {
         addDisposable(mDataManager.getDbManager()
                 .deleteStock(stock)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe());
-    }
-
-    public void loadStocks(LifecycleOwner owner) {
-        mDataManager.getDbManager()
-                .loadStocks(mWatchlist).observe(owner, stocks -> {
-            list.clear();
-            list.addAll(stocks);
-        });
     }
 
     public void insertStock(Stock stock) {
@@ -61,8 +60,7 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
     }
 
     private void getQuote(Stock stock) {
-        addDisposable(mDataManager.getApiManager()
-                .getQuote(stock, () -> updateStock(stock)));
+        addDisposable(mDataManager.getApiManager().getQuote(stock, () -> updateStock(stock)));
     }
 
     public void refresh() {
