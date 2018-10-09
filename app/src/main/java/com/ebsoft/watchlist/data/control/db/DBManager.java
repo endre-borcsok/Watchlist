@@ -1,4 +1,4 @@
-package com.ebsoft.watchlist.data.local.db;
+package com.ebsoft.watchlist.data.control.db;
 
 import android.arch.lifecycle.LiveData;
 

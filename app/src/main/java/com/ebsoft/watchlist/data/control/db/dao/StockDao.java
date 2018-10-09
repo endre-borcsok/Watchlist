@@ -1,4 +1,4 @@
-package com.ebsoft.watchlist.data.local.db.dao;
+package com.ebsoft.watchlist.data.control.db.dao;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;

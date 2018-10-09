@@ -4,8 +4,8 @@ import android.arch.core.executor.testing.InstantTaskExecutorRule;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.ebsoft.watchlist.data.local.db.AbstractDataBase;
-import com.ebsoft.watchlist.data.local.db.dao.StockDao;
+import com.ebsoft.watchlist.data.control.db.AbstractDataBase;
+import com.ebsoft.watchlist.data.control.db.dao.StockDao;
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.util.DbManagerUtil;
 import com.ebsoft.watchlist.util.LiveDataTestUtil;

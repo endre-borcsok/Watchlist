@@ -1,7 +1,7 @@
 package com.ebsoft.watchlist.data;
 
-import com.ebsoft.watchlist.data.local.db.DBManager;
-import com.ebsoft.watchlist.network.APIManager;
+import com.ebsoft.watchlist.data.control.db.DBManager;
+import com.ebsoft.watchlist.data.control.network.APIManager;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

@@ -1,4 +1,4 @@
-package com.ebsoft.watchlist.network;
+package com.ebsoft.watchlist.data.control.network;
 
 import com.ebsoft.watchlist.data.model.yahoo.Item;
 

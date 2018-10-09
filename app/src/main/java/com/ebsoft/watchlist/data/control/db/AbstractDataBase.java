@@ -1,10 +1,10 @@
-package com.ebsoft.watchlist.data.local.db;
+package com.ebsoft.watchlist.data.control.db;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 
-import com.ebsoft.watchlist.data.local.db.dao.StockDao;
-import com.ebsoft.watchlist.data.local.db.dao.WatchlistDao;
+import com.ebsoft.watchlist.data.control.db.dao.StockDao;
+import com.ebsoft.watchlist.data.control.db.dao.WatchlistDao;
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 

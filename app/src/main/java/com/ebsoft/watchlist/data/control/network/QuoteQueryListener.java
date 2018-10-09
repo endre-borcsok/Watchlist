@@ -1,4 +1,4 @@
-package com.ebsoft.watchlist.network;
+package com.ebsoft.watchlist.data.control.network;
 
 public interface QuoteQueryListener {
 

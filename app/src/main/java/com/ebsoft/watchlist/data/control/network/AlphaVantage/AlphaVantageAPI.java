@@ -1,4 +1,4 @@
-package com.ebsoft.watchlist.network.AlphaVantage;
+package com.ebsoft.watchlist.data.control.network.AlphaVantage;
 
 import com.ebsoft.watchlist.data.model.AlphaVantage.AVQuote;
 

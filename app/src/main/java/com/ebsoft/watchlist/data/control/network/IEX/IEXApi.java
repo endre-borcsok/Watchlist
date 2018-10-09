@@ -1,4 +1,4 @@
-package com.ebsoft.watchlist.network.IEX;
+package com.ebsoft.watchlist.data.control.network.IEX;
 
 import com.ebsoft.watchlist.data.model.IEX.StockQuote;
 

@@ -3,7 +3,7 @@ package com.ebsoft.watchlist.viewmodel;
 import android.arch.lifecycle.MutableLiveData;
 
 import com.ebsoft.watchlist.data.DataManager;
-import com.ebsoft.watchlist.data.local.db.DBManagerImpl;
+import com.ebsoft.watchlist.data.control.db.DBManagerImpl;
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.ui.main.MainViewModel;
