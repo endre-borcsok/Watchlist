@@ -2,7 +2,6 @@ package com.ebsoft.watchlist.data;
 
 import com.ebsoft.watchlist.data.control.db.DBManager;
 import com.ebsoft.watchlist.data.control.network.APIManager;
-import com.ebsoft.watchlist.data.control.nonpersistent.VolatileStorage;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -18,13 +17,10 @@ public class DataManagerImpl implements DataManager {
 
     private final DBManager mDbManager;
 
-    private final VolatileStorage mVolatileStorage;
-
     @Inject
-    public DataManagerImpl(APIManager apiManger, DBManager dbManager, VolatileStorage volatileStorage) {
+    public DataManagerImpl(APIManager apiManger, DBManager dbManager) {
         mApiManager = apiManger;
         mDbManager = dbManager;
-        mVolatileStorage = volatileStorage;
     }
 
     @Override

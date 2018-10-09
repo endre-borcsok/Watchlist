@@ -14,8 +14,6 @@ import com.ebsoft.watchlist.data.control.network.APIManagerImpl;
 import com.ebsoft.watchlist.data.control.network.AlphaVantage.AlphaVantageAPI;
 import com.ebsoft.watchlist.data.control.network.IEX.IEXApi;
 import com.ebsoft.watchlist.data.control.network.Yahoo.YahooAPI;
-import com.ebsoft.watchlist.data.control.nonpersistent.VolatileStorage;
-import com.ebsoft.watchlist.data.control.nonpersistent.VolatileStorageImpl;
 import com.ebsoft.watchlist.utils.Constants;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -54,10 +52,6 @@ public class AppModule {
     @Provides
     @Singleton
     DBManager provideDbManager(DBManagerImpl dbManager) { return dbManager; }
-
-    @Provides
-    @Singleton
-    VolatileStorage provideVolatileStorage(VolatileStorageImpl volatileStorage) { return volatileStorage; }
 
     @Provides
     AbstractDataBase provideDatabase(Context context) {
