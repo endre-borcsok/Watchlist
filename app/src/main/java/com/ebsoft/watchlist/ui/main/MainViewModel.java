@@ -1,10 +1,14 @@
 package com.ebsoft.watchlist.ui.main;
 
 import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
+import android.support.annotation.Nullable;
 
 import com.ebsoft.watchlist.data.DataManager;
+import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.ui.base.BaseViewModel;
 
@@ -23,10 +27,11 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
 
     private final ObservableList<Watchlist> list = new ObservableArrayList<>();
 
-    private final List<Watchlist> mWatchlist = new ArrayList<>();
+    private final LiveData<List<Watchlist>> mWatchlist;
 
     public MainViewModel(DataManager DataManager) {
         super(DataManager);
+        mWatchlist = mDataManager.getDbManager().loadWatchlists();
     }
 
     public void deleteWatchlist(Watchlist watchlist) {
@@ -37,42 +42,22 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
                 .subscribe());
     }
 
-    public void loadWatchlists(LifecycleOwner owner) {
-        addDisposable(mDataManager.getDbManager()
-                .loadWatchlists()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(watchlists -> {
-                    watchlists.observe(owner, watchlists1 -> {
-                        mWatchlist.clear();
-                        mWatchlist.addAll(watchlists1);
-                        loadStockLists(watchlists1, owner);
-                    });
-                }));
+    public void sundcribeForLiveData(LifecycleOwner owner) {
+        mWatchlist.observe(owner, watchlists -> {
+            loadStockLists(watchlists, owner);
+        });
     }
 
     private void loadStockLists(List<Watchlist> watchlists, LifecycleOwner owner) {
-        loadNextStockList(watchlists.iterator(), owner);
-    }
-
-    private void loadNextStockList(Iterator it, LifecycleOwner owner) {
-        if (it.hasNext()) {
-            Watchlist wlist = (Watchlist) it.next();
-            addDisposable(mDataManager.getDbManager()
+        for (Watchlist wlist : watchlists) {
+            mDataManager.getDbManager()
                     .loadStocks(wlist)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(listLiveData -> listLiveData.observe(owner, stocks -> {
+                    .observe(owner, stocks -> {
                         wlist.setStockCount(stocks.size());
-                        refreshObservableList();
-                        loadNextStockList(it, owner);
-                    })));
+                        list.clear();
+                        list.addAll(watchlists);
+                    });
         }
-    }
-
-    private void refreshObservableList() {
-        list.clear();
-        list.addAll(mWatchlist);
     }
 
     public void onActionButtonClick() {

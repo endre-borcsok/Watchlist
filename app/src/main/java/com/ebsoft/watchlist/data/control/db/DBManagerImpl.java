@@ -28,8 +28,13 @@ public class DBManagerImpl implements DBManager {
 
 
     @Override
-    public Observable<LiveData<List<Watchlist>>> loadWatchlists() {
-        return Observable.fromCallable(() -> mDataBase.watchlistDao().loadAll());
+    public LiveData<List<Watchlist>> loadWatchlists() {
+        return mDataBase.watchlistDao().loadAll();
+    }
+
+    @Override
+    public LiveData<List<Stock>> loadStocks(Watchlist watchlist) {
+        return mDataBase.stockDao().findByWatchlist(watchlist.getId());
     }
 
     @Override
@@ -38,12 +43,6 @@ public class DBManagerImpl implements DBManager {
             mDataBase.watchlistDao().delete(watchlist);
             return true;
         });
-    }
-
-    @Override
-    public Observable<LiveData<List<Stock>>> loadStocks(Watchlist watchlist) {
-        return Observable.fromCallable(() -> mDataBase.stockDao()
-                .findByWatchlist(watchlist.getId()));
     }
 
     @Override

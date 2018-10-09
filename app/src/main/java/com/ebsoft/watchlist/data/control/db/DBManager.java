@@ -15,13 +15,13 @@ import io.reactivex.Observable;
 
 public interface DBManager {
 
-    Observable<LiveData<List<Watchlist>>> loadWatchlists();
+    LiveData<List<Watchlist>> loadWatchlists();
+
+    LiveData<List<Stock>> loadStocks(Watchlist watchlist);
 
     Observable<Boolean> deleteWatchlist(Watchlist watchlist);
 
     Observable<Boolean> saveWatchlist(Watchlist watchlist);
-
-    Observable<LiveData<List<Stock>>> loadStocks(Watchlist watchlist);
 
     Observable<List<Stock>> queryStock(String symbol);
 

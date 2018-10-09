@@ -45,21 +45,11 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
     }
 
     public void loadStocks(LifecycleOwner owner) {
-         addDisposable(mDataManager.getDbManager()
-                 .loadStocks(mWatchlist)
-                 .subscribeOn(Schedulers.io())
-                 .observeOn(AndroidSchedulers.mainThread())
-                 .subscribe(listLiveData -> {
-                     MutableBoolean refreshOnFirstLoad = new MutableBoolean(true);
-                     listLiveData.observe(owner, stocks -> {
-                         list.clear();
-                         list.addAll(stocks);
-                         if (refreshOnFirstLoad.getValue()) {
-                             refreshOnFirstLoad.setValue(false);
-                             refresh();
-                         }
-                     });
-                 }));
+        mDataManager.getDbManager()
+                .loadStocks(mWatchlist).observe(owner, stocks -> {
+            list.clear();
+            list.addAll(stocks);
+        });
     }
 
     public void insertStock(Stock stock) {

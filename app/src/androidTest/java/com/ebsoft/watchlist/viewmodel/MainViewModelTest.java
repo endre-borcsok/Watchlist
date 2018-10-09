@@ -41,7 +41,7 @@ public class MainViewModelTest {
 
     private ObservableList<Watchlist> loadList(MainViewModelTestCase test)
             throws InterruptedException {
-        test.getViewModel().loadWatchlists(mockLifecycleOwner());
+        test.getViewModel().sundcribeForLiveData(mockLifecycleOwner());
         test.getWatchlistLiveData().postValue(getTestWatchList());
         test.getStockListLiveData().postValue(getTestStockList());
         new CountDownLatch(1).await(2, TimeUnit.SECONDS);

@@ -41,7 +41,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         viewDataBinding.mainActivityRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.mainActivityRecyclerView.setAdapter(mAdapter);
         getViewModel().setNavigator(this);
-        getViewModel().loadWatchlists(this);
+        getViewModel().sundcribeForLiveData(this);
         mAdapter.setItemClickListener(this);
         mAdapter.setItemRemoveListener(this);
     }
