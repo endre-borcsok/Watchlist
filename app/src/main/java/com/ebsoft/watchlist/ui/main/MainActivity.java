@@ -1,11 +1,14 @@
 package com.ebsoft.watchlist.ui.main;
 
+import android.arch.lifecycle.Observer;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
+import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.databinding.ActivityMainBinding;
 import com.ebsoft.watchlist.di.MainActivityQualifier;
@@ -16,6 +19,8 @@ import com.ebsoft.watchlist.ui.base.BaseActivity;
 import com.ebsoft.watchlist.ui.create.CreateWatchlistActivity;
 import com.ebsoft.watchlist.ui.watchlist.WatchlistActivity;
 import com.ebsoft.watchlist.utils.Constants;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -41,7 +46,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         viewDataBinding.mainActivityRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.mainActivityRecyclerView.setAdapter(mAdapter);
         getViewModel().setNavigator(this);
-        getViewModel().sundcribeForLiveData(this);
+        getViewModel().subscribeToLiveData(this);
         mAdapter.setItemClickListener(this);
         mAdapter.setItemRemoveListener(this);
     }
