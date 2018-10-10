@@ -13,8 +13,10 @@ import static org.junit.Assert.assertTrue;
 public class WatchlistTest {
 
     @Test
-    public void testListNotNull() {
+    public void testListCount() {
         Watchlist wlist = new Watchlist("test");
-        assertTrue(wlist.getStocks() != null);
+        int count = 5;
+        wlist.setStockCount(count);
+        assertTrue(wlist.getStockCount() == count);
     }
 }
