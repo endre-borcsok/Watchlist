@@ -41,7 +41,7 @@ public class APIManagerImpl implements APIManager {
     IEXApi mIEXApi;
 
     @Inject
-    APIManagerImpl() {}
+    public APIManagerImpl() {}
 
     @Override
     public Disposable searchSymbol(@NonNull String symbol, @NonNull SymbolSearchListener listener) {
