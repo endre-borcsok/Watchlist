@@ -9,8 +9,6 @@ import android.support.annotation.NonNull;
 import org.apache.commons.lang3.mutable.MutableInt;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by endre on 09/09/18.

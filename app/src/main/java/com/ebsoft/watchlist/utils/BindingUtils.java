@@ -2,10 +2,8 @@ package com.ebsoft.watchlist.utils;
 
 import android.databinding.BindingAdapter;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.ebsoft.watchlist.ui.adapter.BindableAdapter;
 

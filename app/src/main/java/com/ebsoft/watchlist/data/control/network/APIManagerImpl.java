@@ -3,13 +3,13 @@ package com.ebsoft.watchlist.data.control.network;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.ebsoft.watchlist.data.control.network.AlphaVantage.AlphaVantageAPI;
+import com.ebsoft.watchlist.data.control.network.IEX.IEXApi;
+import com.ebsoft.watchlist.data.control.network.Yahoo.YahooAPI;
 import com.ebsoft.watchlist.data.model.AlphaVantage.GlobalQuote;
 import com.ebsoft.watchlist.data.model.IEX.StockQuote;
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.yahoo.Item;
-import com.ebsoft.watchlist.data.control.network.AlphaVantage.AlphaVantageAPI;
-import com.ebsoft.watchlist.data.control.network.IEX.IEXApi;
-import com.ebsoft.watchlist.data.control.network.Yahoo.YahooAPI;
 
 import java.util.ArrayList;
 import java.util.List;

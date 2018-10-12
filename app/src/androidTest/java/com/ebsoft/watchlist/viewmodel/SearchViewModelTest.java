@@ -1,11 +1,8 @@
 package com.ebsoft.watchlist.viewmodel;
 
-import android.support.test.runner.AndroidJUnit4;
-
 import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.data.control.network.APIManager;
 import com.ebsoft.watchlist.data.control.network.APIManagerImpl;
-import com.ebsoft.watchlist.data.control.network.SymbolSearchListener;
 import com.ebsoft.watchlist.data.control.network.Yahoo.YahooAPI;
 import com.ebsoft.watchlist.data.model.yahoo.Item;
 import com.ebsoft.watchlist.data.model.yahoo.SymbolSearch;
@@ -23,10 +20,7 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
 import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
 import retrofit2.Response;
 
 import static junit.framework.TestCase.assertTrue;
