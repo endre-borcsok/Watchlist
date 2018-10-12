@@ -11,7 +11,9 @@ import com.ebsoft.watchlist.data.control.db.DBManagerImpl;
 import com.ebsoft.watchlist.data.control.network.APIManager;
 import com.ebsoft.watchlist.data.control.network.APIManagerImpl;
 import com.ebsoft.watchlist.data.control.network.AlphaVantage.AlphaVantageAPI;
+import com.ebsoft.watchlist.data.control.network.IEX.IEXApi;
 import com.ebsoft.watchlist.data.model.AlphaVantage.AVQuote;
+import com.ebsoft.watchlist.data.model.IEX.StockQuote;
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.ui.watchlist.WatchlistViewModel;
@@ -24,6 +26,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -43,15 +47,15 @@ import static org.mockito.Mockito.when;
 public class WatchlistViewModelTest {
 
     @Mock
-    AlphaVantageAPI avApi;
+    IEXApi iexApi;
 
     @InjectMocks
     APIManager apiManager = new APIManagerImpl();
 
     @Before
     public void setup() {
-        when(avApi.getQuote(any(String.class)))
-                .thenReturn(Observable.just(Response.success(new AVQuote())));
+        when(iexApi.getQuote(any(String.class)))
+                .thenReturn(Observable.just(Response.success(getResponseMap())));
     }
 
     @Test
@@ -124,5 +128,12 @@ public class WatchlistViewModelTest {
         when(dataMAnager.getDbManager()).thenReturn(dbManager);
         when(dataMAnager.getApiManager()).thenReturn(apiManager);
         return dataMAnager;
+    }
+
+    private Map<String, StockQuote> getResponseMap() {
+        Map<String, StockQuote> map = new HashMap<>();
+        map.put("AAPL", new StockQuote());
+        map.put("MSFT", new StockQuote());
+        return map;
     }
 }
