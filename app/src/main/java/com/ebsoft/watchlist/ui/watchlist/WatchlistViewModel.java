@@ -10,8 +10,6 @@ import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.ui.base.BaseViewModel;
 
-import org.apache.commons.lang3.mutable.MutableBoolean;
-
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
