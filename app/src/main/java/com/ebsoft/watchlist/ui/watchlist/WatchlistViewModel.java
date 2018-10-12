@@ -10,6 +10,8 @@ import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.ui.base.BaseViewModel;
 
+import org.apache.commons.lang3.mutable.MutableBoolean;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -25,6 +27,8 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
 
     private final Watchlist mWatchlist;
 
+    private boolean mRequestRefresh = false;
+
     public WatchlistViewModel(DataManager DataManager, Watchlist watchlist) {
         super(DataManager);
         this.mWatchlist = watchlist;
@@ -35,9 +39,14 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
     }
 
     public void subscribeToLiveData(LifecycleOwner owner) {
+        mRequestRefresh = true;
         mDataManager.getDbManager().loadStocks(mWatchlist).observe(owner, stocks -> {
             list.clear();
             list.addAll(stocks);
+            if (mRequestRefresh){
+                mRequestRefresh = false;
+                refresh();
+            }
         });
     }
 
@@ -50,15 +59,12 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
     }
 
     public void insertStock(Stock stock) {
+        mRequestRefresh = true;
         addDisposable(mDataManager.getDbManager()
                 .insertStock(stock)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(aBoolean -> getQuote(stock)));
-    }
-
-    private void getQuote(Stock stock) {
-        addDisposable(mDataManager.getApiManager().getQuote(stock, () -> updateStock(stock)));
+                .subscribe());
     }
 
     public void refresh() {
