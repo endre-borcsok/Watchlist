@@ -2,12 +2,14 @@ package com.ebsoft.watchlist.ui.create;
 
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
-import com.ebsoft.watchlist.databinding.ActivityCreateWatchlistBinding;
-import com.ebsoft.watchlist.ui.base.BaseActivity;
+import com.ebsoft.watchlist.databinding.FragmentCreateWatchlistBinding;
+import com.ebsoft.watchlist.ui.base.BaseFragment;
 
 import javax.inject.Inject;
 
-public class CreateWatchlistActivity extends BaseActivity<ActivityCreateWatchlistBinding, CreateWatchlistViewModel>
+import androidx.navigation.Navigation;
+
+public class CreateWatchlistFragment extends BaseFragment<FragmentCreateWatchlistBinding, CreateWatchlistViewModel>
         implements CreateWatchlistNavigator{
 
     @Inject
@@ -18,7 +20,7 @@ public class CreateWatchlistActivity extends BaseActivity<ActivityCreateWatchlis
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_create_watchlist;
+        return R.layout.fragment_create_watchlist;
     }
 
     @Override
@@ -33,6 +35,6 @@ public class CreateWatchlistActivity extends BaseActivity<ActivityCreateWatchlis
 
     @Override
     public void onWatchlistCreated() {
-        finish();
+        Navigation.findNavController(getView()).navigateUp();
     }
 }

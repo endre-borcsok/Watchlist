@@ -28,12 +28,12 @@
             android:label="@string/search_activity_label"/>
 
         <activity
-            android:name=".ui.create.CreateWatchlistActivity"
+            android:name=".ui.create.CreateWatchlistFragment"
             android:windowSoftInputMode="stateAlwaysVisible"
             android:label="@string/create_watchlist_activity_label"/>
 
         <activity
-            android:name=".ui.watchlist.WatchlistActivity"/>
+            android:name=".ui.watchlist.WatchlistFragment"/>
     </application>
 
 </manifest>

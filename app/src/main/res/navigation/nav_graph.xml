@@ -8,5 +8,24 @@
     <fragment
         android:id="@+id/watchlistsFragment"
         android:name="com.ebsoft.watchlist.ui.watchlists.WatchlistsFragment"
-        android:label="WatchlistsFragment" />
+        android:label="WatchlistsFragment" >
+
+        <action
+            android:id="@+id/action_watchlistsFragment_to_createWatchlistActivity"
+            app:destination="@id/createWatchlistFragment" />
+        <action
+            android:id="@+id/action_watchlistsFragment_to_watchlistFragment"
+            app:destination="@id/watchlistFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createWatchlistFragment"
+        android:name="com.ebsoft.watchlist.ui.create.CreateWatchlistFragment"
+        android:label="activity_create_watchlist"
+        tools:layout="@layout/fragment_create_watchlist" />
+    <fragment
+        android:id="@+id/watchlistFragment"
+        android:name="com.ebsoft.watchlist.ui.watchlist.WatchlistFragment"
+        android:label="activity_watchlist"
+        tools:layout="@layout/fragment_watchlist" />
 </navigation>

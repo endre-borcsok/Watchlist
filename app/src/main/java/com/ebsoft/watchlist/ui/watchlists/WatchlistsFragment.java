@@ -1,23 +1,24 @@
 package com.ebsoft.watchlist.ui.watchlists;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.LinearLayoutManager;
 
-import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.BR;
+import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.databinding.FragmentWatchlistsBinding;
-import com.ebsoft.watchlist.di.MainActivityQualifier;
 import com.ebsoft.watchlist.ui.adapter.CardViewAdapter;
 import com.ebsoft.watchlist.ui.adapter.CardViewItemClickListener;
 import com.ebsoft.watchlist.ui.adapter.CardViewItemRemoveListener;
 import com.ebsoft.watchlist.ui.base.BaseFragment;
-import com.ebsoft.watchlist.ui.create.CreateWatchlistActivity;
-import com.ebsoft.watchlist.ui.watchlist.WatchlistActivity;
+import com.ebsoft.watchlist.ui.watchlist.WatchlistFragment;
 import com.ebsoft.watchlist.utils.Constants;
 
 import javax.inject.Inject;
+
+import androidx.navigation.Navigation;
 
 public class WatchlistsFragment extends BaseFragment <FragmentWatchlistsBinding, WatchlistsViewModel>
         implements WatchlistsNavigator,
@@ -29,10 +30,6 @@ public class WatchlistsFragment extends BaseFragment <FragmentWatchlistsBinding,
 
     @Inject
     CardViewAdapter mAdapter;
-
-    @Inject
-    @MainActivityQualifier
-    RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     public int getBindingVariable() {
@@ -52,9 +49,10 @@ public class WatchlistsFragment extends BaseFragment <FragmentWatchlistsBinding,
     @Override
     public void setup() {
         FragmentWatchlistsBinding viewDataBinding = getViewDataBinding();
-        viewDataBinding.mainActivityRecyclerView.setLayoutManager(mLayoutManager);
         viewDataBinding.mainActivityRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.mainActivityRecyclerView.setAdapter(mAdapter);
+        viewDataBinding.mainActivityRecyclerView
+                .setLayoutManager(new LinearLayoutManager(getActivity()));
         getViewModel().setNavigator(this);
         getViewModel().subscribeToLiveData(this);
         mAdapter.setItemClickListener(this);
@@ -63,14 +61,14 @@ public class WatchlistsFragment extends BaseFragment <FragmentWatchlistsBinding,
 
     @Override
     public void onActionButtonClick() {
-        startActivity(new Intent(getContext(), CreateWatchlistActivity.class));
+        Navigation.findNavController(getView()).navigate(R.id.createWatchlistFragment);
     }
 
     @Override
     public void onItemClick(Watchlist item) {
-        Intent intent = new Intent(getContext(), WatchlistActivity.class);
-        intent.putExtra(Constants.EXTRA_KEY_WATCHLIST, item);
-        startActivity(intent);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constants.EXTRA_KEY_WATCHLIST, item);
+        Navigation.findNavController(getView()).navigate(R.id.watchlistFragment, bundle);
     }
 
     @Override

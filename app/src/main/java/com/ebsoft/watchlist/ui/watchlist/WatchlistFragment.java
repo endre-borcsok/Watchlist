@@ -10,18 +10,18 @@ import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.yahoo.Item;
-import com.ebsoft.watchlist.databinding.ActivityWatchlistBinding;
+import com.ebsoft.watchlist.databinding.FragmentWatchlistBinding;
 import com.ebsoft.watchlist.di.WatchlistActivityQualifier;
 import com.ebsoft.watchlist.ui.adapter.CardViewAdapter;
 import com.ebsoft.watchlist.ui.adapter.CardViewItemClickListener;
 import com.ebsoft.watchlist.ui.adapter.CardViewItemRemoveListener;
-import com.ebsoft.watchlist.ui.base.BaseActivity;
+import com.ebsoft.watchlist.ui.base.BaseFragment;
 import com.ebsoft.watchlist.ui.search.SearchActivity;
 import com.ebsoft.watchlist.utils.Constants;
 
 import javax.inject.Inject;
 
-public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, WatchlistViewModel>
+public class WatchlistFragment extends BaseFragment<FragmentWatchlistBinding, WatchlistViewModel>
         implements WatchlistNavigator,
         SwipeRefreshLayout.OnRefreshListener,
         CardViewItemClickListener<Stock>,
@@ -43,19 +43,19 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
     public void setup() {
         mAdapter.setItemClickListener(this);
         mAdapter.setItemRemoveListener(this);
-        ActivityWatchlistBinding viewDataBinding = getViewDataBinding();
+        FragmentWatchlistBinding viewDataBinding = getViewDataBinding();
         viewDataBinding.watchlistRecyclerView.setLayoutManager(mLayoutManager);
         viewDataBinding.watchlistRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.watchlistRecyclerView.setAdapter(mAdapter);
         viewDataBinding.swipeRefresh.setOnRefreshListener(this);
         getViewModel().setNavigator(this);
         getViewModel().subscribeToLiveData(this);
-        setTitle(getViewModel().getWatchlist().getName());
+        getActivity().setTitle(getViewModel().getWatchlist().getName());
     }
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_watchlist;
+        return R.layout.fragment_watchlist;
     }
 
     @Override
@@ -70,11 +70,11 @@ public class WatchlistActivity extends BaseActivity<ActivityWatchlistBinding, Wa
 
     @Override
     public void onActionButtonClick() {
-        startActivityForResult(new Intent(this, SearchActivity.class), RESULT_CODE);
+        startActivityForResult(new Intent(getContext(), SearchActivity.class), RESULT_CODE);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RESULT_CODE) {
             if(resultCode == Activity.RESULT_OK){
                 Item result = (Item) data.getExtras().getSerializable(Constants.SEARCH_RESULT_KEY);

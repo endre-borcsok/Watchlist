@@ -28,8 +28,8 @@ public class WatchlistModule {
 
     @Provides
     @WatchlistActivityQualifier
-    RecyclerView.LayoutManager providesLayoutManager(WatchlistActivity activity) {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
+    RecyclerView.LayoutManager providesLayoutManager(WatchlistFragment fragment) {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(fragment.getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         return layoutManager;
     }
@@ -40,7 +40,7 @@ public class WatchlistModule {
     }
 
     @Provides
-    Watchlist provideWatchlist(WatchlistActivity activity) {
-        return (Watchlist) activity.getIntent().getSerializableExtra(Constants.EXTRA_KEY_WATCHLIST);
+    Watchlist provideWatchlist(WatchlistFragment fragment) {
+        return (Watchlist) fragment.getArguments().getSerializable(Constants.EXTRA_KEY_WATCHLIST);
     }
 }
