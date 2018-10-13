@@ -4,7 +4,6 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,12 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import dagger.android.support.AndroidSupportInjection;
+import dagger.android.support.DaggerFragment;
 
-public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseViewModel> extends Fragment {
-
-    private BaseActivity mActivity;
-
-    private View mRootView;
+public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseViewModel> extends DaggerFragment {
 
     private T mViewDataBinding;
 
@@ -30,9 +26,7 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
 
     public abstract V getViewModel();
 
-    public BaseActivity getBaseActivity() {
-        return mActivity;
-    }
+    public abstract void setup();
 
     public T getViewDataBinding() {
         return mViewDataBinding;
@@ -40,31 +34,24 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
 
     @Override
     public void onAttach(Context context) {
+        injectDependencies();
         super.onAttach(context);
-        if (context instanceof BaseActivity) {
-            BaseActivity activity = (BaseActivity) context;
-            this.mActivity = activity;
-        }
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        performDependencyInjection();
         super.onCreate(savedInstanceState);
         mViewModel = getViewModel();
-        setHasOptionsMenu(false);
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mViewDataBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
-        mRootView = mViewDataBinding.getRoot();
-        return mRootView;
+        return mViewDataBinding.getRoot();
     }
 
     @Override
     public void onDetach() {
-        mActivity = null;
         super.onDetach();
     }
 
@@ -73,9 +60,10 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
         super.onViewCreated(view, savedInstanceState);
         mViewDataBinding.setVariable(getBindingVariable(), mViewModel);
         mViewDataBinding.executePendingBindings();
+        setup();
     }
 
-    private void performDependencyInjection() {
+    private void injectDependencies() {
         AndroidSupportInjection.inject(this);
     }
 }

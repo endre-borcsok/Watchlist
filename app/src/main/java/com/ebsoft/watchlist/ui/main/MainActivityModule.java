@@ -19,21 +19,4 @@ import dagger.Provides;
 @Module
 public class MainActivityModule {
 
-    @Provides
-    MainViewModel provideMainViewModel(DataManager DataManager) {
-        return new MainViewModel(DataManager);
-    }
-
-    @Provides
-    @MainActivityQualifier
-    RecyclerView.LayoutManager providesLayoutManager(MainActivity activity) {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        return layoutManager;
-    }
-
-    @Provides
-    CardViewAdapter providesAdapter() {
-        return new CardViewAdapter<Watchlist>(R.layout.layout_main_menu_cardview_item);
-    }
 }

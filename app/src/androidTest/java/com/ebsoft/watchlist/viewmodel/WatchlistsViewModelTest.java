@@ -11,7 +11,7 @@ import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.data.control.db.DBManagerImpl;
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
-import com.ebsoft.watchlist.ui.main.MainViewModel;
+import com.ebsoft.watchlist.ui.watchlists.WatchlistsViewModel;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,11 +33,11 @@ import static org.mockito.Mockito.when;
  */
 
 @RunWith(AndroidJUnit4.class)
-public class MainViewModelTest {
+public class WatchlistsViewModelTest {
 
     @Test
     public void testDeleteWatchlist() throws InterruptedException {
-        MainViewModel viewModel = getViewModel();
+        WatchlistsViewModel viewModel = getViewModel();
         loadList(viewModel);
         viewModel.deleteWatchlist(new Watchlist(""));
         new CountDownLatch(1).await(2, TimeUnit.SECONDS);
@@ -54,7 +54,7 @@ public class MainViewModelTest {
         assertTrue(getViewModel().getList() != null);
     }
 
-    private ObservableList<Watchlist> loadList(MainViewModel viewModel)
+    private ObservableList<Watchlist> loadList(WatchlistsViewModel viewModel)
             throws InterruptedException {
         viewModel.subscribeToLiveData(mockLifecycleOwner());
         new CountDownLatch(1).await(2, TimeUnit.SECONDS);
@@ -69,8 +69,8 @@ public class MainViewModelTest {
         return lo;
     }
 
-    private MainViewModel getViewModel() {
-        return new MainViewModel(mockDataManager());
+    private WatchlistsViewModel getViewModel() {
+        return new WatchlistsViewModel(mockDataManager());
     }
 
     private DataManager mockDataManager() {

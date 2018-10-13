@@ -1,4 +1,4 @@
-package com.ebsoft.watchlist.ui.main;
+package com.ebsoft.watchlist.ui.watchlists;
 
 import android.arch.lifecycle.LifecycleOwner;
 import android.databinding.ObservableArrayList;
@@ -15,11 +15,11 @@ import io.reactivex.schedulers.Schedulers;
  * Created by endre on 07/09/18.
  */
 
-public class MainViewModel extends BaseViewModel<MainNavigator> {
+public class WatchlistsViewModel extends BaseViewModel<WatchlistsNavigator> {
 
     private final ObservableList<Watchlist> list = new ObservableArrayList<>();
 
-    public MainViewModel(DataManager DataManager) {
+    public WatchlistsViewModel(DataManager DataManager) {
         super(DataManager);
     }
 
