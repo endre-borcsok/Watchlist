@@ -59,7 +59,7 @@ public class WatchlistViewModelTest {
     @Test
     public void testStockDeletion() throws InterruptedException {
         WatchlistViewModel watchlistViewModel = new WatchlistViewModel(mockDataManager(),
-                new Watchlist(new String()));
+                getWatchlist());
         subscribeToLiveData(watchlistViewModel);
         insertStock(watchlistViewModel);
         removeStock(watchlistViewModel);
@@ -69,7 +69,7 @@ public class WatchlistViewModelTest {
     @Test
     public void testStockInsertion() throws InterruptedException {
         WatchlistViewModel watchlistViewModel = new WatchlistViewModel(mockDataManager(),
-                new Watchlist(new String()));
+                getWatchlist());
         subscribeToLiveData(watchlistViewModel);
         insertStock(watchlistViewModel);
         assertTrue(!watchlistViewModel.getList().isEmpty());
@@ -78,7 +78,7 @@ public class WatchlistViewModelTest {
     @Test
     public void testSubscribeToLiveData() throws InterruptedException {
         WatchlistViewModel watchlistViewModel = new WatchlistViewModel(mockDataManager(),
-                new Watchlist(new String()));
+                getWatchlist());
         subscribeToLiveData(watchlistViewModel);
         assertTrue(watchlistViewModel.getList().isEmpty());
     }
@@ -86,13 +86,13 @@ public class WatchlistViewModelTest {
     @Test
     public void testWatchlistNotNull() {
         assertTrue(new WatchlistViewModel(mock(DataManager.class),
-                new Watchlist(new String())).getWatchlist() != null);
+                getWatchlist()).getWatchlist() != null);
     }
 
     @Test
     public void testListNotNull() {
         assertTrue(new WatchlistViewModel(mock(DataManager.class),
-                new Watchlist(new String())).getList() != null);
+                getWatchlist()).getList() != null);
     }
 
     private void subscribeToLiveData(WatchlistViewModel watchlistViewModel)
@@ -102,7 +102,9 @@ public class WatchlistViewModelTest {
     }
 
     private void insertStock(WatchlistViewModel watchlistViewModel) throws InterruptedException {
-        watchlistViewModel.insertStock(new Stock());
+        Stock newStock = new Stock();
+        newStock.setListid(watchlistViewModel.getWatchlist().getId());
+        watchlistViewModel.getDataManager().getDbManager().insertStock(newStock).subscribe();
         new CountDownLatch(1).await(1, TimeUnit.SECONDS);
     }
 
@@ -120,12 +122,12 @@ public class WatchlistViewModelTest {
     }
 
     private DataManager mockDataManager() {
-        DataManager dataMAnager = mock(DataManager.class);
+        DataManager dataManager = mock(DataManager.class);
         AbstractDataBase db = DbManagerUtil.getDb(InstrumentationRegistry.getTargetContext());
         DBManagerImpl dbManager = new DBManagerImpl(db);
-        when(dataMAnager.getDbManager()).thenReturn(dbManager);
-        when(dataMAnager.getApiManager()).thenReturn(apiManager);
-        return dataMAnager;
+        when(dataManager.getDbManager()).thenReturn(dbManager);
+        when(dataManager.getApiManager()).thenReturn(apiManager);
+        return dataManager;
     }
 
     private Map<String, StockQuote> getResponseMap() {
@@ -133,5 +135,11 @@ public class WatchlistViewModelTest {
         map.put("AAPL", new StockQuote());
         map.put("MSFT", new StockQuote());
         return map;
+    }
+
+    private Watchlist getWatchlist() {
+        Watchlist wlist = new Watchlist("test");
+        wlist.setId(1);
+        return wlist;
     }
 }

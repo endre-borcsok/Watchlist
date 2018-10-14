@@ -1,13 +1,20 @@
 package com.ebsoft.watchlist.viewmodel;
 
+import android.support.test.InstrumentationRegistry;
+
 import com.ebsoft.watchlist.data.DataManager;
+import com.ebsoft.watchlist.data.control.db.AbstractDataBase;
+import com.ebsoft.watchlist.data.control.db.DBManagerImpl;
 import com.ebsoft.watchlist.data.control.network.APIManager;
 import com.ebsoft.watchlist.data.control.network.APIManagerImpl;
 import com.ebsoft.watchlist.data.control.network.Yahoo.YahooAPI;
+import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.yahoo.Item;
 import com.ebsoft.watchlist.data.model.yahoo.SymbolSearch;
 import com.ebsoft.watchlist.data.model.yahoo.SymbolSearchResponse;
 import com.ebsoft.watchlist.ui.search.SearchViewModel;
+import com.ebsoft.watchlist.ui.watchlist.WatchlistViewModel;
+import com.ebsoft.watchlist.util.DbManagerUtil;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +28,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
+import io.reactivex.functions.Consumer;
 import retrofit2.Response;
 
 import static junit.framework.TestCase.assertTrue;
@@ -50,12 +58,26 @@ public class SearchViewModelTest {
     }
 
     @Test
+    public void testStockInsertion() throws InterruptedException {
+        SearchViewModel searchViewModel = new SearchViewModel(mockDataManager());
+        Stock stock = new Stock();
+        stock.setSymbol("AAA");
+        searchViewModel.insertStock(stock);
+        new CountDownLatch(1).await(1, TimeUnit.SECONDS);
+        searchViewModel.getDataManager().getDbManager()
+                .queryStock("AAA").subscribe(stocks -> assertTrue(!stocks.isEmpty()));
+    }
+
+    @Test
     public void testListNotNull() {
         assertTrue(new SearchViewModel(mock(DataManager.class)).getList() != null);
     }
 
     private DataManager mockDataManager() {
         DataManager dataManager = mock(DataManager.class);
+        AbstractDataBase db = DbManagerUtil.getDb(InstrumentationRegistry.getTargetContext());
+        DBManagerImpl dbManager = new DBManagerImpl(db);
+        when(dataManager.getDbManager()).thenReturn(dbManager);
         when(dataManager.getApiManager()).thenReturn(apiManager);
         when(yahooAPI.searchSymbol(any(String.class)))
                 .thenReturn(Observable.just(Response.success(getResponse())));
