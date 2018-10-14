@@ -2,24 +2,25 @@ package com.ebsoft.watchlist.ui.watchlist;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.LinearLayoutManager;
 
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.yahoo.Item;
 import com.ebsoft.watchlist.databinding.FragmentWatchlistBinding;
-import com.ebsoft.watchlist.di.WatchlistActivityQualifier;
 import com.ebsoft.watchlist.ui.adapter.CardViewAdapter;
 import com.ebsoft.watchlist.ui.adapter.CardViewItemClickListener;
 import com.ebsoft.watchlist.ui.adapter.CardViewItemRemoveListener;
 import com.ebsoft.watchlist.ui.base.BaseFragment;
-import com.ebsoft.watchlist.ui.search.SearchActivity;
 import com.ebsoft.watchlist.utils.Constants;
 
 import javax.inject.Inject;
+
+import androidx.navigation.Navigation;
 
 public class WatchlistFragment extends BaseFragment<FragmentWatchlistBinding, WatchlistViewModel>
         implements WatchlistNavigator,
@@ -27,24 +28,18 @@ public class WatchlistFragment extends BaseFragment<FragmentWatchlistBinding, Wa
         CardViewItemClickListener<Stock>,
         CardViewItemRemoveListener<Stock> {
 
-    private final int RESULT_CODE = 0;
-
     @Inject
     WatchlistViewModel mWatchlistViewModel;
 
     @Inject
     CardViewAdapter mAdapter;
 
-    @Inject
-    @WatchlistActivityQualifier
-    RecyclerView.LayoutManager mLayoutManager;
-
     @Override
     public void setup() {
         mAdapter.setItemClickListener(this);
         mAdapter.setItemRemoveListener(this);
         FragmentWatchlistBinding viewDataBinding = getViewDataBinding();
-        viewDataBinding.watchlistRecyclerView.setLayoutManager(mLayoutManager);
+        viewDataBinding.watchlistRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         viewDataBinding.watchlistRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.watchlistRecyclerView.setAdapter(mAdapter);
         viewDataBinding.swipeRefresh.setOnRefreshListener(this);
@@ -70,17 +65,9 @@ public class WatchlistFragment extends BaseFragment<FragmentWatchlistBinding, Wa
 
     @Override
     public void onActionButtonClick() {
-        startActivityForResult(new Intent(getContext(), SearchActivity.class), RESULT_CODE);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == RESULT_CODE) {
-            if(resultCode == Activity.RESULT_OK){
-                Item result = (Item) data.getExtras().getSerializable(Constants.SEARCH_RESULT_KEY);
-                getViewModel().insertStock(Stock.create(result, getViewModel().getWatchlist()));
-            }
-        }
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constants.EXTRA_KEY_WATCHLIST, getViewModel().getWatchlist());
+        Navigation.findNavController(getView()).navigate(R.id.searchFragment, bundle);
     }
 
     @Override

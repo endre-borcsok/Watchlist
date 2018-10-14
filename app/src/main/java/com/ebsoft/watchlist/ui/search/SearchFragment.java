@@ -1,23 +1,24 @@
 package com.ebsoft.watchlist.ui.search;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.LinearLayoutManager;
 
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
+import com.ebsoft.watchlist.data.model.db.Stock;
+import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.data.model.yahoo.Item;
-import com.ebsoft.watchlist.databinding.ActivitySearchBinding;
-import com.ebsoft.watchlist.di.SearchActivityQualifier;
+import com.ebsoft.watchlist.databinding.FragmentSearchBinding;
 import com.ebsoft.watchlist.ui.adapter.CardViewAdapter;
 import com.ebsoft.watchlist.ui.adapter.CardViewItemClickListener;
-import com.ebsoft.watchlist.ui.base.BaseActivity;
+import com.ebsoft.watchlist.ui.base.BaseFragment;
 import com.ebsoft.watchlist.utils.Constants;
 
 import javax.inject.Inject;
 
-public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchViewModel> implements
+import androidx.navigation.Navigation;
+
+public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchViewModel> implements
         android.support.v7.widget.SearchView.OnQueryTextListener, CardViewItemClickListener<Item> {
 
     @Inject
@@ -26,14 +27,10 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
     @Inject
     CardViewAdapter mAdapter;
 
-    @Inject
-    @SearchActivityQualifier
-    RecyclerView.LayoutManager mLayoutManager;
-
     @Override
     public void setup() {
-        ActivitySearchBinding viewDataBinding = getViewDataBinding();
-        viewDataBinding.searchRecyclerView.setLayoutManager(mLayoutManager);
+        FragmentSearchBinding viewDataBinding = getViewDataBinding();
+        viewDataBinding.searchRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         viewDataBinding.searchRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.searchRecyclerView.setAdapter(mAdapter);
         viewDataBinding.searchView.setOnQueryTextListener(this);
@@ -42,7 +39,7 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_search;
+        return R.layout.fragment_search;
     }
 
     @Override
@@ -68,9 +65,8 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
 
     @Override
     public void onItemClick(Item item) {
-        Intent returnIntent = new Intent();
-        returnIntent.putExtra(Constants.SEARCH_RESULT_KEY, item);
-        setResult(Activity.RESULT_OK, returnIntent);
-        finish();
+        Watchlist wlist = (Watchlist) getArguments().getSerializable(Constants.EXTRA_KEY_WATCHLIST);
+        getViewModel().insertStock(Stock.create(item, wlist));
+        Navigation.findNavController(getView()).navigateUp();
     }
 }

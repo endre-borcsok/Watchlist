@@ -56,15 +56,6 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
                 .subscribe());
     }
 
-    public void insertStock(Stock stock) {
-        mRequestRefresh = true;
-        addDisposable(mDataManager.getDbManager()
-                .insertStock(stock)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe());
-    }
-
     public void refresh() {
         if (list.size() < 1) return;
         loading.set(true);

@@ -1,13 +1,9 @@
 package com.ebsoft.watchlist.ui.watchlist;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
-import com.ebsoft.watchlist.di.WatchlistActivityQualifier;
 import com.ebsoft.watchlist.ui.adapter.CardViewAdapter;
 import com.ebsoft.watchlist.utils.Constants;
 
@@ -24,14 +20,6 @@ public class WatchlistModule {
     @Provides
     WatchlistViewModel provideWatchListViewModel(DataManager DataManager, Watchlist watchlist) {
         return new WatchlistViewModel(DataManager, watchlist);
-    }
-
-    @Provides
-    @WatchlistActivityQualifier
-    RecyclerView.LayoutManager providesLayoutManager(WatchlistFragment fragment) {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(fragment.getContext());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        return layoutManager;
     }
 
     @Provides

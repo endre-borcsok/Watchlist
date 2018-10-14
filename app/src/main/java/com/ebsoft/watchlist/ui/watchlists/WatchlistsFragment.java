@@ -1,6 +1,5 @@
 package com.ebsoft.watchlist.ui.watchlists;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,7 +12,6 @@ import com.ebsoft.watchlist.ui.adapter.CardViewAdapter;
 import com.ebsoft.watchlist.ui.adapter.CardViewItemClickListener;
 import com.ebsoft.watchlist.ui.adapter.CardViewItemRemoveListener;
 import com.ebsoft.watchlist.ui.base.BaseFragment;
-import com.ebsoft.watchlist.ui.watchlist.WatchlistFragment;
 import com.ebsoft.watchlist.utils.Constants;
 
 import javax.inject.Inject;
