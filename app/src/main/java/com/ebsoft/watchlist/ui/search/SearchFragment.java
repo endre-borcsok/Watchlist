@@ -66,7 +66,7 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
     @Override
     public void onItemClick(Item item) {
         Watchlist wlist = (Watchlist) getArguments().getSerializable(Constants.EXTRA_KEY_WATCHLIST);
-        getViewModel().insertStock(Stock.create(item, wlist));
+        getViewModel().insertStock(Stock.Companion.create(item, wlist));
         Navigation.findNavController(getView()).navigateUp();
     }
 }

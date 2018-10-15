@@ -32,7 +32,7 @@ public class StockTest {
     @Test
     public void testStockCreation() {
         Watchlist wlist = new Watchlist("test");
-        Stock newStock = Stock.create(mTestStock, wlist);
+        Stock newStock = Stock.Companion.create(mTestStock, wlist);
         assertTrue(newStock != null);
         assertTrue(newStock.getSymbol().equals(SYMBOL));
         assertTrue(newStock.getListid() == wlist.getId());
