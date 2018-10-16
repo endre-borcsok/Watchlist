@@ -73,7 +73,9 @@ dependencies {
 
     // Navigation
     implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha06'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {
     mavenCentral()
