@@ -15,27 +15,27 @@ import java.util.List;
  * Created by endre on 08/09/18.
  */
 
-public class CardViewAdapter<E> extends RecyclerView.Adapter<CardViewHolder<E>>
+public class ListAdapter<E> extends RecyclerView.Adapter<ListViewHolder<E>>
         implements BindableAdapter<List<E>> {
 
     private final int mLayoutId;
 
     private final List<E> mDataSet;
 
-    private CardViewItemClickListener<E> mItemClickListener;
+    private ListItemClickListener<E> mItemClickListener;
 
-    private CardViewItemRemoveListener<E> mItemRemoveListener;
+    private ListItemRemoveListener<E> mItemRemoveListener;
 
-    public CardViewAdapter(int layoutId) {
+    public ListAdapter(int layoutId) {
         this.mLayoutId = layoutId;
         this.mDataSet = new ArrayList<>();
     }
 
-    public void setItemClickListener(CardViewItemClickListener<E> listener) {
+    public void setItemClickListener(ListItemClickListener<E> listener) {
         this.mItemClickListener = listener;
     }
 
-    public void setItemRemoveListener(CardViewItemRemoveListener<E> listener) {
+    public void setItemRemoveListener(ListItemRemoveListener<E> listener) {
         this.mItemRemoveListener = listener;
     }
 
@@ -51,16 +51,16 @@ public class CardViewAdapter<E> extends RecyclerView.Adapter<CardViewHolder<E>>
     }
 
     @Override
-    public CardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater =
                 LayoutInflater.from(parent.getContext());
         ViewDataBinding binding = DataBindingUtil.inflate(
                 layoutInflater, viewType, parent, false);
-        return new CardViewHolder(binding);
+        return new ListViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CardViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull ListViewHolder viewHolder, int position) {
         viewHolder.bind(mDataSet.get(position));
         viewHolder.setClickListener(getOnClickListenerForPosition(position));
         viewHolder.setRemoveClickListener(getItemRemoveListenerForPosition(position));

@@ -3,7 +3,7 @@ package com.ebsoft.watchlist.ui.search;
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.data.model.yahoo.Item;
-import com.ebsoft.watchlist.ui.adapter.CardViewAdapter;
+import com.ebsoft.watchlist.ui.adapter.ListAdapter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -21,7 +21,7 @@ public class SearchModule {
     }
 
     @Provides
-    CardViewAdapter providesAdapter() {
-        return new CardViewAdapter<Item>(R.layout.layout_search_item);
+    ListAdapter providesAdapter() {
+        return new ListAdapter<Item>(R.layout.layout_search_item);
     }
 }

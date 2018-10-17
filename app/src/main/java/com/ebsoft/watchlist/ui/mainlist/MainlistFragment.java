@@ -8,9 +8,9 @@ import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.databinding.FragmentMainlistBinding;
-import com.ebsoft.watchlist.ui.adapter.CardViewAdapter;
-import com.ebsoft.watchlist.ui.adapter.CardViewItemClickListener;
-import com.ebsoft.watchlist.ui.adapter.CardViewItemRemoveListener;
+import com.ebsoft.watchlist.ui.adapter.ListAdapter;
+import com.ebsoft.watchlist.ui.adapter.ListItemClickListener;
+import com.ebsoft.watchlist.ui.adapter.ListItemRemoveListener;
 import com.ebsoft.watchlist.ui.base.BaseFragment;
 import com.ebsoft.watchlist.utils.Constants;
 
@@ -19,15 +19,13 @@ import javax.inject.Inject;
 import androidx.navigation.Navigation;
 
 public class MainlistFragment extends BaseFragment <FragmentMainlistBinding, MainlistViewModel>
-        implements MainlistNavigator,
-        CardViewItemClickListener<Watchlist>,
-        CardViewItemRemoveListener<Watchlist> {
+        implements MainlistNavigator, ListItemClickListener<Watchlist>, ListItemRemoveListener<Watchlist> {
 
     @Inject
     MainlistViewModel mMainlistViewModel;
 
     @Inject
-    CardViewAdapter mAdapter;
+    ListAdapter mAdapter;
 
     @Override
     public int getBindingVariable() {

@@ -7,11 +7,11 @@ import android.view.View;
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
 
-public class CardViewHolder<T> extends RecyclerView.ViewHolder {
+public class ListViewHolder<T> extends RecyclerView.ViewHolder {
 
     private final ViewDataBinding binding;
 
-    public CardViewHolder(ViewDataBinding binding) {
+    public ListViewHolder(ViewDataBinding binding) {
         super(binding.getRoot());
         this.binding = binding;
     }

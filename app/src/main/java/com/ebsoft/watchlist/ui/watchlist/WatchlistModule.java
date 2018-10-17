@@ -4,7 +4,7 @@ import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
-import com.ebsoft.watchlist.ui.adapter.CardViewAdapter;
+import com.ebsoft.watchlist.ui.adapter.ListAdapter;
 import com.ebsoft.watchlist.utils.Constants;
 
 import dagger.Module;
@@ -23,8 +23,8 @@ public class WatchlistModule {
     }
 
     @Provides
-    CardViewAdapter providesAdapter() {
-        return new CardViewAdapter<Stock>(R.layout.layout_stock_item);
+    ListAdapter providesAdapter() {
+        return new ListAdapter<Stock>(R.layout.layout_stock_item);
     }
 
     @Provides

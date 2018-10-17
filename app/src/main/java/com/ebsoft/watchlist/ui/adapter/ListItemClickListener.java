@@ -1,6 +1,6 @@
 package com.ebsoft.watchlist.ui.adapter;
 
-public interface CardViewItemClickListener<T> {
+public interface ListItemClickListener<T> {
 
     void onItemClick(T item);
 }

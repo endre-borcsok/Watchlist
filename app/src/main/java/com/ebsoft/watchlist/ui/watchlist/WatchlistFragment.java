@@ -9,9 +9,9 @@ import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.databinding.FragmentWatchlistBinding;
-import com.ebsoft.watchlist.ui.adapter.CardViewAdapter;
-import com.ebsoft.watchlist.ui.adapter.CardViewItemClickListener;
-import com.ebsoft.watchlist.ui.adapter.CardViewItemRemoveListener;
+import com.ebsoft.watchlist.ui.adapter.ListAdapter;
+import com.ebsoft.watchlist.ui.adapter.ListItemClickListener;
+import com.ebsoft.watchlist.ui.adapter.ListItemRemoveListener;
 import com.ebsoft.watchlist.ui.base.BaseFragment;
 import com.ebsoft.watchlist.utils.Constants;
 
@@ -21,15 +21,13 @@ import androidx.navigation.Navigation;
 
 public class WatchlistFragment extends BaseFragment<FragmentWatchlistBinding, WatchlistViewModel>
         implements WatchlistNavigator,
-        SwipeRefreshLayout.OnRefreshListener,
-        CardViewItemClickListener<Stock>,
-        CardViewItemRemoveListener<Stock> {
+        SwipeRefreshLayout.OnRefreshListener, ListItemClickListener<Stock>, ListItemRemoveListener<Stock> {
 
     @Inject
     WatchlistViewModel mWatchlistViewModel;
 
     @Inject
-    CardViewAdapter mAdapter;
+    ListAdapter mAdapter;
 
     @Override
     public void setup() {
