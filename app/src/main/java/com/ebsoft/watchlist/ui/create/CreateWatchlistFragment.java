@@ -16,7 +16,10 @@ public class CreateWatchlistFragment extends BaseFragment<FragmentCreateWatchlis
     CreateWatchlistViewModel mCreateWatchlistViewModel;
 
     @Override
-    public void setup() { mCreateWatchlistViewModel.setNavigator(this); }
+    public void setup() {
+        mCreateWatchlistViewModel.setNavigator(this);
+        getActivity().setTitle(R.string.create_watchlist_activity_label);
+    }
 
     @Override
     public int getLayoutId() {

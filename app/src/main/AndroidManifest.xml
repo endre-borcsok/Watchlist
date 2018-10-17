@@ -22,18 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".ui.search.SearchFragment"
-            android:label="@string/search_activity_label"/>
-
-        <activity
-            android:name=".ui.create.CreateWatchlistFragment"
-            android:windowSoftInputMode="stateAlwaysVisible"
-            android:label="@string/create_watchlist_activity_label"/>
-
-        <activity
-            android:name=".ui.watchlist.WatchlistFragment"/>
     </application>
 
 </manifest>

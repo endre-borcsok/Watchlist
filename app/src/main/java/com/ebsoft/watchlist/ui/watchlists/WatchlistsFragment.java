@@ -46,6 +46,7 @@ public class WatchlistsFragment extends BaseFragment <FragmentWatchlistsBinding,
 
     @Override
     public void setup() {
+        getActivity().setTitle(R.string.main_activity_label);
         FragmentWatchlistsBinding viewDataBinding = getViewDataBinding();
         viewDataBinding.mainActivityRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.mainActivityRecyclerView.setAdapter(mAdapter);
