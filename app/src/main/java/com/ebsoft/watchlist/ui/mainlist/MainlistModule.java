@@ -1,4 +1,4 @@
-package com.ebsoft.watchlist.ui.watchlists;
+package com.ebsoft.watchlist.ui.mainlist;
 
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.DataManager;
@@ -9,11 +9,11 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class WatchlistsModule {
+public class MainlistModule {
 
     @Provides
-    WatchlistsViewModel provideMainViewModel(DataManager DataManager) {
-        return new WatchlistsViewModel(DataManager);
+    MainlistViewModel provideMainViewModel(DataManager DataManager) {
+        return new MainlistViewModel(DataManager);
     }
 
     @Provides

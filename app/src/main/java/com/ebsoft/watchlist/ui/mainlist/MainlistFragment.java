@@ -1,4 +1,4 @@
-package com.ebsoft.watchlist.ui.watchlists;
+package com.ebsoft.watchlist.ui.mainlist;
 
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -18,13 +18,13 @@ import javax.inject.Inject;
 
 import androidx.navigation.Navigation;
 
-public class WatchlistsFragment extends BaseFragment <FragmentMainlistBinding, WatchlistsViewModel>
-        implements WatchlistsNavigator,
+public class MainlistFragment extends BaseFragment <FragmentMainlistBinding, MainlistViewModel>
+        implements MainlistNavigator,
         CardViewItemClickListener<Watchlist>,
         CardViewItemRemoveListener<Watchlist> {
 
     @Inject
-    WatchlistsViewModel mWatchlistsViewModel;
+    MainlistViewModel mMainlistViewModel;
 
     @Inject
     CardViewAdapter mAdapter;
@@ -40,8 +40,8 @@ public class WatchlistsFragment extends BaseFragment <FragmentMainlistBinding, W
     }
 
     @Override
-    public WatchlistsViewModel getViewModel() {
-        return mWatchlistsViewModel;
+    public MainlistViewModel getViewModel() {
+        return mMainlistViewModel;
     }
 
     @Override

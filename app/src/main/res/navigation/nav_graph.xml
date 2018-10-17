@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/watchlistsFragment"
-        android:name="com.ebsoft.watchlist.ui.watchlists.WatchlistsFragment"
+        android:name="com.ebsoft.watchlist.ui.mainlist.MainlistFragment"
         android:label="WatchlistsFragment" >
 
         <action

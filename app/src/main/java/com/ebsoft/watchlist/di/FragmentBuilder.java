@@ -6,8 +6,8 @@ import com.ebsoft.watchlist.ui.search.SearchFragment;
 import com.ebsoft.watchlist.ui.search.SearchModule;
 import com.ebsoft.watchlist.ui.watchlist.WatchlistFragment;
 import com.ebsoft.watchlist.ui.watchlist.WatchlistModule;
-import com.ebsoft.watchlist.ui.watchlists.WatchlistsFragment;
-import com.ebsoft.watchlist.ui.watchlists.WatchlistsModule;
+import com.ebsoft.watchlist.ui.mainlist.MainlistFragment;
+import com.ebsoft.watchlist.ui.mainlist.MainlistModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -15,8 +15,8 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class FragmentBuilder {
 
-    @ContributesAndroidInjector(modules = WatchlistsModule.class)
-    abstract WatchlistsFragment bindWatchlistsFragment();
+    @ContributesAndroidInjector(modules = MainlistModule.class)
+    abstract MainlistFragment bindWatchlistsFragment();
 
     @ContributesAndroidInjector(modules = CreateWatchlistModule.class)
     abstract CreateWatchlistFragment bindCreateWatchlistFragment();
