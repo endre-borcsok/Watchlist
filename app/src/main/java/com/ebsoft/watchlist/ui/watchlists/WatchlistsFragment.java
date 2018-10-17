@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
-import com.ebsoft.watchlist.databinding.FragmentWatchlistsBinding;
+import com.ebsoft.watchlist.databinding.FragmentMainlistBinding;
 import com.ebsoft.watchlist.ui.adapter.CardViewAdapter;
 import com.ebsoft.watchlist.ui.adapter.CardViewItemClickListener;
 import com.ebsoft.watchlist.ui.adapter.CardViewItemRemoveListener;
@@ -18,7 +18,7 @@ import javax.inject.Inject;
 
 import androidx.navigation.Navigation;
 
-public class WatchlistsFragment extends BaseFragment <FragmentWatchlistsBinding, WatchlistsViewModel>
+public class WatchlistsFragment extends BaseFragment <FragmentMainlistBinding, WatchlistsViewModel>
         implements WatchlistsNavigator,
         CardViewItemClickListener<Watchlist>,
         CardViewItemRemoveListener<Watchlist> {
@@ -36,7 +36,7 @@ public class WatchlistsFragment extends BaseFragment <FragmentWatchlistsBinding,
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_watchlists;
+        return R.layout.fragment_mainlist;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class WatchlistsFragment extends BaseFragment <FragmentWatchlistsBinding,
     @Override
     public void setup() {
         getActivity().setTitle(R.string.main_activity_label);
-        FragmentWatchlistsBinding viewDataBinding = getViewDataBinding();
+        FragmentMainlistBinding viewDataBinding = getViewDataBinding();
         viewDataBinding.mainActivityRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.mainActivityRecyclerView.setAdapter(mAdapter);
         viewDataBinding.mainActivityRecyclerView
