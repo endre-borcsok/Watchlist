@@ -1,5 +1,6 @@
 package com.ebsoft.watchlist.ui.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
@@ -9,11 +10,13 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 import dagger.android.support.AndroidSupportInjection;
 import dagger.android.support.DaggerFragment;
 
-public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseViewModel> extends DaggerFragment {
+public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseViewModel>
+        extends DaggerFragment {
 
     private T mViewDataBinding;
 
@@ -44,7 +47,8 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
         mViewDataBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
         return mViewDataBinding.getRoot();
     }
@@ -60,6 +64,18 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
         mViewDataBinding.setVariable(getBindingVariable(), mViewModel);
         mViewDataBinding.executePendingBindings();
         setup();
+    }
+
+    public void showKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getContext()
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+    }
+
+    public void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getContext()
+                .getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
     }
 
     private void injectDependencies() {

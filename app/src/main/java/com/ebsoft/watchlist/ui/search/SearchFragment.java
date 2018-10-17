@@ -19,7 +19,8 @@ import javax.inject.Inject;
 import androidx.navigation.Navigation;
 
 public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchViewModel> implements
-        android.support.v7.widget.SearchView.OnQueryTextListener, CardViewItemClickListener<Item> {
+        android.support.v7.widget.SearchView.OnQueryTextListener,
+        CardViewItemClickListener<Item> {
 
     @Inject
     SearchViewModel mSearchViewModel;
@@ -36,6 +37,7 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
         viewDataBinding.searchRecyclerView.setAdapter(mAdapter);
         viewDataBinding.searchView.setOnQueryTextListener(this);
         mAdapter.setItemClickListener(this);
+        showKeyboard();
     }
 
     @Override

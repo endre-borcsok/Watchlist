@@ -9,8 +9,9 @@ import javax.inject.Inject;
 
 import androidx.navigation.Navigation;
 
-public class CreateWatchlistFragment extends BaseFragment<FragmentCreateWatchlistBinding, CreateWatchlistViewModel>
-        implements CreateWatchlistNavigator{
+public class CreateWatchlistFragment
+        extends BaseFragment<FragmentCreateWatchlistBinding, CreateWatchlistViewModel>
+        implements CreateWatchlistNavigator {
 
     @Inject
     CreateWatchlistViewModel mCreateWatchlistViewModel;
@@ -19,6 +20,7 @@ public class CreateWatchlistFragment extends BaseFragment<FragmentCreateWatchlis
     public void setup() {
         mCreateWatchlistViewModel.setNavigator(this);
         getActivity().setTitle(R.string.create_watchlist_activity_label);
+        showKeyboard();
     }
 
     @Override
@@ -39,5 +41,6 @@ public class CreateWatchlistFragment extends BaseFragment<FragmentCreateWatchlis
     @Override
     public void onWatchlistCreated() {
         Navigation.findNavController(getView()).navigateUp();
+        hideKeyboard();
     }
 }
