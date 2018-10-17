@@ -1,7 +1,6 @@
 package com.ebsoft.watchlist.data.model.IEX
 
 import com.ebsoft.watchlist.data.model.StockInfo
-import com.ebsoft.watchlist.utils.Constants
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 

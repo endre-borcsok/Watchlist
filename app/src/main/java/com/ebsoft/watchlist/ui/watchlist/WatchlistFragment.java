@@ -1,7 +1,5 @@
 package com.ebsoft.watchlist.ui.watchlist;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -10,7 +8,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.model.db.Stock;
-import com.ebsoft.watchlist.data.model.yahoo.Item;
 import com.ebsoft.watchlist.databinding.FragmentWatchlistBinding;
 import com.ebsoft.watchlist.ui.adapter.CardViewAdapter;
 import com.ebsoft.watchlist.ui.adapter.CardViewItemClickListener;

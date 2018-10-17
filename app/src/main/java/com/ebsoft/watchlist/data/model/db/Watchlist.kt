@@ -5,9 +5,6 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.Ignore
 import android.arch.persistence.room.PrimaryKey
 import android.databinding.ObservableInt
-
-import org.apache.commons.lang3.mutable.MutableInt
-
 import java.io.Serializable
 
 /**

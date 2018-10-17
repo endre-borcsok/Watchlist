@@ -2,12 +2,12 @@ package com.ebsoft.watchlist.di;
 
 import com.ebsoft.watchlist.ui.create.CreateWatchlistFragment;
 import com.ebsoft.watchlist.ui.create.CreateWatchlistModule;
+import com.ebsoft.watchlist.ui.mainlist.MainlistFragment;
+import com.ebsoft.watchlist.ui.mainlist.MainlistModule;
 import com.ebsoft.watchlist.ui.search.SearchFragment;
 import com.ebsoft.watchlist.ui.search.SearchModule;
 import com.ebsoft.watchlist.ui.watchlist.WatchlistFragment;
 import com.ebsoft.watchlist.ui.watchlist.WatchlistModule;
-import com.ebsoft.watchlist.ui.mainlist.MainlistFragment;
-import com.ebsoft.watchlist.ui.mainlist.MainlistModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
