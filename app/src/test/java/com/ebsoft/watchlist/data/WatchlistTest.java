@@ -16,7 +16,7 @@ public class WatchlistTest {
     public void testListCount() {
         Watchlist wlist = new Watchlist("test");
         int count = 5;
-        wlist.setStockCount(count);
-        assertTrue(wlist.getStockCount() == count);
+        wlist.getStockCountObservable().set(count);
+        assertTrue(wlist.getStockCountObservable().get() == count);
     }
 }
