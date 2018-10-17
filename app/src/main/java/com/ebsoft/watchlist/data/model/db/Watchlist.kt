@@ -4,6 +4,7 @@ import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.Ignore
 import android.arch.persistence.room.PrimaryKey
+import android.databinding.ObservableInt
 
 import org.apache.commons.lang3.mutable.MutableInt
 
@@ -23,7 +24,7 @@ data class Watchlist @Ignore constructor (
         var id: Int = 0,
 
         @Ignore
-        var stockCount: Int = 0) : Serializable {
+        val stockCountObservable: ObservableInt = ObservableInt(0)) : Serializable {
 
-        constructor(name: String) : this(name, 0, 0)
+        constructor(name: String) : this(name, 0, ObservableInt(0))
 }

@@ -8,6 +8,8 @@ import com.ebsoft.watchlist.data.DataManager;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.ui.base.BaseViewModel;
 
+import java.util.List;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -25,15 +27,19 @@ public class WatchlistsViewModel extends BaseViewModel<WatchlistsNavigator> {
 
     public void subscribeToLiveData(LifecycleOwner owner) {
         mDataManager.getDbManager().loadWatchlists().observe(owner, watchlists -> {
-            for (Watchlist wlist : watchlists) {
-                mDataManager.getDbManager().loadStocks(wlist)
-                        .observe(owner, stocks -> {
-                            wlist.setStockCount(stocks.size());
-                            list.clear();
-                            list.addAll(watchlists);
-                        });
-            }
+            list.clear();
+            list.addAll(watchlists);
+            subscribeToStockCountObserver(owner, watchlists);
         });
+    }
+
+    public void subscribeToStockCountObserver(LifecycleOwner owner, List<Watchlist> watchlists) {
+        for (Watchlist wlist : watchlists) {
+            mDataManager.getDbManager().loadStocks(wlist)
+                    .observe(owner, stocks -> {
+                        wlist.getStockCountObservable().set(stocks.size());
+                    });
+        }
     }
 
     public void deleteWatchlist(Watchlist watchlist) {
