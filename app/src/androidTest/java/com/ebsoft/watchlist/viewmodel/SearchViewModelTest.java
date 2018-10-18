@@ -7,6 +7,7 @@ import com.ebsoft.watchlist.data.control.db.AbstractDataBase;
 import com.ebsoft.watchlist.data.control.db.DBManagerImpl;
 import com.ebsoft.watchlist.data.control.network.APIManager;
 import com.ebsoft.watchlist.data.control.network.APIManagerImpl;
+import com.ebsoft.watchlist.data.control.network.IEX.IEXApi;
 import com.ebsoft.watchlist.data.control.network.Yahoo.YahooAPI;
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.yahoo.Item;
@@ -16,6 +17,8 @@ import com.ebsoft.watchlist.ui.search.SearchViewModel;
 import com.ebsoft.watchlist.ui.watchlist.WatchlistViewModel;
 import com.ebsoft.watchlist.util.DbManagerUtil;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -43,11 +46,21 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class SearchViewModelTest {
 
-    @Mock
-    YahooAPI yahooAPI;
+    private YahooAPI yahooAPI;
 
-    @InjectMocks
-    APIManager apiManager = new APIManagerImpl();
+    private APIManager apiManager;
+
+    @Before
+    public void setup() {
+        yahooAPI = mock(YahooAPI.class);
+        apiManager =  new APIManagerImpl(yahooAPI, mock(IEXApi.class));
+    }
+
+    @After
+    public void clear() {
+        yahooAPI = null;
+        apiManager = null;
+    }
 
     @Test
     public void testSearchSuccessful() throws InterruptedException {

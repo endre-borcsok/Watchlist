@@ -29,14 +29,15 @@ public class APIManagerImpl implements APIManager {
 
     private final String TAG = APIManagerImpl.class.getSimpleName();
 
-    @Inject
-    YahooAPI mYahooApi;
+    private final YahooAPI mYahooApi;
+
+    private final IEXApi mIEXApi;
 
     @Inject
-    IEXApi mIEXApi;
-
-    @Inject
-    public APIManagerImpl() {}
+    public APIManagerImpl(YahooAPI YahooApi, IEXApi IEXApi) {
+        this.mYahooApi = YahooApi;
+        this.mIEXApi = IEXApi;
+    }
 
     @Override
     public Disposable searchSymbol(@NonNull String symbol, @NonNull SymbolSearchListener listener) {

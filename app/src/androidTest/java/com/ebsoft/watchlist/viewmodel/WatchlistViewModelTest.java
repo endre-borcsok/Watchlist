@@ -11,12 +11,14 @@ import com.ebsoft.watchlist.data.control.db.DBManagerImpl;
 import com.ebsoft.watchlist.data.control.network.APIManager;
 import com.ebsoft.watchlist.data.control.network.APIManagerImpl;
 import com.ebsoft.watchlist.data.control.network.IEX.IEXApi;
+import com.ebsoft.watchlist.data.control.network.Yahoo.YahooAPI;
 import com.ebsoft.watchlist.data.model.IEX.StockQuote;
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.ui.watchlist.WatchlistViewModel;
 import com.ebsoft.watchlist.util.DbManagerUtil;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,16 +46,22 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class WatchlistViewModelTest {
 
-    @Mock
-    IEXApi iexApi;
+    private IEXApi iexApi;
 
-    @InjectMocks
-    APIManager apiManager = new APIManagerImpl();
+    private APIManager apiManager;
 
     @Before
     public void setup() {
+        iexApi = mock(IEXApi.class);
+        apiManager = new APIManagerImpl(mock(YahooAPI.class), iexApi);
         when(iexApi.getQuote(any(String.class)))
                 .thenReturn(Observable.just(Response.success(getResponseMap())));
+    }
+
+    @After
+    public void clear() {
+        iexApi = null;
+        apiManager = null;
     }
 
     @Test
