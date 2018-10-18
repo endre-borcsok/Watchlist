@@ -3,10 +3,8 @@ package com.ebsoft.watchlist.data.control.network;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.ebsoft.watchlist.data.control.network.AlphaVantage.AlphaVantageAPI;
 import com.ebsoft.watchlist.data.control.network.IEX.IEXApi;
 import com.ebsoft.watchlist.data.control.network.Yahoo.YahooAPI;
-import com.ebsoft.watchlist.data.model.AlphaVantage.GlobalQuote;
 import com.ebsoft.watchlist.data.model.IEX.StockQuote;
 import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.yahoo.Item;
@@ -35,9 +33,6 @@ public class APIManagerImpl implements APIManager {
     YahooAPI mYahooApi;
 
     @Inject
-    AlphaVantageAPI mAlphaVantageApi;
-
-    @Inject
     IEXApi mIEXApi;
 
     @Inject
@@ -56,21 +51,6 @@ public class APIManagerImpl implements APIManager {
                 }, throwable -> {
                     Log.e(TAG, throwable.getLocalizedMessage());
                     listener.onComplete(new ArrayList<>());
-                });
-    }
-
-    @Override
-    public Disposable getQuote(@NonNull Stock stock, @NonNull QuoteQueryListener listener) {
-        return mAlphaVantageApi.getQuote(stock.getSymbol())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(avQuoteResponse -> {
-                    GlobalQuote gq = avQuoteResponse.body().getGlobalQuote();
-                    stock.update(gq);
-                    listener.onComplete();
-                }, throwable -> {
-                    Log.e(TAG, throwable.getLocalizedMessage());
-                    listener.onComplete();
                 });
     }
 

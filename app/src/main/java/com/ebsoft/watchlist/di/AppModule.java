@@ -11,7 +11,6 @@ import com.ebsoft.watchlist.data.control.db.DBManager;
 import com.ebsoft.watchlist.data.control.db.DBManagerImpl;
 import com.ebsoft.watchlist.data.control.network.APIManager;
 import com.ebsoft.watchlist.data.control.network.APIManagerImpl;
-import com.ebsoft.watchlist.data.control.network.AlphaVantage.AlphaVantageAPI;
 import com.ebsoft.watchlist.data.control.network.IEX.IEXApi;
 import com.ebsoft.watchlist.data.control.network.Yahoo.YahooAPI;
 import com.ebsoft.watchlist.utils.Constants;
@@ -68,16 +67,6 @@ public class AppModule {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
                 .create(YahooAPI.class);
-    }
-
-    @Provides
-    AlphaVantageAPI provideAlphaVantageApi(Gson gson) {
-        return new Retrofit.Builder()
-                .baseUrl(Constants.ALPHA_VANTAGE_API_END_POINT)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build()
-                .create(AlphaVantageAPI.class);
     }
 
     @Provides
