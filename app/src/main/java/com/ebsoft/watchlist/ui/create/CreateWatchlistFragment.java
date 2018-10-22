@@ -19,7 +19,7 @@ public class CreateWatchlistFragment
     @Override
     public void setup() {
         mCreateWatchlistViewModel.setNavigator(this);
-        getActivity().setTitle(R.string.create_watchlist_activity_label);
+        getActivity().setTitle(R.string.create_watchlist_fragment_label);
         showKeyboard();
     }
 
@@ -41,6 +41,5 @@ public class CreateWatchlistFragment
     @Override
     public void onWatchlistCreated() {
         Navigation.findNavController(getView()).navigateUp();
-        hideKeyboard();
     }
 }

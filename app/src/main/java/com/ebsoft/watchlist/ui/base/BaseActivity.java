@@ -18,7 +18,6 @@ public abstract class BaseActivity<T extends ViewDataBinding> extends DaggerAppC
         injectDependencies();
         super.onCreate(savedInstanceState);
         bindData();
-        prepareNavigationBar();
     }
 
     public abstract int getLayoutId();
@@ -30,12 +29,6 @@ public abstract class BaseActivity<T extends ViewDataBinding> extends DaggerAppC
     private void bindData() {
         mViewDataBinding = DataBindingUtil.setContentView(this, getLayoutId());
         mViewDataBinding.executePendingBindings();
-    }
-
-    private void prepareNavigationBar() {
-        if (!(this instanceof MainActivity)) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
     }
 
     @Override

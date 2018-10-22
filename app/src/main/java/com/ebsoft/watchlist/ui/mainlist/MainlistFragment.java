@@ -44,7 +44,7 @@ public class MainlistFragment extends BaseFragment <FragmentMainlistBinding, Mai
 
     @Override
     public void setup() {
-        getActivity().setTitle(R.string.main_activity_label);
+        getActivity().setTitle(R.string.main_fragment_label);
         FragmentMainlistBinding viewDataBinding = getViewDataBinding();
         viewDataBinding.mainActivityRecyclerView.setItemAnimator(new DefaultItemAnimator());
         viewDataBinding.mainActivityRecyclerView.setAdapter(mAdapter);

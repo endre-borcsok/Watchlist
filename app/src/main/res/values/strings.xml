@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Watchlist</string>
-    <string name="main_activity_label">Lists</string>
-    <string name="create_watchlist_activity_label">Create New Watchlist</string>
-    <string name="search_activity_label">Search Symbol</string>
+    <string name="main_activity_label">Watchlist</string>
+    <string name="main_fragment_label">Lists</string>
+    <string name="create_watchlist_fragment_label">Create New Watchlist</string>
+    <string name="search_fragment_label">Search Symbol</string>
 
     <string name="create">Create</string>
     <string name="item_count">%1$d items</string>

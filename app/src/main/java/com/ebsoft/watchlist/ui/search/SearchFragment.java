@@ -29,7 +29,7 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchVi
 
     @Override
     public void setup() {
-        getActivity().setTitle(R.string.search_activity_label);
+        getActivity().setTitle(R.string.search_fragment_label);
         FragmentSearchBinding viewDataBinding = getViewDataBinding();
         viewDataBinding.searchRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         viewDataBinding.searchRecyclerView.setItemAnimator(new DefaultItemAnimator());
