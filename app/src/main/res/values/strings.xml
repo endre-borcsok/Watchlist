@@ -10,4 +10,7 @@
     <string name="stock_item_price">%1$.2f</string>
     <string name="stock_item_change_percent">%1$.2f%%</string>
     <string name="create_watchlist_hint">Enter a name</string>
+    <string name="delete_dialog_text">Are you sure?</string>
+    <string name="delete_dialog_positive">Yes</string>
+    <string name="delete_dialog_negative">No</string>
 </resources>

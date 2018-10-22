@@ -11,6 +11,7 @@ public class Constants {
     public static final String ALPHA_VANTAGE_API_END_POINT = "https://www.alphavantage.co/";
     public static final String IEX_API_END_POINT = "https://api.iextrading.com/";
     public static final String EXTRA_KEY_WATCHLIST = "watchlistKey";
+    public static final String DELETE_DIALOG_SERIALIZABLE_KEY = "DeleteDialogSerializableKey";
 
     public static final float IEX_API_PERCENTAGE_MULTIPLIER = 100.0f;
 }

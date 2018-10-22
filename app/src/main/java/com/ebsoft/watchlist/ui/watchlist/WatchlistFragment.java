@@ -1,6 +1,7 @@
 package com.ebsoft.watchlist.ui.watchlist;
 
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,11 +9,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.model.db.Stock;
+import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.databinding.FragmentWatchlistBinding;
 import com.ebsoft.watchlist.ui.adapter.ListAdapter;
 import com.ebsoft.watchlist.ui.adapter.ListItemClickListener;
 import com.ebsoft.watchlist.ui.adapter.ListItemRemoveListener;
 import com.ebsoft.watchlist.ui.base.BaseFragment;
+import com.ebsoft.watchlist.ui.dialog.DeleteDialog;
 import com.ebsoft.watchlist.utils.Constants;
 
 import javax.inject.Inject;
@@ -20,7 +23,7 @@ import javax.inject.Inject;
 import androidx.navigation.Navigation;
 
 public class WatchlistFragment extends BaseFragment<FragmentWatchlistBinding, WatchlistViewModel>
-        implements WatchlistNavigator,
+        implements WatchlistNavigator, DeleteDialog.DeleteDialogListener,
         SwipeRefreshLayout.OnRefreshListener, ListItemClickListener<Stock>, ListItemRemoveListener<Stock> {
 
     @Inject
@@ -72,11 +75,22 @@ public class WatchlistFragment extends BaseFragment<FragmentWatchlistBinding, Wa
 
     @Override
     public void onRemove(Stock item) {
-        getViewModel().removeStock(item);
+        DialogFragment dialog = new DeleteDialog();
+        ((DeleteDialog) dialog).setListener(this);
+        Bundle args = new Bundle();
+        args.putSerializable(Constants.DELETE_DIALOG_SERIALIZABLE_KEY, item);
+        dialog.setArguments(args);
+        dialog.show(getActivity().getSupportFragmentManager(), this.getClass().getSimpleName());
     }
 
     @Override
     public void onRefresh() {
         getViewModel().refresh();
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        getViewModel().removeStock((Stock) dialog.getArguments()
+                .getSerializable(Constants.DELETE_DIALOG_SERIALIZABLE_KEY));
     }
 }

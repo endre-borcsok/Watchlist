@@ -1,6 +1,7 @@
 package com.ebsoft.watchlist.ui.mainlist;
 
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 
@@ -12,6 +13,7 @@ import com.ebsoft.watchlist.ui.adapter.ListAdapter;
 import com.ebsoft.watchlist.ui.adapter.ListItemClickListener;
 import com.ebsoft.watchlist.ui.adapter.ListItemRemoveListener;
 import com.ebsoft.watchlist.ui.base.BaseFragment;
+import com.ebsoft.watchlist.ui.dialog.DeleteDialog;
 import com.ebsoft.watchlist.utils.Constants;
 
 import javax.inject.Inject;
@@ -19,7 +21,10 @@ import javax.inject.Inject;
 import androidx.navigation.Navigation;
 
 public class MainlistFragment extends BaseFragment <FragmentMainlistBinding, MainlistViewModel>
-        implements MainlistNavigator, ListItemClickListener<Watchlist>, ListItemRemoveListener<Watchlist> {
+        implements MainlistNavigator,
+        DeleteDialog.DeleteDialogListener,
+        ListItemClickListener<Watchlist>,
+        ListItemRemoveListener<Watchlist> {
 
     @Inject
     MainlistViewModel mMainlistViewModel;
@@ -70,6 +75,17 @@ public class MainlistFragment extends BaseFragment <FragmentMainlistBinding, Mai
 
     @Override
     public void onRemove(Watchlist item) {
-        getViewModel().deleteWatchlist(item);
+        DialogFragment dialog = new DeleteDialog();
+        ((DeleteDialog) dialog).setListener(this);
+        Bundle args = new Bundle();
+        args.putSerializable(Constants.DELETE_DIALOG_SERIALIZABLE_KEY, item);
+        dialog.setArguments(args);
+        dialog.show(getActivity().getSupportFragmentManager(), this.getClass().getSimpleName());
+    }
+
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        getViewModel().deleteWatchlist((Watchlist) dialog.getArguments()
+                .getSerializable(Constants.DELETE_DIALOG_SERIALIZABLE_KEY));
     }
 }
