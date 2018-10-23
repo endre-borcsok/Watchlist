@@ -17,3 +17,7 @@ Watchlist is a Stock tracker Android application in which I test certain Android
 - DataBinding
 - JUnit
 - Mockito
+
+## API
+
+- [IEX](https://iextrading.com/developer/docs/)
