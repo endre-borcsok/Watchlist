@@ -4,6 +4,7 @@ Watchlist is a Stock tracker Android application in which I test certain Android
 
 ## Architecture
 
+- Single Activity
 - MVVM
 
 ## Tools
