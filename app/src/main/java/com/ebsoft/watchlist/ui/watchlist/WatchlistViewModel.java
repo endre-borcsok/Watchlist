@@ -38,7 +38,7 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
 
     public void subscribeToLiveData(LifecycleOwner owner) {
         mRequestRefresh = true;
-        mDataManager.getDbManager().loadStocks(mWatchlist).observe(owner, stocks -> {
+        getDataManager().getDbManager().loadStocks(mWatchlist).observe(owner, stocks -> {
             list.clear();
             list.addAll(stocks);
             if (mRequestRefresh){
@@ -49,7 +49,7 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
     }
 
     public void removeStock(Stock stock) {
-        addDisposable(mDataManager.getDbManager()
+        addDisposable(getDataManager().getDbManager()
                 .deleteStock(stock)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -59,7 +59,7 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
     public void refresh() {
         if (list.size() < 1) return;
         loading.set(true);
-        addDisposable(mDataManager.getApiManager()
+        addDisposable(getDataManager().getApiManager()
                 .getBatchQuote(list, () -> {
                     for (Stock stock : list) {
                         updateStock(stock);
@@ -69,7 +69,7 @@ public class WatchlistViewModel extends BaseViewModel<WatchlistNavigator> {
     }
 
     private void updateStock(Stock stock) {
-        addDisposable(mDataManager.getDbManager()
+        addDisposable(getDataManager().getDbManager()
                 .updateStock(stock)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

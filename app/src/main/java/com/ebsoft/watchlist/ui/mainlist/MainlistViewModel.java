@@ -26,7 +26,7 @@ public class MainlistViewModel extends BaseViewModel<MainlistNavigator> {
     }
 
     public void subscribeToLiveData(LifecycleOwner owner) {
-        mDataManager.getDbManager().loadWatchlists().observe(owner, watchlists -> {
+        getDataManager().getDbManager().loadWatchlists().observe(owner, watchlists -> {
             list.clear();
             list.addAll(watchlists);
             subscribeToStockCountObserver(owner, watchlists);
@@ -35,7 +35,7 @@ public class MainlistViewModel extends BaseViewModel<MainlistNavigator> {
 
     public void subscribeToStockCountObserver(LifecycleOwner owner, List<Watchlist> watchlists) {
         for (Watchlist wlist : watchlists) {
-            mDataManager.getDbManager().loadStocks(wlist)
+            getDataManager().getDbManager().loadStocks(wlist)
                     .observe(owner, stocks -> {
                         wlist.getStockCountObservable().set(stocks.size());
                     });
@@ -43,7 +43,7 @@ public class MainlistViewModel extends BaseViewModel<MainlistNavigator> {
     }
 
     public void deleteWatchlist(Watchlist watchlist) {
-        addDisposable(mDataManager.getDbManager()
+        addDisposable(getDataManager().getDbManager()
                 .deleteWatchlist(watchlist)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
