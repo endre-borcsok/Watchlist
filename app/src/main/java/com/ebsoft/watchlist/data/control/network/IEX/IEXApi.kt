@@ -1,8 +1,6 @@
 package com.ebsoft.watchlist.data.control.network.IEX
 
 import com.ebsoft.watchlist.data.model.IEX.StockQuote
-
-import io.reactivex.Observable
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.GET

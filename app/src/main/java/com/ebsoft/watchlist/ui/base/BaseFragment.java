@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
-import com.ebsoft.watchlist.ui.main.MainActivity;
 import com.ebsoft.watchlist.ui.mainlist.MainlistFragment;
 
 import dagger.android.support.AndroidSupportInjection;

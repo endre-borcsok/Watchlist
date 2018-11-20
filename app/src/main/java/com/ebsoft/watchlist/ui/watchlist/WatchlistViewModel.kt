@@ -21,9 +21,9 @@ import kotlinx.coroutines.launch
 
 class WatchlistViewModel(DataManager: DataManager, val watchlist: Watchlist) : BaseViewModel<WatchlistNavigator>(DataManager) {
 
-    val list: ObservableList<Stock> = ObservableArrayList()
+    private val list: ObservableList<Stock> = ObservableArrayList()
 
-    val loading = ObservableBoolean()
+    private val loading = ObservableBoolean()
 
     private var mRequestRefresh = false
 

@@ -4,8 +4,6 @@ import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 
-import com.ebsoft.watchlist.ui.main.MainActivity;
-
 import dagger.android.AndroidInjection;
 import dagger.android.support.DaggerAppCompatActivity;
 

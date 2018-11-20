@@ -1,8 +1,6 @@
 package com.ebsoft.watchlist.data.control.network.Yahoo
 
 import com.ebsoft.watchlist.data.model.yahoo.SymbolSearch
-
-import io.reactivex.Observable
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.GET

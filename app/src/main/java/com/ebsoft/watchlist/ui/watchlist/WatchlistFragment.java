@@ -9,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import com.ebsoft.watchlist.BR;
 import com.ebsoft.watchlist.R;
 import com.ebsoft.watchlist.data.model.db.Stock;
-import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.databinding.FragmentWatchlistBinding;
 import com.ebsoft.watchlist.ui.adapter.ListAdapter;
 import com.ebsoft.watchlist.ui.adapter.ListItemClickListener;

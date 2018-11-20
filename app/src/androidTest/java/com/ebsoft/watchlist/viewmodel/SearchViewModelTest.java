@@ -14,15 +14,12 @@ import com.ebsoft.watchlist.data.model.yahoo.Item;
 import com.ebsoft.watchlist.data.model.yahoo.SymbolSearch;
 import com.ebsoft.watchlist.data.model.yahoo.SymbolSearchResponse;
 import com.ebsoft.watchlist.ui.search.SearchViewModel;
-import com.ebsoft.watchlist.ui.watchlist.WatchlistViewModel;
 import com.ebsoft.watchlist.util.DbManagerUtil;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
@@ -31,7 +28,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
-import io.reactivex.functions.Consumer;
 import retrofit2.Response;
 
 import static junit.framework.TestCase.assertTrue;

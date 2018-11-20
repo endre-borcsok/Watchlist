@@ -1,16 +1,13 @@
 package com.ebsoft.watchlist.ui.base
 
 import android.arch.lifecycle.ViewModel
-
 import com.ebsoft.watchlist.data.DataManager
-
-import java.lang.ref.WeakReference
-
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import java.lang.ref.WeakReference
 import kotlin.coroutines.CoroutineContext
 
 /**
@@ -20,7 +17,9 @@ import kotlin.coroutines.CoroutineContext
 abstract class BaseViewModel<N>(val dataManager: DataManager) : ViewModel(), CoroutineScope {
 
     private var mNavigator: WeakReference<N>? = null
+
     private val mCompositeDisposable: CompositeDisposable = CompositeDisposable()
+
     private val job = Job()
 
     override val coroutineContext: CoroutineContext get() = job + Dispatchers.Main
