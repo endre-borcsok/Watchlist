@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 
 class SearchViewModel(DataManager: DataManager) : BaseViewModel<Any>(DataManager) {
 
-    private val list: ObservableList<Item> = ObservableArrayList()
+    val list: ObservableList<Item> = ObservableArrayList()
 
     fun performSearch(symbol: String) {
         launch(coroutineContext) {
