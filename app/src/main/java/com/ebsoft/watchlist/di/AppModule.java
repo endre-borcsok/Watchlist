@@ -75,7 +75,7 @@ public class AppModule {
         return new Retrofit.Builder()
                 .baseUrl(Constants.IEX_API_END_POINT)
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(CoroutineCallAdapterFactory.create())
                 .build()
                 .create(IEXApi.class);
     }

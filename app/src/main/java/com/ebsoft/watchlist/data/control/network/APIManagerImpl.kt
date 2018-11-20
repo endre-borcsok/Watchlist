@@ -35,23 +35,17 @@ constructor(private val mYahooApi: YahooAPI, private val mIEXApi: IEXApi) : APIM
         }
     }
 
-    override fun getBatchQuote(stocks: List<Stock>, listener: QuoteQueryListener): Disposable {
-        return mIEXApi.getQuote(getSymbols(stocks))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ mapResponse ->
-                    val quoteMap = mapResponse.body()
-                    for (stock in stocks) {
-                        val stockQuote = quoteMap!![stock.symbol]
-                        if (stockQuote != null) {
-                            stock.update(stockQuote.quote)
-                        }
-                    }
-                    listener.onComplete()
-                }, { throwable ->
-                    Log.e(TAG, throwable.localizedMessage)
-                    listener.onComplete()
-                })
+    override suspend fun getBatchQuote(stocks: List<Stock>) {
+        val response = mIEXApi.getQuote(getSymbols(stocks)).await()
+        if (response.isSuccessful) {
+            val quoteMap = response.body().orEmpty()
+            for (stock in stocks) {
+                val stockQuote = quoteMap[stock.symbol]
+                if (stockQuote != null) {
+                    stock.update(stockQuote.quote)
+                }
+            }
+        }
     }
 
     private fun getSymbols(stocks: List<Stock>): String {

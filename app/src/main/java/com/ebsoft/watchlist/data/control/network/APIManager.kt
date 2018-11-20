@@ -16,5 +16,5 @@ interface APIManager {
 
     suspend fun searchSymbol(symbol: String): List<Item>
 
-    fun getBatchQuote(stocks: List<Stock>, listener: QuoteQueryListener): Disposable
+    suspend fun getBatchQuote(stocks: List<Stock>)
 }
