@@ -7,6 +7,11 @@ Watchlist is a Stock tracker Android application in which I test certain Android
 - Single Activity
 - MVVM
 
+## Kotlin
+
+- Data classes
+- Coroutines
+
 ## Tools
 
 - RxJava2
