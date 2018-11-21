@@ -17,6 +17,7 @@ import com.ebsoft.watchlist.data.model.db.Stock;
 import com.ebsoft.watchlist.data.model.db.Watchlist;
 import com.ebsoft.watchlist.ui.watchlist.WatchlistViewModel;
 import com.ebsoft.watchlist.util.DbManagerUtil;
+import com.ebsoft.watchlist.util.KotlinUtils;
 
 import org.junit.After;
 import org.junit.Before;
@@ -29,7 +30,6 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Observable;
 import retrofit2.Response;
 
 import static junit.framework.TestCase.assertTrue;
@@ -53,7 +53,7 @@ public class WatchlistViewModelTest {
         iexApi = mock(IEXApi.class);
         apiManager = new APIManagerImpl(mock(YahooAPI.class), iexApi);
         when(iexApi.getQuote(any(String.class)))
-                .thenReturn(Observable.just(Response.success(getResponseMap())));
+                .thenReturn(KotlinUtils.mockDeferred(Response.success(getResponseMap())));
     }
 
     @After

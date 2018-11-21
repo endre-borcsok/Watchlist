@@ -15,6 +15,7 @@ import com.ebsoft.watchlist.data.model.yahoo.SymbolSearch;
 import com.ebsoft.watchlist.data.model.yahoo.SymbolSearchResponse;
 import com.ebsoft.watchlist.ui.search.SearchViewModel;
 import com.ebsoft.watchlist.util.DbManagerUtil;
+import com.ebsoft.watchlist.util.KotlinUtils;
 
 import org.junit.After;
 import org.junit.Before;
@@ -89,7 +90,7 @@ public class SearchViewModelTest {
         when(dataManager.getDbManager()).thenReturn(dbManager);
         when(dataManager.getApiManager()).thenReturn(apiManager);
         when(yahooAPI.searchSymbol(any(String.class)))
-                .thenReturn(Observable.just(Response.success(getResponse())));
+                .thenReturn(KotlinUtils.mockDeferred(Response.success(getResponse())));
         return dataManager;
     }
 
