@@ -6,7 +6,8 @@ import com.ebsoft.watchlist.data.model.db.Watchlist;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by endre on 06/10/18.
@@ -16,16 +17,15 @@ public class StockTest {
 
     private final String SYMBOL = "AAA";
 
-    private final float VALUE = 1.0f;
-
     private Stock mTestStock;
 
     @Before
     public void createTestStock() {
+        float val = 1.0f;
         mTestStock = new Stock();
-        mTestStock.setPrice(VALUE);
-        mTestStock.setChangePercent(VALUE);
-        mTestStock.setChange(VALUE);
+        mTestStock.setPrice(val);
+        mTestStock.setChangePercent(val);
+        mTestStock.setChange(val);
         mTestStock.setSymbol(SYMBOL);
     }
 
@@ -33,18 +33,18 @@ public class StockTest {
     public void testStockCreation() {
         Watchlist wlist = new Watchlist("test");
         Stock newStock = Stock.Companion.create(mTestStock, wlist);
-        assertTrue(newStock != null);
-        assertTrue(newStock.getSymbol().equals(SYMBOL));
-        assertTrue(newStock.getListid() == wlist.getId());
+        assertNotNull(newStock);
+        assertEquals(newStock.getSymbol(), SYMBOL);
+        assertEquals(newStock.getListid(), wlist.getId());
     }
 
     @Test
     public void testStockUpadte() {
         Stock newStock = new Stock();
         newStock.update(mTestStock);
-        assertTrue(newStock.getSymbol().equals(mTestStock.getSymbol()));
-        assertTrue(newStock.getChangePercent() == mTestStock.getChangePercent());
-        assertTrue(newStock.getChange() == mTestStock.getChange());
-        assertTrue(newStock.getPrice() == mTestStock.getPrice());
+        assertEquals(newStock.getSymbol(), mTestStock.getSymbol());
+        assertEquals(newStock.getChangePercent(), mTestStock.getChangePercent(), 0.0);
+        assertEquals(newStock.getChange(), mTestStock.getChange(), 0.0);
+        assertEquals(newStock.getPrice(), mTestStock.getPrice(), 0.0);
     }
 }

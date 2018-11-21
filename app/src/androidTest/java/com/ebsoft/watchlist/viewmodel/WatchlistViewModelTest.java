@@ -32,6 +32,7 @@ import java.util.concurrent.TimeUnit;
 
 import retrofit2.Response;
 
+import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -91,14 +92,12 @@ public class WatchlistViewModelTest {
 
     @Test
     public void testWatchlistNotNull() {
-        assertTrue(new WatchlistViewModel(mock(DataManager.class),
-                getWatchlist()).getWatchlist() != null);
+        assertNotNull(new WatchlistViewModel(mock(DataManager.class), getWatchlist()).getWatchlist());
     }
 
     @Test
     public void testListNotNull() {
-        assertTrue(new WatchlistViewModel(mock(DataManager.class),
-                getWatchlist()).getList() != null);
+        assertNotNull(new WatchlistViewModel(mock(DataManager.class), getWatchlist()).getList());
     }
 
     private void subscribeToLiveData(WatchlistViewModel watchlistViewModel)

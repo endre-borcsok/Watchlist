@@ -28,9 +28,9 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Observable;
 import retrofit2.Response;
 
+import static junit.framework.TestCase.assertNotNull;
 import static junit.framework.TestCase.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -62,7 +62,7 @@ public class SearchViewModelTest {
     @Test
     public void testSearchSuccessful() throws InterruptedException {
         SearchViewModel searchViewModel = new SearchViewModel(mockDataManager());
-        searchViewModel.performSearch(new String());
+        searchViewModel.performSearch("");
         new CountDownLatch(1).await(2, TimeUnit.SECONDS);
         assertTrue(!searchViewModel.getList().isEmpty());
     }
@@ -80,7 +80,7 @@ public class SearchViewModelTest {
 
     @Test
     public void testListNotNull() {
-        assertTrue(new SearchViewModel(mock(DataManager.class)).getList() != null);
+        assertNotNull(new SearchViewModel(mock(DataManager.class)).getList());
     }
 
     private DataManager mockDataManager() {
@@ -95,7 +95,7 @@ public class SearchViewModelTest {
     }
 
     private SymbolSearch getResponse() {
-        return new SymbolSearch(new SymbolSearchResponse(new String(), getItems()));
+        return new SymbolSearch(new SymbolSearchResponse("", getItems()));
     }
 
     private List<Item> getItems() {

@@ -23,6 +23,8 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -46,12 +48,12 @@ public class MainlistViewModelTest {
 
     @Test
     public void testListLoads() throws InterruptedException {
-        assertTrue(loadList(getViewModel()).size() == getTestWatchList().size());
+        assertEquals(loadList(getViewModel()).size(), getTestWatchList().size());
     }
 
     @Test
     public void testListNotNull() {
-        assertTrue(getViewModel().getList() != null);
+        assertNotNull(getViewModel().getList());
     }
 
     private ObservableList<Watchlist> loadList(MainlistViewModel viewModel)

@@ -4,7 +4,7 @@ import com.ebsoft.watchlist.data.model.db.Watchlist;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by endre on 06/10/18.
@@ -14,9 +14,9 @@ public class WatchlistTest {
 
     @Test
     public void testListCount() {
-        Watchlist wlist = new Watchlist("test");
         int count = 5;
+        Watchlist wlist = new Watchlist("test");
         wlist.getStockCountObservable().set(count);
-        assertTrue(wlist.getStockCountObservable().get() == count);
+        assertEquals(count, wlist.getStockCountObservable().get());
     }
 }

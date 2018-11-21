@@ -18,7 +18,7 @@ import org.junit.runner.RunWith;
 
 import java.util.List;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by endre on 06/10/18.
@@ -29,7 +29,6 @@ public class StockDaoTest {
 
     private final String SYMBOL = "AAA";
     private final String SYMBOL_0 = "BBB";
-    private final int STOCK_ID = 1;
     private final int WLIST_ID = 2;
 
     private StockDao mStockDao;
@@ -45,7 +44,7 @@ public class StockDaoTest {
     public void createDb() {
         mStock = new Stock();
         mStock.setSymbol(SYMBOL);
-        mStock.setId(STOCK_ID);
+        mStock.setId(1);
         mStock.setListid(WLIST_ID);
         mDataBase = DbManagerUtil.getDb(InstrumentationRegistry.getTargetContext());
         mStockDao = mDataBase.stockDao();
@@ -61,11 +60,11 @@ public class StockDaoTest {
 
     @Test
     public void testStockDaoMethods() throws Exception {
-        assertTrue(insertAndFindBySymbol().get(0).getSymbol().equals(SYMBOL));
-        assertTrue(updateAndFindBySymbol().get(0).getSymbol().equals(SYMBOL_0));
-        assertTrue(loadAll().size() == 1);
-        assertTrue(findByWatchlist().get(0).getListid() == WLIST_ID);
-        assertTrue(deleteAndLoadAll().size() == 0);
+        assertEquals(insertAndFindBySymbol().get(0).getSymbol(), SYMBOL);
+        assertEquals(updateAndFindBySymbol().get(0).getSymbol(), SYMBOL_0);
+        assertEquals(1, loadAll().size());
+        assertEquals(findByWatchlist().get(0).getListid(), WLIST_ID);
+        assertEquals(0, deleteAndLoadAll().size());
     }
 
     private List<Stock> insertAndFindBySymbol() {

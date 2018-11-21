@@ -18,7 +18,7 @@ import org.junit.runner.RunWith;
 
 import java.util.List;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by endre on 06/10/18.
@@ -27,7 +27,6 @@ import static org.junit.Assert.assertTrue;
 @RunWith(AndroidJUnit4.class)
 public class WatchlistDaoTest {
 
-    private final String WLIST_NAME = "AAA";
     private final int WLIST_ID = 1;
 
     private WatchlistDao mWatchlistDao;
@@ -43,7 +42,7 @@ public class WatchlistDaoTest {
     public void createDb() {
         mDataBase = DbManagerUtil.getDb(InstrumentationRegistry.getTargetContext());
         mWatchlistDao = mDataBase.watchlistDao();
-        mWatchlist = new Watchlist(WLIST_NAME);
+        mWatchlist = new Watchlist("AAA");
         mWatchlist.setId(WLIST_ID);
     }
 
@@ -57,9 +56,9 @@ public class WatchlistDaoTest {
 
     @Test
     public void testWatchlistDaoMethods() throws Exception {
-        assertTrue(insertAndFindById().getId() == WLIST_ID);
-        assertTrue(loadAll().size() == 1);
-        assertTrue(deleteAndLoadAll().size() == 0);
+        assertEquals(insertAndFindById().getId(), WLIST_ID);
+        assertEquals(1, loadAll().size());
+        assertEquals(0, deleteAndLoadAll().size());
     }
 
     private Watchlist insertAndFindById() {
