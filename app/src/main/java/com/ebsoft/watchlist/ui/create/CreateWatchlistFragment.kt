@@ -21,7 +21,7 @@ class CreateWatchlistFragment : BaseFragment<FragmentCreateWatchlistBinding, Cre
         get() = BR.viewModel
 
     override fun setup() {
-        viewModel!!.navigator = this
+        viewModel.navigator = this
         activity!!.setTitle(R.string.create_watchlist_fragment_label)
         showKeyboard()
     }

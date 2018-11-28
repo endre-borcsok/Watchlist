@@ -22,6 +22,6 @@ class CreateWatchlistViewModel(DataManager: DataManager) : BaseViewModel<CreateW
         addDisposable(dataManager.dbManager.saveWatchlist(watchlist)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { aBoolean -> navigator.onWatchlistCreated() })
+                .subscribe { _ -> navigator.onWatchlistCreated() })
     }
 }
