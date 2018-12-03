@@ -18,7 +18,6 @@ import io.reactivex.Observable
 class DBManagerImpl @Inject
 constructor(private val mDataBase: AbstractDataBase) : DBManager {
 
-
     override fun loadWatchlists(): LiveData<List<Watchlist>> {
         return mDataBase.watchlistDao().loadAll()
     }
