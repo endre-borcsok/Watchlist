@@ -9,9 +9,8 @@ object Constants {
     val DB_NAME = "application_database"
     val YAHOO_API_END_POINT = "http://autoc.finance.yahoo.com/"
     val ALPHA_VANTAGE_API_END_POINT = "https://www.alphavantage.co/"
-    val IEX_API_END_POINT = "https://api.iextrading.com/"
+    val IEX_API_END_POINT = "https://cloud.iexapis.com/"
     val EXTRA_KEY_WATCHLIST = "watchlistKey"
     val DELETE_DIALOG_SERIALIZABLE_KEY = "DeleteDialogSerializableKey"
-
-    val IEX_API_PERCENTAGE_MULTIPLIER = 100.0f
+    val IEX_API_KEY = "sk_7d07ed069d3a4e4d92327f5b0a78e257"
 }

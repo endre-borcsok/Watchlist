@@ -26,12 +26,13 @@ constructor(private val mYahooApi: YahooAPI, private val mIEXApi: IEXApi) : APIM
     }
 
     override suspend fun getBatchQuote(stocks: List<Stock>) {
-        val response = mIEXApi.getQuote(getSymbols(stocks)).await()
-        if (response.isSuccessful) {
-            val quoteMap = response.body().orEmpty()
-            for (stock in stocks) {
-                val stockQuote = quoteMap[stock.symbol]
-                if (stockQuote != null) {
+        for (stock in stocks) {
+            val singleItemList = ArrayList<Stock>()
+            singleItemList.add(stock)
+            val response = mIEXApi.getQuote(getSymbols(singleItemList)).await()
+            if (response.isSuccessful) {
+                val stockQuote = response.body()
+                if (stockQuote != null && stockQuote.quote.symbol.equals(stock.symbol)) {
                     stock.update(stockQuote.quote)
                 }
             }
