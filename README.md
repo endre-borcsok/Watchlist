@@ -1,3 +1,5 @@
+![Alt text](/screenshots/Screenshot_2020-02-06-14-17-42.png?raw=true)
+
 ## Watchlist
 
 Watchlist is a Stock tracker Android application in which I test certain Android development techniques.
