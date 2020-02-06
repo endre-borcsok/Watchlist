@@ -1,4 +1,8 @@
-![Alt text](/screenshots/Screenshot_2020-02-06-14-17-42.png?raw=true)
+![Alt text](/screenshots/sc-resized-1.png?raw=true)
+
+![Alt text](/screenshots/sc-resized-2.png?raw=true)
+
+![Alt text](/screenshots/sc-resized-3.png?raw=true)
 
 ## Watchlist
 
