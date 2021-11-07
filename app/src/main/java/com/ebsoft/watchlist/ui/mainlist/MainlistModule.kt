@@ -1,5 +1,7 @@
 package com.ebsoft.watchlist.ui.mainlist
 
+import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.LinearLayoutManager
 import com.ebsoft.watchlist.R
 import com.ebsoft.watchlist.data.DataManager
 import com.ebsoft.watchlist.data.model.db.Watchlist
@@ -24,7 +26,13 @@ class MainlistModule {
     }
 
     @Provides
-    internal fun providesAdapter(): ListAdapter<Watchlist> {
-        return ListAdapter(R.layout.layout_main_menu_cardview_item)
+    internal fun providesAdapter(viewDataBinding: FragmentMainlistBinding, fragment: MainlistFragment): ListAdapter<Watchlist> {
+        val adapter = ListAdapter<Watchlist>(R.layout.layout_main_menu_cardview_item)
+        adapter.setItemClickListener(fragment)
+        adapter.setItemRemoveListener(fragment)
+        viewDataBinding.mainActivityRecyclerView.itemAnimator = DefaultItemAnimator()
+        viewDataBinding.mainActivityRecyclerView.adapter = adapter
+        viewDataBinding.mainActivityRecyclerView.layoutManager = LinearLayoutManager(fragment.context)
+        return adapter
     }
 }

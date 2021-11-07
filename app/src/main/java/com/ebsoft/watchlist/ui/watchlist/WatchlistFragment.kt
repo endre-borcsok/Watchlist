@@ -27,11 +27,6 @@ class WatchlistFragment : BaseFragment<FragmentWatchlistBinding, WatchlistViewMo
     lateinit var mAdapter: ListAdapter<Stock>
 
     override fun setup() {
-        mAdapter.setItemClickListener(this)
-        mAdapter.setItemRemoveListener(this)
-        viewDataBinding.watchlistRecyclerView.layoutManager = LinearLayoutManager(context)
-        viewDataBinding.watchlistRecyclerView.itemAnimator = DefaultItemAnimator()
-        viewDataBinding.watchlistRecyclerView.adapter = mAdapter
         viewDataBinding.swipeRefresh.setOnRefreshListener(this)
         viewModel.navigator = this
         viewModel.subscribeToLiveData(this)

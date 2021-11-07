@@ -25,9 +25,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>(), a
 
     override fun setup() {
         activity!!.setTitle(R.string.search_fragment_label)
-        viewDataBinding.searchRecyclerView.layoutManager = LinearLayoutManager(context)
-        viewDataBinding.searchRecyclerView.itemAnimator = DefaultItemAnimator()
-        viewDataBinding.searchRecyclerView.adapter = mAdapter
         viewDataBinding.searchView.setOnQueryTextListener(this)
         mAdapter.setItemClickListener(this)
         showKeyboard()

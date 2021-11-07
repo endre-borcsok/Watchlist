@@ -27,13 +27,8 @@ class MainlistFragment : BaseFragment<FragmentMainlistBinding, MainlistViewModel
 
     override fun setup() {
         activity!!.setTitle(R.string.main_fragment_label)
-        viewDataBinding.mainActivityRecyclerView.itemAnimator = DefaultItemAnimator()
-        viewDataBinding.mainActivityRecyclerView.adapter = mAdapter
-        viewDataBinding.mainActivityRecyclerView.layoutManager = LinearLayoutManager(activity)
         viewModel.navigator = this
         viewModel.subscribeToLiveData(this)
-        mAdapter.setItemClickListener(this)
-        mAdapter.setItemRemoveListener(this)
     }
 
     override fun onActionButtonClick() {

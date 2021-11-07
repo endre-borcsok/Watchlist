@@ -1,5 +1,7 @@
 package com.ebsoft.watchlist.ui.watchlist
 
+import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.LinearLayoutManager
 import com.ebsoft.watchlist.R
 import com.ebsoft.watchlist.data.DataManager
 import com.ebsoft.watchlist.data.model.db.Stock
@@ -30,8 +32,14 @@ class WatchlistModule {
     }
 
     @Provides
-    internal fun providesAdapter(): ListAdapter<Stock> {
-        return ListAdapter(R.layout.layout_stock_item)
+    internal fun providesAdapter(viewDataBinding: FragmentWatchlistBinding, fragment: WatchlistFragment): ListAdapter<Stock> {
+        val adapter = ListAdapter<Stock>(R.layout.layout_stock_item)
+        adapter.setItemClickListener(fragment)
+        adapter.setItemRemoveListener(fragment)
+        viewDataBinding.watchlistRecyclerView.layoutManager = LinearLayoutManager(fragment.context)
+        viewDataBinding.watchlistRecyclerView.itemAnimator = DefaultItemAnimator()
+        viewDataBinding.watchlistRecyclerView.adapter = adapter
+        return adapter
     }
 
     @Provides
