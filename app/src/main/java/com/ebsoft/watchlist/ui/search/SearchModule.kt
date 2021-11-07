@@ -3,7 +3,11 @@ package com.ebsoft.watchlist.ui.search
 import com.ebsoft.watchlist.R
 import com.ebsoft.watchlist.data.DataManager
 import com.ebsoft.watchlist.data.model.yahoo.Item
+import com.ebsoft.watchlist.databinding.FragmentMainlistBinding
+import com.ebsoft.watchlist.databinding.FragmentSearchBinding
+import com.ebsoft.watchlist.databinding.FragmentSearchBindingImpl
 import com.ebsoft.watchlist.ui.adapter.ListAdapter
+import com.ebsoft.watchlist.ui.create.CreateWatchlistFragment
 
 import dagger.Module
 import dagger.Provides
@@ -14,6 +18,10 @@ import dagger.Provides
 
 @Module
 class SearchModule {
+    @Provides
+    internal fun providesBinding(view: SearchFragment): FragmentSearchBinding {
+        return FragmentSearchBinding.inflate(view.layoutInflater)
+    }
 
     @Provides
     internal fun provideSearchViewModel(DataManager: DataManager): SearchViewModel {

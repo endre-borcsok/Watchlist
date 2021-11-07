@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import com.ebsoft.watchlist.BR
 
 import com.ebsoft.watchlist.ui.mainlist.MainlistFragment
 
@@ -19,14 +20,14 @@ import javax.inject.Inject
 
 abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : DaggerFragment() {
 
+    @Inject
     lateinit var viewDataBinding: T
-
-    abstract val bindingVariable: Int
-
-    abstract val layoutId: Int
 
     @Inject
     lateinit var viewModel: V
+
+    private val bindingVariable: Int
+        get() = BR.viewModel
 
     abstract fun setup()
 
@@ -36,10 +37,8 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : DaggerF
     }
 
     override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewDataBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-        return viewDataBinding.root
-    }
+                              container: ViewGroup?, savedInstanceState: Bundle?)
+    : View? = viewDataBinding.root
 
     override fun onDetach() {
         super.onDetach()

@@ -11,12 +11,6 @@ import androidx.navigation.Navigation
 
 class CreateWatchlistFragment : BaseFragment<FragmentCreateWatchlistBinding, CreateWatchlistViewModel>(), CreateWatchlistNavigator {
 
-    override val layoutId: Int
-        get() = R.layout.fragment_create_watchlist
-
-    override val bindingVariable: Int
-        get() = BR.viewModel
-
     override fun setup() {
         viewModel.navigator = this
         activity!!.setTitle(R.string.create_watchlist_fragment_label)

@@ -1,6 +1,7 @@
 package com.ebsoft.watchlist.ui.create
 
 import com.ebsoft.watchlist.data.DataManager
+import com.ebsoft.watchlist.databinding.FragmentCreateWatchlistBinding
 
 import dagger.Module
 import dagger.Provides
@@ -11,6 +12,10 @@ import dagger.Provides
 
 @Module
 class CreateWatchlistModule {
+    @Provides
+    internal fun providesBinding(view: CreateWatchlistFragment): FragmentCreateWatchlistBinding {
+        return FragmentCreateWatchlistBinding.inflate(view.layoutInflater)
+    }
 
     @Provides
     internal fun provideCreateWatchListViewModel(DataManager: DataManager): CreateWatchlistViewModel {

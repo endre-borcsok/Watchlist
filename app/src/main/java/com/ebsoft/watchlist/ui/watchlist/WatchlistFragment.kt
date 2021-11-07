@@ -26,12 +26,6 @@ class WatchlistFragment : BaseFragment<FragmentWatchlistBinding, WatchlistViewMo
     @Inject
     lateinit var mAdapter: ListAdapter<Stock>
 
-    override val layoutId: Int
-        get() = R.layout.fragment_watchlist
-
-    override val bindingVariable: Int
-        get() = BR.viewModel
-
     override fun setup() {
         mAdapter.setItemClickListener(this)
         mAdapter.setItemRemoveListener(this)

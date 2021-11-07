@@ -25,12 +25,6 @@ class MainlistFragment : BaseFragment<FragmentMainlistBinding, MainlistViewModel
     @Inject
     lateinit var mAdapter: ListAdapter<Watchlist>
 
-    override val bindingVariable: Int
-        get() = BR.viewModel
-
-    override val layoutId: Int
-        get() = R.layout.fragment_mainlist
-
     override fun setup() {
         activity!!.setTitle(R.string.main_fragment_label)
         viewDataBinding.mainActivityRecyclerView.itemAnimator = DefaultItemAnimator()

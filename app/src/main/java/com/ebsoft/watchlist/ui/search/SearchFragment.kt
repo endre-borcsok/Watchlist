@@ -23,12 +23,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>(), a
     @Inject
     lateinit var mAdapter: ListAdapter<Item>
 
-    override val layoutId: Int
-        get() = R.layout.fragment_search
-
-    override val bindingVariable: Int
-        get() = BR.viewModel
-
     override fun setup() {
         activity!!.setTitle(R.string.search_fragment_label)
         viewDataBinding.searchRecyclerView.layoutManager = LinearLayoutManager(context)
