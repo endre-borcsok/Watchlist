@@ -3,14 +3,11 @@ package com.ebsoft.watchlist
 import android.app.Activity
 import android.app.Application
 import android.support.v4.app.Fragment
-
 import com.ebsoft.watchlist.di.DaggerAppComponent
-
-import javax.inject.Inject
-
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import dagger.android.support.HasSupportFragmentInjector
+import javax.inject.Inject
 
 /**
  * Created by endre on 07/09/18.

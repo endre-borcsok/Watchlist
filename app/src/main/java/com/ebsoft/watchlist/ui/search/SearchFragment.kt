@@ -1,9 +1,6 @@
 package com.ebsoft.watchlist.ui.search
 
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-
-import com.ebsoft.watchlist.BR
+import androidx.navigation.Navigation
 import com.ebsoft.watchlist.R
 import com.ebsoft.watchlist.data.model.db.Stock
 import com.ebsoft.watchlist.data.model.db.Watchlist
@@ -13,10 +10,7 @@ import com.ebsoft.watchlist.ui.adapter.ListAdapter
 import com.ebsoft.watchlist.ui.adapter.ListItemClickListener
 import com.ebsoft.watchlist.ui.base.BaseFragment
 import com.ebsoft.watchlist.utils.Constants
-
 import javax.inject.Inject
-
-import androidx.navigation.Navigation
 
 class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>(), android.support.v7.widget.SearchView.OnQueryTextListener, ListItemClickListener<Item> {
 

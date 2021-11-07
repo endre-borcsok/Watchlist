@@ -6,12 +6,9 @@ import com.ebsoft.watchlist.R
 import com.ebsoft.watchlist.data.DataManager
 import com.ebsoft.watchlist.data.model.db.Stock
 import com.ebsoft.watchlist.data.model.db.Watchlist
-import com.ebsoft.watchlist.databinding.FragmentMainlistBinding
 import com.ebsoft.watchlist.databinding.FragmentWatchlistBinding
 import com.ebsoft.watchlist.ui.adapter.ListAdapter
-import com.ebsoft.watchlist.ui.create.CreateWatchlistFragment
 import com.ebsoft.watchlist.utils.Constants
-
 import dagger.Module
 import dagger.Provides
 

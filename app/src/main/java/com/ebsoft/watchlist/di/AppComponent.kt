@@ -1,14 +1,11 @@
 package com.ebsoft.watchlist.di
 
 import android.app.Application
-
 import com.ebsoft.watchlist.WatchlistApplication
-
-import javax.inject.Singleton
-
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
+import javax.inject.Singleton
 
 /**
  * Created by endre on 07/09/18.

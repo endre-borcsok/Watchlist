@@ -1,14 +1,11 @@
 package com.ebsoft.watchlist.data.control.db
 
 import android.arch.lifecycle.LiveData
-
 import com.ebsoft.watchlist.data.model.db.Stock
 import com.ebsoft.watchlist.data.model.db.Watchlist
-
+import io.reactivex.Observable
 import javax.inject.Inject
 import javax.inject.Singleton
-
-import io.reactivex.Observable
 
 /**
  * Created by endre on 09/09/18.

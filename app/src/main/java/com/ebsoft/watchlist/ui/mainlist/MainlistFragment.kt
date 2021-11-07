@@ -2,10 +2,7 @@ package com.ebsoft.watchlist.ui.mainlist
 
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-
-import com.ebsoft.watchlist.BR
+import androidx.navigation.Navigation
 import com.ebsoft.watchlist.R
 import com.ebsoft.watchlist.data.model.db.Watchlist
 import com.ebsoft.watchlist.databinding.FragmentMainlistBinding
@@ -15,10 +12,7 @@ import com.ebsoft.watchlist.ui.adapter.ListItemRemoveListener
 import com.ebsoft.watchlist.ui.base.BaseFragment
 import com.ebsoft.watchlist.ui.dialog.DeleteDialog
 import com.ebsoft.watchlist.utils.Constants
-
 import javax.inject.Inject
-
-import androidx.navigation.Navigation
 
 class MainlistFragment : BaseFragment<FragmentMainlistBinding, MainlistViewModel>(), MainlistNavigator, DeleteDialog.DeleteDialogListener, ListItemClickListener<Watchlist>, ListItemRemoveListener<Watchlist> {
 

@@ -3,10 +3,7 @@ package com.ebsoft.watchlist.ui.watchlist
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-
-import com.ebsoft.watchlist.BR
+import androidx.navigation.Navigation
 import com.ebsoft.watchlist.R
 import com.ebsoft.watchlist.data.model.db.Stock
 import com.ebsoft.watchlist.databinding.FragmentWatchlistBinding
@@ -16,10 +13,7 @@ import com.ebsoft.watchlist.ui.adapter.ListItemRemoveListener
 import com.ebsoft.watchlist.ui.base.BaseFragment
 import com.ebsoft.watchlist.ui.dialog.DeleteDialog
 import com.ebsoft.watchlist.utils.Constants
-
 import javax.inject.Inject
-
-import androidx.navigation.Navigation
 
 class WatchlistFragment : BaseFragment<FragmentWatchlistBinding, WatchlistViewModel>(), WatchlistNavigator, DeleteDialog.DeleteDialogListener, SwipeRefreshLayout.OnRefreshListener, ListItemClickListener<Stock>, ListItemRemoveListener<Stock> {
 

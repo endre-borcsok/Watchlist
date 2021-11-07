@@ -2,7 +2,6 @@ package com.ebsoft.watchlist.ui.base
 
 import android.app.Activity
 import android.content.Context
-import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -11,9 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import com.ebsoft.watchlist.BR
-
 import com.ebsoft.watchlist.ui.mainlist.MainlistFragment
-
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
