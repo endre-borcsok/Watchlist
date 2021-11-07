@@ -1,7 +1,6 @@
 package com.ebsoft.watchlist.ui.search
 
 import androidx.navigation.Navigation
-import com.ebsoft.watchlist.R
 import com.ebsoft.watchlist.data.model.db.Stock
 import com.ebsoft.watchlist.data.model.db.Watchlist
 import com.ebsoft.watchlist.data.model.yahoo.Item
