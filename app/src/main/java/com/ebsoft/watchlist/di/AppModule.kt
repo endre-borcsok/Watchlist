@@ -3,6 +3,7 @@ package com.ebsoft.watchlist.di
 import android.app.Application
 import android.arch.persistence.room.Room
 import android.content.Context
+import android.util.Base64
 import com.ebsoft.watchlist.data.DataManager
 import com.ebsoft.watchlist.data.DataManagerImpl
 import com.ebsoft.watchlist.data.control.db.AbstractDataBase
@@ -59,6 +60,7 @@ class AppModule {
     }
 
     @Provides
+    @Singleton
     internal fun provideDatabase(context: Context): AbstractDataBase {
         return Room.databaseBuilder(context, AbstractDataBase::class.java, Constants.DB_NAME)
                 .fallbackToDestructiveMigration()
@@ -66,6 +68,7 @@ class AppModule {
     }
 
     @Provides
+    @Singleton
     internal fun provideYahooApi(gson: Gson): YahooAPI {
         return Retrofit.Builder()
                 .baseUrl(Constants.YAHOO_API_END_POINT)
@@ -76,12 +79,14 @@ class AppModule {
     }
 
     @Provides
+    @Singleton
     internal fun provideIEXApi(gson: Gson): IEXApi {
         val tokenInterceptor = Interceptor { chain ->
             val original: Request = chain.request()
             val originalHttpUrl: HttpUrl = original.url
             val url = originalHttpUrl.newBuilder()
-                    .addQueryParameter("token", Constants.IEX_API_KEY)
+                    .addQueryParameter("token", String(Base64.decode(Constants.IEX_SECRET,
+                        Base64.DEFAULT)))
                     .build()
             val requestBuilder: Request.Builder = original.newBuilder()
                     .url(url)
@@ -103,6 +108,7 @@ class AppModule {
     }
 
     @Provides
+    @Singleton
     internal fun provideGson(): Gson {
         return GsonBuilder()
                 .setLenient()
