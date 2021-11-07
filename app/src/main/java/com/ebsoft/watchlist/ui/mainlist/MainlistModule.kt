@@ -9,15 +9,18 @@ import com.ebsoft.watchlist.databinding.FragmentMainlistBinding
 import com.ebsoft.watchlist.ui.adapter.ListAdapter
 import dagger.Module
 import dagger.Provides
+import dagger.Reusable
 
 @Module
 class MainlistModule {
     @Provides
+    @Reusable
     internal fun providesBinding(view: MainlistFragment): FragmentMainlistBinding {
         return FragmentMainlistBinding.inflate(view.layoutInflater)
     }
 
     @Provides
+    @Reusable
     internal fun provideMainViewModel(DataManager: DataManager): MainlistViewModel {
         return MainlistViewModel(DataManager)
     }

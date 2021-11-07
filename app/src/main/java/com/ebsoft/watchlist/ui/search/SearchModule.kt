@@ -9,6 +9,7 @@ import com.ebsoft.watchlist.databinding.FragmentSearchBinding
 import com.ebsoft.watchlist.ui.adapter.ListAdapter
 import dagger.Module
 import dagger.Provides
+import dagger.Reusable
 
 /**
  * Created by endre on 09/09/18.
@@ -17,6 +18,7 @@ import dagger.Provides
 @Module
 class SearchModule {
     @Provides
+    @Reusable
     internal fun providesBinding(view: SearchFragment): FragmentSearchBinding {
         val viewDataBinding = FragmentSearchBinding.inflate(view.layoutInflater)
         viewDataBinding.searchView.setOnQueryTextListener(view)
@@ -24,6 +26,7 @@ class SearchModule {
     }
 
     @Provides
+    @Reusable
     internal fun provideSearchViewModel(DataManager: DataManager): SearchViewModel {
         return SearchViewModel(DataManager)
     }

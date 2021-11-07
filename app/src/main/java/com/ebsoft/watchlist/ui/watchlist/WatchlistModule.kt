@@ -11,6 +11,7 @@ import com.ebsoft.watchlist.ui.adapter.ListAdapter
 import com.ebsoft.watchlist.utils.Constants
 import dagger.Module
 import dagger.Provides
+import dagger.Reusable
 
 /**
  * Created by endre on 21/09/18.
@@ -19,6 +20,7 @@ import dagger.Provides
 @Module
 class WatchlistModule {
     @Provides
+    @Reusable
     internal fun providesBinding(view: WatchlistFragment): FragmentWatchlistBinding {
         val viewDataBinding = FragmentWatchlistBinding.inflate(view.layoutInflater)
         viewDataBinding.swipeRefresh.setOnRefreshListener(view)
@@ -26,6 +28,7 @@ class WatchlistModule {
     }
 
     @Provides
+    @Reusable
     internal fun provideWatchListViewModel(DataManager: DataManager, watchlist: Watchlist): WatchlistViewModel {
         return WatchlistViewModel(DataManager, watchlist)
     }
