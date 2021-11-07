@@ -23,9 +23,6 @@ import androidx.navigation.Navigation
 class MainlistFragment : BaseFragment<FragmentMainlistBinding, MainlistViewModel>(), MainlistNavigator, DeleteDialog.DeleteDialogListener, ListItemClickListener<Watchlist>, ListItemRemoveListener<Watchlist> {
 
     @Inject
-    override lateinit var viewModel: MainlistViewModel
-
-    @Inject
     lateinit var mAdapter: ListAdapter<Watchlist>
 
     override val bindingVariable: Int
@@ -36,8 +33,7 @@ class MainlistFragment : BaseFragment<FragmentMainlistBinding, MainlistViewModel
 
     override fun setup() {
         activity!!.setTitle(R.string.main_fragment_label)
-        val viewDataBinding = viewDataBinding
-        viewDataBinding!!.mainActivityRecyclerView.itemAnimator = DefaultItemAnimator()
+        viewDataBinding.mainActivityRecyclerView.itemAnimator = DefaultItemAnimator()
         viewDataBinding.mainActivityRecyclerView.adapter = mAdapter
         viewDataBinding.mainActivityRecyclerView.layoutManager = LinearLayoutManager(activity)
         viewModel.navigator = this

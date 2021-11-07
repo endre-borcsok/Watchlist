@@ -11,9 +11,6 @@ import androidx.navigation.Navigation
 
 class CreateWatchlistFragment : BaseFragment<FragmentCreateWatchlistBinding, CreateWatchlistViewModel>(), CreateWatchlistNavigator {
 
-    @Inject
-    override lateinit var viewModel: CreateWatchlistViewModel
-
     override val layoutId: Int
         get() = R.layout.fragment_create_watchlist
 

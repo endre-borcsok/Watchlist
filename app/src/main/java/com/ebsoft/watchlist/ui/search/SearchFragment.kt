@@ -21,9 +21,6 @@ import androidx.navigation.Navigation
 class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>(), android.support.v7.widget.SearchView.OnQueryTextListener, ListItemClickListener<Item> {
 
     @Inject
-    override lateinit var viewModel: SearchViewModel
-
-    @Inject
     lateinit var mAdapter: ListAdapter<Item>
 
     override val layoutId: Int
@@ -34,8 +31,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>(), a
 
     override fun setup() {
         activity!!.setTitle(R.string.search_fragment_label)
-        val viewDataBinding = viewDataBinding
-        viewDataBinding!!.searchRecyclerView.layoutManager = LinearLayoutManager(context)
+        viewDataBinding.searchRecyclerView.layoutManager = LinearLayoutManager(context)
         viewDataBinding.searchRecyclerView.itemAnimator = DefaultItemAnimator()
         viewDataBinding.searchRecyclerView.adapter = mAdapter
         viewDataBinding.searchView.setOnQueryTextListener(this)

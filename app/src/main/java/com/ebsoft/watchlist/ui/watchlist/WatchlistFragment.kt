@@ -24,9 +24,6 @@ import androidx.navigation.Navigation
 class WatchlistFragment : BaseFragment<FragmentWatchlistBinding, WatchlistViewModel>(), WatchlistNavigator, DeleteDialog.DeleteDialogListener, SwipeRefreshLayout.OnRefreshListener, ListItemClickListener<Stock>, ListItemRemoveListener<Stock> {
 
     @Inject
-    override lateinit var viewModel: WatchlistViewModel
-
-    @Inject
     lateinit var mAdapter: ListAdapter<Stock>
 
     override val layoutId: Int
@@ -38,8 +35,7 @@ class WatchlistFragment : BaseFragment<FragmentWatchlistBinding, WatchlistViewMo
     override fun setup() {
         mAdapter.setItemClickListener(this)
         mAdapter.setItemRemoveListener(this)
-        val viewDataBinding = viewDataBinding
-        viewDataBinding!!.watchlistRecyclerView.layoutManager = LinearLayoutManager(context)
+        viewDataBinding.watchlistRecyclerView.layoutManager = LinearLayoutManager(context)
         viewDataBinding.watchlistRecyclerView.itemAnimator = DefaultItemAnimator()
         viewDataBinding.watchlistRecyclerView.adapter = mAdapter
         viewDataBinding.swipeRefresh.setOnRefreshListener(this)

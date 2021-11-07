@@ -15,36 +15,30 @@ import com.ebsoft.watchlist.ui.mainlist.MainlistFragment
 
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
 abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : DaggerFragment() {
 
-    var viewDataBinding: T? = null
-        private set
-
-    private var mViewModel: V? = null
+    lateinit var viewDataBinding: T
 
     abstract val bindingVariable: Int
 
     abstract val layoutId: Int
 
-    abstract val viewModel: V
+    @Inject
+    lateinit var viewModel: V
 
     abstract fun setup()
 
     override fun onAttach(context: Context?) {
-        injectDependencies()
+        AndroidSupportInjection.inject(this)
         super.onAttach(context)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mViewModel = viewModel
     }
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewDataBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-        return viewDataBinding!!.root
+        return viewDataBinding.root
     }
 
     override fun onDetach() {
@@ -54,8 +48,8 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : DaggerF
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewDataBinding!!.setVariable(bindingVariable, mViewModel)
-        viewDataBinding!!.executePendingBindings()
+        viewDataBinding.setVariable(bindingVariable, viewModel)
+        viewDataBinding.executePendingBindings()
         setup()
         prepareNavigationBar()
     }
@@ -75,9 +69,5 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : DaggerF
     private fun prepareNavigationBar() {
         (activity as AppCompatActivity).supportActionBar!!
                 .setDisplayHomeAsUpEnabled(this !is MainlistFragment)
-    }
-
-    private fun injectDependencies() {
-        AndroidSupportInjection.inject(this)
     }
 }
