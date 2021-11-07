@@ -18,7 +18,9 @@ import dagger.Provides
 class SearchModule {
     @Provides
     internal fun providesBinding(view: SearchFragment): FragmentSearchBinding {
-        return FragmentSearchBinding.inflate(view.layoutInflater)
+        val viewDataBinding = FragmentSearchBinding.inflate(view.layoutInflater)
+        viewDataBinding.searchView.setOnQueryTextListener(view)
+        return viewDataBinding
     }
 
     @Provides
@@ -32,6 +34,7 @@ class SearchModule {
         viewDataBinding.searchRecyclerView.layoutManager = LinearLayoutManager(fragment.context)
         viewDataBinding.searchRecyclerView.itemAnimator = DefaultItemAnimator()
         viewDataBinding.searchRecyclerView.adapter = adapter
+        adapter.setItemClickListener(fragment)
         return adapter
     }
 }

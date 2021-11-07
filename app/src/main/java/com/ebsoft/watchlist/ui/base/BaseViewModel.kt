@@ -1,5 +1,6 @@
 package com.ebsoft.watchlist.ui.base
 
+import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.ViewModel
 import com.ebsoft.watchlist.data.DataManager
 import io.reactivex.disposables.CompositeDisposable
@@ -14,7 +15,7 @@ import kotlin.coroutines.CoroutineContext
  * Created by endre on 07/09/18.
  */
 
-abstract class BaseViewModel<N>(val dataManager: DataManager) : ViewModel(), CoroutineScope {
+abstract class BaseViewModel<N: BaseNavigator>(val dataManager: DataManager) : ViewModel(), CoroutineScope {
 
     private var mNavigator: WeakReference<N>? = null
 
@@ -23,6 +24,8 @@ abstract class BaseViewModel<N>(val dataManager: DataManager) : ViewModel(), Cor
     private val job = Job()
 
     override val coroutineContext: CoroutineContext get() = job + Dispatchers.Main
+
+    abstract fun subscribeToLiveData(owner: LifecycleOwner)
 
     var navigator: N
         get() = mNavigator?.get()!!

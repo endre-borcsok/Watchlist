@@ -1,5 +1,6 @@
 package com.ebsoft.watchlist.ui.create
 
+import android.arch.lifecycle.LifecycleOwner
 import android.databinding.ObservableField
 
 import com.ebsoft.watchlist.data.DataManager
@@ -24,4 +25,6 @@ class CreateWatchlistViewModel(DataManager: DataManager) : BaseViewModel<CreateW
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe { _ -> navigator.onWatchlistCreated() })
     }
+
+    override fun subscribeToLiveData(owner: LifecycleOwner) {}
 }

@@ -10,12 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import com.ebsoft.watchlist.BR
+import com.ebsoft.watchlist.R
 import com.ebsoft.watchlist.ui.mainlist.MainlistFragment
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : DaggerFragment() {
+abstract class BaseFragment<N: BaseNavigator, T : ViewDataBinding, V : BaseViewModel<N>> : DaggerFragment() {
 
     @Inject
     lateinit var viewDataBinding: T
@@ -46,6 +47,9 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : DaggerF
         super.onViewCreated(view, savedInstanceState)
         viewDataBinding.setVariable(bindingVariable, viewModel)
         viewDataBinding.executePendingBindings()
+        viewModel.navigator = this as N
+        viewModel.subscribeToLiveData(this)
+        activity!!.setTitle(R.string.create_watchlist_fragment_label)
         setup()
         prepareNavigationBar()
     }

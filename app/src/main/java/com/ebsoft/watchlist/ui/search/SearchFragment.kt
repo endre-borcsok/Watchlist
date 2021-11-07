@@ -9,18 +9,16 @@ import com.ebsoft.watchlist.databinding.FragmentSearchBinding
 import com.ebsoft.watchlist.ui.adapter.ListAdapter
 import com.ebsoft.watchlist.ui.adapter.ListItemClickListener
 import com.ebsoft.watchlist.ui.base.BaseFragment
+import com.ebsoft.watchlist.ui.base.BaseNavigator
 import com.ebsoft.watchlist.utils.Constants
 import javax.inject.Inject
 
-class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>(), android.support.v7.widget.SearchView.OnQueryTextListener, ListItemClickListener<Item> {
+class SearchFragment : BaseFragment<BaseNavigator, FragmentSearchBinding, SearchViewModel>(), android.support.v7.widget.SearchView.OnQueryTextListener, ListItemClickListener<Item> {
 
     @Inject
     lateinit var mAdapter: ListAdapter<Item>
 
     override fun setup() {
-        activity!!.setTitle(R.string.search_fragment_label)
-        viewDataBinding.searchView.setOnQueryTextListener(this)
-        mAdapter.setItemClickListener(this)
         showKeyboard()
     }
 

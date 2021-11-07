@@ -20,7 +20,7 @@ class MainlistViewModel(DataManager: DataManager) : BaseViewModel<MainlistNaviga
 
     val list: ObservableList<Watchlist> = ObservableArrayList()
 
-    fun subscribeToLiveData(owner: LifecycleOwner) {
+    override fun subscribeToLiveData(owner: LifecycleOwner) {
         dataManager.dbManager.loadWatchlists().observe(owner, Observer { watchlists ->
             if (watchlists != null) {
                 list.clear()

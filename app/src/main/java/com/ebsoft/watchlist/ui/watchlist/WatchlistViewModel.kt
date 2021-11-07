@@ -27,7 +27,7 @@ class WatchlistViewModel(DataManager: DataManager, val watchlist: Watchlist) : B
 
     private var mRequestRefresh = false
 
-    fun subscribeToLiveData(owner: LifecycleOwner) {
+    override fun subscribeToLiveData(owner: LifecycleOwner) {
         mRequestRefresh = true
         dataManager.dbManager.loadStocks(watchlist).observe(owner, Observer<List<Stock>> { stocks ->
             list.clear()

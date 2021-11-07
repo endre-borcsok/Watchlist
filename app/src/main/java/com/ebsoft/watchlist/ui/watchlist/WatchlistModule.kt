@@ -20,7 +20,9 @@ import dagger.Provides
 class WatchlistModule {
     @Provides
     internal fun providesBinding(view: WatchlistFragment): FragmentWatchlistBinding {
-        return FragmentWatchlistBinding.inflate(view.layoutInflater)
+        val viewDataBinding = FragmentWatchlistBinding.inflate(view.layoutInflater)
+        viewDataBinding.swipeRefresh.setOnRefreshListener(view)
+        return viewDataBinding
     }
 
     @Provides

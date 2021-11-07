@@ -14,16 +14,12 @@ import com.ebsoft.watchlist.ui.dialog.DeleteDialog
 import com.ebsoft.watchlist.utils.Constants
 import javax.inject.Inject
 
-class MainlistFragment : BaseFragment<FragmentMainlistBinding, MainlistViewModel>(), MainlistNavigator, DeleteDialog.DeleteDialogListener, ListItemClickListener<Watchlist>, ListItemRemoveListener<Watchlist> {
+class MainlistFragment : BaseFragment<MainlistNavigator, FragmentMainlistBinding, MainlistViewModel>(), MainlistNavigator, DeleteDialog.DeleteDialogListener, ListItemClickListener<Watchlist>, ListItemRemoveListener<Watchlist> {
 
     @Inject
     lateinit var mAdapter: ListAdapter<Watchlist>
 
-    override fun setup() {
-        activity!!.setTitle(R.string.main_fragment_label)
-        viewModel.navigator = this
-        viewModel.subscribeToLiveData(this)
-    }
+    override fun setup() {}
 
     override fun onActionButtonClick() {
         Navigation.findNavController(view!!).navigate(R.id.createWatchlistFragment)

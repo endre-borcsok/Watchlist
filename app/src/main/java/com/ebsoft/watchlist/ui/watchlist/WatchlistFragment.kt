@@ -15,15 +15,12 @@ import com.ebsoft.watchlist.ui.dialog.DeleteDialog
 import com.ebsoft.watchlist.utils.Constants
 import javax.inject.Inject
 
-class WatchlistFragment : BaseFragment<FragmentWatchlistBinding, WatchlistViewModel>(), WatchlistNavigator, DeleteDialog.DeleteDialogListener, SwipeRefreshLayout.OnRefreshListener, ListItemClickListener<Stock>, ListItemRemoveListener<Stock> {
+class WatchlistFragment : BaseFragment<WatchlistNavigator, FragmentWatchlistBinding, WatchlistViewModel>(), WatchlistNavigator, DeleteDialog.DeleteDialogListener, SwipeRefreshLayout.OnRefreshListener, ListItemClickListener<Stock>, ListItemRemoveListener<Stock> {
 
     @Inject
     lateinit var mAdapter: ListAdapter<Stock>
 
     override fun setup() {
-        viewDataBinding.swipeRefresh.setOnRefreshListener(this)
-        viewModel.navigator = this
-        viewModel.subscribeToLiveData(this)
         activity!!.title = viewModel.watchlist.name
     }
 
