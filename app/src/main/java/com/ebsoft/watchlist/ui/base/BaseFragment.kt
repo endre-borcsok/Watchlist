@@ -47,7 +47,7 @@ abstract class BaseFragment<N: BaseNavigator, T : ViewDataBinding, V : BaseViewM
         super.onViewCreated(view, savedInstanceState)
         viewDataBinding.setVariable(bindingVariable, viewModel)
         viewDataBinding.executePendingBindings()
-        viewModel.navigator = this as N
+        if (this is BaseNavigator) viewModel.navigator = this as N
         viewModel.subscribeToLiveData(this)
         activity!!.setTitle(R.string.create_watchlist_fragment_label)
         setup()
