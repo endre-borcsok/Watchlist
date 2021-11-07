@@ -9,23 +9,15 @@ import dagger.android.support.DaggerAppCompatActivity
 
 abstract class BaseActivity<T : ViewDataBinding> : DaggerAppCompatActivity() {
 
-    private var mViewDataBinding: T? = null
+    lateinit var mViewDataBinding: T
 
     abstract val layoutId: Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        injectDependencies()
-        super.onCreate(savedInstanceState)
-        bindData()
-    }
-
-    private fun injectDependencies() {
         AndroidInjection.inject(this)
-    }
-
-    private fun bindData() {
+        super.onCreate(savedInstanceState)
         mViewDataBinding = DataBindingUtil.setContentView(this, layoutId)
-        mViewDataBinding!!.executePendingBindings()
+        mViewDataBinding.executePendingBindings()
     }
 
     override fun onSupportNavigateUp(): Boolean {
