@@ -61,9 +61,11 @@ abstract class BaseFragment<N: BaseNavigator, T : ViewDataBinding, V : BaseViewM
     }
 
     fun hideKeyboard() {
-        val imm = context!!
-                .getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(activity!!.currentFocus!!.windowToken, 0)
+        try {
+            val imm = (context!!
+                .getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager)
+            imm.hideSoftInputFromWindow(activity!!.currentFocus!!.windowToken, 0)
+        } catch (e: Exception) {}
     }
 
     private fun prepareNavigationBar() {
