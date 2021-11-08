@@ -23,6 +23,7 @@ import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -94,17 +95,21 @@ class AppModule {
             chain.proceed(request)
         }
 
+        val loggingInterceptor = HttpLoggingInterceptor()
+        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+
         val client = OkHttpClient.Builder()
-                .addInterceptor(tokenInterceptor)
-                .build()
+            .addInterceptor(tokenInterceptor)
+            .addInterceptor(loggingInterceptor)
+            .build()
 
         return Retrofit.Builder()
-                .baseUrl(Constants.IEX_API_END_POINT)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(CoroutineCallAdapterFactory())
-                .client(client)
-                .build()
-                .create(IEXApi::class.java)
+            .baseUrl(Constants.IEX_API_END_POINT)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .client(client)
+            .build()
+            .create(IEXApi::class.java)
     }
 
     @Provides

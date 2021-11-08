@@ -4,6 +4,7 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import com.ebsoft.watchlist.R
 import com.ebsoft.watchlist.data.DataManager
+import com.ebsoft.watchlist.data.model.StockInfo
 import com.ebsoft.watchlist.data.model.yahoo.Item
 import com.ebsoft.watchlist.databinding.FragmentSearchBinding
 import com.ebsoft.watchlist.ui.adapter.ListAdapter
@@ -32,8 +33,8 @@ class SearchModule {
     }
 
     @Provides
-    internal fun providesAdapter(viewDataBinding: FragmentSearchBinding, fragment: SearchFragment): ListAdapter<Item> {
-        val adapter = ListAdapter<Item>(R.layout.layout_search_item)
+    internal fun providesAdapter(viewDataBinding: FragmentSearchBinding, fragment: SearchFragment): ListAdapter<StockInfo> {
+        val adapter = ListAdapter<StockInfo>(R.layout.layout_search_item)
         viewDataBinding.searchRecyclerView.layoutManager = LinearLayoutManager(fragment.context)
         viewDataBinding.searchRecyclerView.itemAnimator = DefaultItemAnimator()
         viewDataBinding.searchRecyclerView.adapter = adapter

@@ -20,7 +20,8 @@ data class GlobalQuote (
 
     @SerializedName("10. change percent")
     @Expose
-    private val _changePercent: String = "") : StockInfo {
+    private val _changePercent: String = ""
+) : StockInfo {
 
     override val price: Float
         get() = _price.toFloat()
@@ -30,4 +31,6 @@ data class GlobalQuote (
 
     override val changePercent: Float
         get() = _changePercent.toFloat()
+
+    override var name: String = ""
 }

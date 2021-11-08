@@ -1,5 +1,6 @@
 package com.ebsoft.watchlist.data.control.network
 
+import com.ebsoft.watchlist.data.model.StockInfo
 import com.ebsoft.watchlist.data.model.db.Stock
 import com.ebsoft.watchlist.data.model.yahoo.Item
 
@@ -9,7 +10,7 @@ import com.ebsoft.watchlist.data.model.yahoo.Item
 
 interface APIManager {
 
-    suspend fun searchSymbol(symbol: String): List<Item>
+    suspend fun searchSymbol(symbol: String): List<StockInfo>
 
     suspend fun getBatchQuote(stocks: List<Stock>)
 }

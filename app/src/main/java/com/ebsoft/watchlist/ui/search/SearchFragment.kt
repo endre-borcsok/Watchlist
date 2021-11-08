@@ -1,6 +1,7 @@
 package com.ebsoft.watchlist.ui.search
 
 import androidx.navigation.Navigation
+import com.ebsoft.watchlist.data.model.StockInfo
 import com.ebsoft.watchlist.data.model.db.Stock
 import com.ebsoft.watchlist.data.model.db.Watchlist
 import com.ebsoft.watchlist.data.model.yahoo.Item
@@ -12,10 +13,10 @@ import com.ebsoft.watchlist.ui.base.BaseNavigator
 import com.ebsoft.watchlist.utils.Constants
 import javax.inject.Inject
 
-class SearchFragment : BaseFragment<BaseNavigator, FragmentSearchBinding, SearchViewModel>(), android.support.v7.widget.SearchView.OnQueryTextListener, ListItemClickListener<Item> {
+class SearchFragment : BaseFragment<BaseNavigator, FragmentSearchBinding, SearchViewModel>(), android.support.v7.widget.SearchView.OnQueryTextListener, ListItemClickListener<StockInfo> {
 
     @Inject
-    lateinit var mAdapter: ListAdapter<Item>
+    lateinit var mAdapter: ListAdapter<StockInfo>
 
     override fun setup() {
         showKeyboard()
@@ -30,7 +31,7 @@ class SearchFragment : BaseFragment<BaseNavigator, FragmentSearchBinding, Search
         return false
     }
 
-    override fun onItemClick(item: Item) {
+    override fun onItemClick(item: StockInfo) {
         val wlist = arguments!!.getSerializable(Constants.EXTRA_KEY_WATCHLIST) as Watchlist
         viewModel.insertStock(Stock.create(item, wlist))
         Navigation.findNavController(view!!).navigateUp()

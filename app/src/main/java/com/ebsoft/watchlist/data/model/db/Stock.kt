@@ -32,7 +32,7 @@ data class Stock (
         override var change: Float = 0.toFloat(),
 
         @ColumnInfo(name = "changePercent")
-        override var changePercent: Float = 0.toFloat()) : Serializable, StockInfo {
+        override var changePercent: Float = 0.toFloat()) : StockInfo {
 
     fun update(stockInfo: StockInfo) {
         this.symbol = stockInfo.symbol
@@ -49,4 +49,6 @@ data class Stock (
             return stock
         }
     }
+
+    override var name: String = ""
 }

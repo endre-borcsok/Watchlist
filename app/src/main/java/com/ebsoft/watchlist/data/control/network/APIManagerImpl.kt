@@ -2,6 +2,7 @@ package com.ebsoft.watchlist.data.control.network
 
 import com.ebsoft.watchlist.data.control.network.IEX.IEXApi
 import com.ebsoft.watchlist.data.control.network.Yahoo.YahooAPI
+import com.ebsoft.watchlist.data.model.StockInfo
 import com.ebsoft.watchlist.data.model.db.Stock
 import com.ebsoft.watchlist.data.model.yahoo.Item
 import java.util.*
@@ -16,10 +17,10 @@ import javax.inject.Singleton
 class APIManagerImpl @Inject
 constructor(private val mYahooApi: YahooAPI, private val mIEXApi: IEXApi) : APIManager {
 
-    override suspend fun searchSymbol(symbol: String): List<Item> {
-        val response = mYahooApi.searchSymbol(symbol).await()
+    override suspend fun searchSymbol(symbol: String): List<StockInfo> {
+        val response = mIEXApi.searchSymbol(symbol).await()
         return if (response.isSuccessful) {
-            response.body()?.symbolSearchResponse?.items!!
+            response.body() as List<StockInfo>
         } else {
             ArrayList()
         }

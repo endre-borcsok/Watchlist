@@ -20,4 +20,8 @@ data class Quote (
 
     @SerializedName("changePercent")
     @Expose
-    override val changePercent: Float = 0.0f) : StockInfo
+    override val changePercent: Float = 0.0f
+) : StockInfo {
+
+    override val name: String = ""
+}

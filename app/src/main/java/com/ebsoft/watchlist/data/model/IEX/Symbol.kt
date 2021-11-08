@@ -1,25 +1,20 @@
-package com.ebsoft.watchlist.data.model.yahoo
+package com.ebsoft.watchlist.data.model.IEX
 
 import com.ebsoft.watchlist.data.model.StockInfo
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import java.io.Serializable
 
-/**
- * Created by endre on 09/09/18.
- */
-
-data class Item (
+data class Symbol (
 
     @SerializedName("symbol")
     @Expose
     override val symbol: String = "",
 
-    @SerializedName("name")
+    @SerializedName("securityName")
     @Expose
     override val name: String = "",
 
-    @SerializedName("type")
+    @SerializedName("securityType")
     @Expose
     val type: String = "") : StockInfo {
 

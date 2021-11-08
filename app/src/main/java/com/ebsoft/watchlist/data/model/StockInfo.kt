@@ -1,8 +1,12 @@
 package com.ebsoft.watchlist.data.model
 
-interface StockInfo {
+import java.io.Serializable
+
+interface StockInfo : Serializable {
 
     val symbol: String
+
+    val name: String
 
     val price: Float
 

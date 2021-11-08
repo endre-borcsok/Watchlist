@@ -5,6 +5,7 @@ import android.databinding.ObservableArrayList
 import android.databinding.ObservableList
 
 import com.ebsoft.watchlist.data.DataManager
+import com.ebsoft.watchlist.data.model.StockInfo
 import com.ebsoft.watchlist.data.model.db.Stock
 import com.ebsoft.watchlist.data.model.yahoo.Item
 import com.ebsoft.watchlist.ui.base.BaseNavigator
@@ -21,7 +22,7 @@ import kotlinx.coroutines.launch
 
 class SearchViewModel(DataManager: DataManager) : BaseViewModel<BaseNavigator>(DataManager) {
 
-    val list: ObservableList<Item> = ObservableArrayList()
+    val list: ObservableList<StockInfo> = ObservableArrayList()
 
     fun performSearch(symbol: String) {
         launch(coroutineContext) {
